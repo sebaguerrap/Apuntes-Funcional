@@ -352,12 +352,216 @@ donde
 \end{ftheorem}
 
 \begin{proof}
-    Próxima semana.
+    $\impliedby:$ \begin{enumerate}
+        \item Tome una sucesión $\{v_n\}$ de Cauchy. Es suficiente demostrar que una subsucesión converge. $v_{n_k}\to v$ en $V$. Fije $\varepsilon>0$.
+        $\implies ||v_m-v||\leq \underbrace{||v_m-v_{n_k}||}_{\leq \varepsilon/2}+\underbrace{||v_{n_k}-v||}_{\leq \varepsilon/2}\leq \varepsilon$, tomando $k,m$ suficientemente grandes.
+
+        \item Dos trucos: Podemos ``acelerar'' la convergencia. Existe una subsucesión $\{v_{n_k}\}$ tal que 
+        
+        \begin{equation}||v_{n_{k+1}}-v_{n_k}||\leq 2^{-k}\end{equation}
+
+        \[||v_n-v_m||\leq 2^{-k}\quad \forall n,m\geq N(2^{-k}):=N_k\]
+
+        $n_k:=N_1+\ldots+N_k$
+
+        Afirmamos que $\{v_{n_k}\}$ converge.
+
+        Truco de la suma telescopica.
+
+        \[\sum_{k=1}^\infty (v_{n_{k+1}}-v_{n_k})\]
+
+        es absolutamente sumable debido a (1.1) entonces es sumable:
+
+        \[\sum_{k=1}^m (v_{n_{k+1}}-v_{n_k})\xrightarrow[m\to\infty]{} S\in V\]
+
+        Sumas parciales convergen 
+
+        \[v_{n_{m+1}}-v_{n_1}\xrightarrow[m\to\infty]{}S\in V\]
+
+        \[\implies v_{n_{m+1}}\xrightarrow[m\to\infty]{}S+v_{n_1}\in V\]
+
+        \seba{Arreglar xrightarrows, pasar los limite a arriba}
+    \end{enumerate}
 \end{proof}
 
+\section{Operadores y funcionales}
+
+Nos interesan las aplicaciones lineales entre espacios normados.
+
+\begin{fexample}
+    \[T:C([0,1],\C)\to C([0,1],\C)\]
+    \[f\to F(x)=\int_0^x f(y)\, dy\]
+
+    $T$ es lineal.
+
+    \[F(x)=\int_0^1 \mathds{1}_{\{y<x\}} f(y)\,dy\]
+\end{fexample}
+
+\begin{fdefinition}
+    $V,W$ son 2 espacios vectoriales.
+
+    $T:V\to W$ es lineal si 
+
+    \[T(\lambda_1 v_1+\lambda_2 v_2)=\lambda_1 T(v_1)+\lambda_2 T(v_2)\quad \forall v_1,v_2\in V\text{ y } \lambda_1,\lambda_2\in \K\]
+
+\end{fdefinition}
+
+\begin{align*}T:C([0,1])&\to C([0,1])\\
+f&\to \int_0^1 \underbrace{K(x,y)}_{\text{Kernel}} f(y)\,dy:=Tf(x)\end{align*}
+
+operador integral. Cuando $K\in C([0,1]^2), T$ está bien definida.
+
+En $\dimn \infty$ vamos a exigir que los operadores lineales sean \color{red} continuos \color{black}.
+
+\begin{fdefinition}
+    $T:V\to W$, $V,W$ son espacios métricos. Decimos que $T$ es continuo si $T^{-1}(O)\subseteq V$ es abierto para todo $O\subseteq V$ abierto.
+
+    \[\iff T^{-1}(C)\subseteq V\quad \forall C\subseteq W\]
+    $\iff v_n\to v$ en $V$ entonces $Tv_n\to Tv$ en $W$.
+\end{fdefinition}
+
+\begin{ftheorem}
+    Sean $V,W$ espacios normados. Entonces $T:V\to W$ operador lineal es continuo si y solo si
+
+    \begin{equation}||Tv||_W\leq C||v||\forall v\in V\end{equation}
+
+    para alguna constante $C$.
+\end{ftheorem}
+
+\begin{fdefinition}
+    Operador lineal que satisface $1.2$ se llama \color{red} acotado \color{black}.
+\end{fdefinition}
+
+\begin{proof}
+    $\implies:$ Sea $T$ continuo. $B:=\{||w||_W<1\}$
+
+    $0\in T^{-1}(B)=B_r^v$
+
+    \[T^{-1}(B)\supseteq B_r^v:=\{v\in V:||v||_V<r\}\]
+
+    pues $T^{-1}(B)$ es abierto 
+
+    \[\implies T^{-1}(B)\supseteq \{v\in V:||v||_V=\frac{r}{2}\}\]
+
+    esfera de radio $\frac{r}{2}$.
+
+    \[||T\bar v||_W<1\]
+
+    Todo $v\in V,v\neq 0$ se puede escribir como $v=\frac{\bar v}{r/2}||v||_V$
+
+    Para algún $\bar v\in S_{r/2}^v$
+
+    Por lo tanto
+
+    \[||Tv||_W=||T(\frac{\bar v }{r/2}||v||_V)||_W\]
+
+    \[=||\frac{2}{r}||v||_V T(\bar v)||_W\]
+    \[=\frac{2}{r}||v||_V ||T\bar v||_W<1\]
+    \[\leq \frac{2}{r}||v||_V\quad \forall v\neq 0\]
+\end{proof}
+
+\begin{fexample}
+    \[Tf(x):=\int_0^1 K(x,y)f(y)\,dy\]
+
+    es acotado en $(C([0,1]),||||_\infty )$
+
+    \begin{align*}|Tf(x)|&\leq \int_0^1 \underbrace{|K(x,y)|}_{\leq M}|f(y)|\,dy\\
+    &\leq M\int_0^1 |f(y)|\,dy\leq M ||f||_\infty\quad \forall x\implies ||Tf||_\infty \leq M||f||_\infty\end{align*}
+\end{fexample}
+
+\begin{fdefinition}
+    Sean $V,W$ espacios normados. Defina $\mathcal{B}(V,W)$ como el conjunto de operadores lineales continuos acotados de $V$ a $W$.
+
+    Obviamente $\mathcal{B}(V,W)$ es un espacio vectorial.
+\end{fdefinition}
+
+Norma operador $T:V\to W$:
+
+\[||T||:=\sup_{||v||=1} ||Tv||\]
+
+Obviamente, $T\in \mathcal{B}(V,W), ||T||<\infty$
+
+\[||Tv||\leq C \underbrace{||v||}_1=C\]
+
+\[\implies ||T||\leq C\]
+
+De hecho, para $T\in \mathcal{B}(V,W)$
+
+\begin{align*}
+    ||T||&=\sup_{v\neq 0} \frac{||Tv||}{||v||}=\sup_{||v||\leq 1} ||Tv||\\
+    &=\inf \{C>0:||Tv||\leq C||v||\quad \forall v\in V\}
+\end{align*}
+
+Tenemos $||Tv||\leq ||T||||v||$
+
+\begin{ftheorem}
+    $\mathcal{B}(V,W)$ es un espacio normado bajo la norma operador.
+\end{ftheorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $||T||=0\implies ||Tv||=0\forall v\in V$
+         
+        $\implies Tv=0\implies T=0$.
+
+        \item $||\lambda T||=|\lambda| ||T||$
+
+        \item Sea $v\in V,||v||=1$. $\forall T,S\in\mathcal{B}(V,W),$
+        
+        \begin{align*}||(T+S)v||&=||Tv+Sv||\\
+        &\leq ||Tv||+||Sv||\\
+        &\leq ||T|| ||v||+||S|| ||v||=(||T||+||S||)||v||\end{align*}
+
+    \begin{align*}
+        &\implies ||(T+S)v||\leq ||T||+||S||\\
+        &\implies ||T+S||\leq ||T||+||S||
+    \end{align*}
+    \end{enumerate}
+
+    ¿Cuándo es $\mathcal{B}(V,W)$ completo?
+
+    \begin{ftheorem}
+        $\mathcal{B}(V,W)$ es Banach cuando $W$ es Banach.
+    \end{ftheorem}
+
+    \subsection{Aplicaciones}
+
+    \begin{fdefinition}
+        Sea $V$ un espacio normado sobre $\K$.
+
+        \[V^*=\mathcal{B}(V,\K)\]
+
+        se llama el espacio \color{red} dual \color{black} de $V$.
+    \end{fdefinition}
+
+    \begin{ftheorem}
+        Cuando $\K=\R,\C$ (completos) $V^*$ es un espacio de Banach
+    \end{ftheorem}
+
+    Elementos de $V^*$ se llaman \color{red} funcionales \color{black} en $V$.
 
 
+    \begin{fexample}
+        $[l^p(\C)]^* =?,p\in[1,\infty)$
 
+        Resulta que $?=l^q(\C)$ donde $\frac{1}{p}+\frac{1}{q}=1$.
 
+        Si $v\in \ell^p,w\in\ell^q$
 
+        podemos definir un funcional en $\ell^p$
+
+        \begin{align*}\ell_w:\ell^p(\C)&\to\C\\
+        v=\{v_k\}&\to \sum_{k=1}^\infty v_k\bar w_k\end{align*}
+
+        \[|\ell_w|\leq ||w||_{\ell^q}||v||_{\ell^p}\]
+
+        Es la desigualdad de Hölder discreta.
+    \end{fexample}
+
+    $(\ell^1)^*\simeq \ell^\infty$
+    $(\ell^2)^*\simeq \ell^2$
+
+    \begin{fnote}
+        $(\ell^\infty)^*\not\simeq \ell^1$
+    \end{fnote}
 \end{document}
