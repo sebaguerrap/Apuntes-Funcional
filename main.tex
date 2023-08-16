@@ -1,0 +1,23 @@
+\documentclass{apunte}
+
+\title{Apunte \curso(\ramo)}
+\author{\alumno}
+\date{\today}
+
+\begin{document}
+
+\subfile{Capitulos/titlepage}
+\tableofcontents
+
+\renewcommand{\chapter}[1]{\oldchapter{#1}\label{cap:\thechapter}} % Esto es para evitar un bug que se produce al crear labels automáticos para los capítulos
+
+\chapter{Intro al Análisis Funcional}
+\subfile{Capitulos/cap1}
+
+\chapter{cap 2}
+\subfile{Capitulos/cap2}
+
+% chapter{NOMBRE DEL CAPÍTULO}
+% \subfile{Capitulos/CAPITULO}
+
+\end{document}

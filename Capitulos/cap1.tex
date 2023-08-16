@@ -1,0 +1,363 @@
+\documentclass[../Apunte.tex]{subfiles}
+
+\begin{document}
+
+\section{¿Qué estudia el Análisis Funcional?}
+
+Estudia los espacios vectoriales de dimensión infinita y las transformaciones lineales entre ellos.
+
+\begin{fdefinition}
+    Un espacio vectorial $V$ sobre $\mathbb{K}$ campo de escalares tiene dimensión infinita si $\forall n\in\N$ hay $n$ elementos de $V$ que son linealmente independientes sobre $\mathbb{K}$
+\end{fdefinition}
+
+\begin{fexample}
+    $V=C([0,1],\R)=$ funciones reales continuas en $[0,1]$.
+
+    $\{1,x,\ldots,x^{n-1}\}\subseteq V$ es linealmente independiente sobre $\R$.
+\end{fexample}
+
+\begin{proof}
+    $\displaystyle\sum_{k=0}^{n-1}a_kx^k\equiv 0$, $a_k\in\R$.
+
+    Reconocemos que existe la operación $\frac{d}{dx}$ definida en $C^{\infty}([0,1],\R)$, funciones suaves, y la operación evaluar en $x=0$.
+
+    Evaluando en $x=0\to a_0=0$. Derivamos a los lados.
+
+    \[\sum_{k=1}^{n-1}a_k k x^{k-1}\equiv 0\]
+
+    y ahora evaluamos en $x=0$:
+    
+    $$a_1=0$$...
+\end{proof}
+
+\begin{proof}[Demostración alternativa]
+    Reconocemos que hay un producto interno en $V=C([0,1],\R)$
+
+    \[\langle f,g\rangle=\int_0^1 f(x)g(x)\,dx\]
+
+    $\{f_k=\sin (\pi kx)\}_{k=1}^n\subseteq V$
+
+    \[\langle \sin (\pi kx),\sin (\pi lx)\rangle=\begin{cases} 0&k\neq l\\
+    \frac{1}{2}&k=l\end{cases}\]
+
+    \[S=\sum_{k=1}^n a_kf_k\equiv 0\]
+
+    \[0=\langle S,f_k\rangle=\left\langle \sum a_kf_k,f_l\right\rangle=a_l\langle f_0,f_l\rangle =\frac{1}{2}a_l\]
+
+    \[\implies a_l=0, \forall l=1,\ldots,n\]
+
+\end{proof}
+
+\section{Motivación}
+
+\begin{fexample}[Ecuación de Poisson]
+    \[\begin{cases}
+        \Delta u=f&\text{en }\Omega\subseteq \R^n\\
+        u=0&\text{en } \partial \Omega
+    \end{cases}\]
+
+    \seba{Aañdir dibujo}
+
+    El problema se reformula así:
+
+    \[\begin{cases}
+        D=\Delta:x\to Y\ni f\\
+        Du=f
+    \end{cases}\]
+    
+    tiene una solución $u\in X$ para ciertos espacios $X,Y$ apropiados.
+\end{fexample}
+
+El Análaisis Funcional busca construir teoría más general que aplica para todos los problemas que \color{red} comparten \color{black}las \color{red}mismas características \color{black}topológicas/algebraicas/métricas.
+
+\section{Objeto central: espacio de Banach}
+
+\begin{fdefinition}[Espacio de Banach]
+    $(V,||\cdot ||)$ es un espacio de Banach si es un espacio normado \color{red}completo \color{black}(clave para sacar límites).
+\end{fdefinition}
+
+\[\{\text{Espacios de Hilbert}, (V,\langle \cdot,\cdot\rangle) completos\}\subseteq\{\text{Espacios de Banach}, (V,||\cdot||)\}\subseteq \{\text{Espacios métricos}, (V,d) completos\}\]
+
+\seba{Arreglar}
+
+\paragraph{Lógica de inclusiones}
+
+\begin{enumerate}
+    \item $\langle\cdot,\cdot\rangle$ induce una norma $||\cdot||$
+
+    \[||v||=\langle v,v\rangle^{1/2}\]
+
+    \item $||\cdot||$ induce una métrica $d(\cdot,\cdot)$
+
+    \[d(v,w)=||v-w||\]
+\end{enumerate}
+
+\section{Resultados que vamos a ver}
+
+\begin{enumerate}
+    \item Resultados que se parecen a los teoremas que conocemos en la situación de dimensión finita.
+
+    \begin{fexample}
+        Cada funcional lineal en $\R$ ($l:\R^{n}\to \R$) se puede representar como $l(v)=v\cdot w$ para algún vector (único) $w\in\R^n$.
+
+    En la situación de dimensión $\infty$, se tiene el Teorema de Representación de Riesz:
+
+    \begin{ftheorem}[Representación de Riesz]
+        Sea $(V,\langle,\rangle)$ un espacio de Hilbert y $l:V\to \R$ un funcional lineal \color{red}continuo \color{black}. Entonces existe un único $w\in V$, tal que
+
+        \[l(v)=\langle v,w\rangle\]
+    \end{ftheorem}
+    \end{fexample}
+
+    \item Resultados son muy diferentes de la situación en dimensión finita. \color{red} contraintuitivos \color{black}.
+
+    \begin{fexample}
+        $\overline{B_1(0)}\subseteq \R^n$ es compacta (Heine-Borel). 
+
+        En $\dimn V=\infty$, este teorema es falso.
+    \end{fexample}
+    
+    \begin{fproposition}
+        Sea $V$ un espacio de Banach y sea $B=\{v\in V:||v||\leq 1\}$. $B$ es compacto en $V$ $\iff \dimn V<\infty$
+    \end{fproposition}
+
+    \begin{fexample}
+        En particular, la bola unitaria cerrada en
+
+        \[B\subseteq L^p([0,1]),\quad p\in (1,\infty)\]
+
+        no es compacta.
+
+        \color{blue}$\implies$ motiva la definición de \color{red} topologías débiles.
+    \end{fexample}
+    
+\end{enumerate}
+
+\section{Nociones básicas}
+
+\begin{fdefinition}[Espacios métricos]
+    Un espacio métrico $(X,d)$ y $d:X\times X\to [0,\infty)$ la métrica que satisface:
+
+    \begin{enumerate}
+        \item $d(x,y)=0\iff x=y$
+        \item (simetría) $d(x,y)=d(y,x)$
+        \item (Desigualdad triangular) $d(x,y)\leq d(x,z)+d(z,y)$
+    \end{enumerate}
+\end{fdefinition}
+
+\begin{fdefinition}[]
+    Sea $V$ un espacio vectorial (sobre $\R$ o $\C$). Una norma en $V$ es una función $||\cdot||:V\to [0,\infty)$ que satsiface:
+
+    \begin{enumerate}
+        \item $||v||=0\iff v=0$
+        \item $||\lambda v||=|\lambda|\cdot ||v||$
+        \item (Desigualdad triangular) $||v+w||\leq ||v||+||w||$
+    \end{enumerate}
+\end{fdefinition}
+
+Una función $||\cdot||:V\to[0,\infty)$ que satisface solo $2.$ y $3.$ se llama \color{red} semi-norma \color{black}.
+
+Una espacio vectorial $V$ con una norma se llama \color{red} Espacio normado \color{black} $(V,||\cdot||)$.
+
+\begin{fproposition}
+    $(V,||\cdot||)$ define un espacio métrico con métrica $d(v,w):=||v-w||$.
+\end{fproposition}
+
+\begin{fexample}
+    \begin{itemize}
+        \item $V=\R^n,\C^n$ tiene la estructura de espacio normado:
+
+    \[|x|_2:=\left(\sum_{k=1}^n |x_k|^2\right)^{1/2},\quad x=(x_1,\ldots,x_n)\]
+
+    \item En $\R^2$, $|(x_1,x_2)|:=|x_1|$ define una semi-norma:
+
+
+    \[|(x_1,x_2)|=0\iff x_1=0,x_2\in\R\]
+
+    \item $|x|_\infty=\displaystyle\max_{k=1,\ldots,n}\{x_k\}$ es una norma.
+
+    \item \[|x|_p:=\left(\sum_{k=1}^n |x_k|^p\right)^{1/p},\quad p\in [1,\infty)\]
+    \end{itemize}
+
+\seba{Añadir dibujos de norma infinito y norma 1}
+
+
+\end{fexample}
+
+\begin{fproposition}
+
+En $\R^n$ y $\C^n$ todas normas son equivalentes: si $||\cdot||\cdot||_1,||\cdot||_2$ son 2 normas, existe $c>0$ tal que
+
+\[\frac{1}{c}||v||_2\leq ||v||_1\leq c||v||_2,\quad \forall v\in V\]
+
+\end{fproposition}
+
+\begin{fdefinition}
+    Sea $X$ un espacio métrico. Definimos 
+
+    \[C_\infty(X):=\{f:X\to\C\text{ continuas y acotadas}\}\]
+
+\end{fdefinition}
+
+\begin{fexample}
+    $C_\infty([0,1]) = C([0,1])$ (funciones continuas)
+\end{fexample}
+
+\begin{fproposition}
+    $||f||_\infty:=\sup_{x\in X}|f(x)|$ define una norma en $C_\infty(X)$.
+\end{fproposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $||f||_\infty=0\iff f(x)=0\, quad \forall x\in X$.
+
+        \item \begin{align*}||\lambda f||_\infty&=\sup_x |\lambda f(x)|\\
+            &=\sup_x |\lambda|\cdot |f(x)|\\
+            &=|\lambda| ||f||_\infty
+        \end{align*}
+
+        \item \begin{align*}
+            |f_1(x)+f_2(x)|&\leq |f_1(x)|+|f_2(x)|\\
+            &\leq ||f_1||_\infty+||f_2||_\infty
+        \end{align*}
+    \end{enumerate}
+\end{proof}
+
+Convergencia en $||\cdot||_\infty$
+
+\[f_n\to f,\quad \text{en }C_\infty(X)\]
+
+si 
+
+\[||f_n-f||_\infty\xrightarrow[n\to\infty] 0\]
+
+\[\iff \forall \varepsilon>0 \exists N\in\N\text{ tal que}\]
+
+\[||f_n-f||_\infty<\varepsilon,\quad \forall n\geq N\]
+
+\[\iff |f_n(x)-f(x)|<\varepsilon,\quad \forall x\in X\]
+
+\seba{arreglar/poner align}
+
+\begin{fexample}
+    $\K=\R$ o $\C$.
+
+    \[l^p(\K):=\{\{a_k\}_{k=1}^n\subseteq \K: ||a||_p<\infty\}\]
+
+    donde
+
+    \[||a||_p:=\begin{cases}\left(\sum_{k=1}^\infty |a_k|^p\right)^{1/p}&p\in [1,\infty)\\
+    \displaystyle\sup_{k\in\N} |a_k|& p=\infty\end{cases}\]
+\end{fexample}
+
+Sea $(X,\mathcal{B},\sigma)$ un espacio de medida.
+
+\[L^p(x,\sigma):=\{f:X\to\K \, \sigma\text{-medibles, tales que} ||f||_{L^p}<\infty\}\]
+
+donde 
+
+\[||f||_{L^p}:= \left(\int |f|^p\,d\sigma\right)^{1/p}\]
+
+\[||f||_{L^\infty}:=\esssup_x |f|\]
+
+\begin{fexample}
+    $X=[0,1]$, $\sigma=$ medida de Lebesgue. En $C([0,1])$ definimos
+
+    \[||f||_\infty =\sup |f(x)|\]
+    \[||f||_{L^1}=\int |f(x)|\,dx\]
+
+    Estas 2 normas \color{red} no son equivalentes \color{black}
+\end{fexample}
+
+\begin{fdefinition}
+    Un espacio normado $(V,||\cdot||)$ es un espacio de Banach si es \color{red} completo \color{black} con respecto a la métrica inducida.
+\end{fdefinition}
+
+\begin{fexample}
+    $\R^n,\C^n$ son espacios de Banach (con respecto a cualquier norma)
+    
+    $L^p(x,\mathcal{B},\sigma)$ es un espacio de Banach (cuando $(X,\mathcal{B},\sigma) es completo$).
+\end{fexample}
+
+\begin{fproposition}
+    $C_\infty(X)$ es un espacio de Banach.
+\end{fproposition}
+
+\begin{proof}
+    $\{f_n\}\subseteq V=C_\infty(X)$ de Cauchy.
+
+    \begin{enumerate}
+        \item Adivinar el límite $f$.
+        \item Probar la convergencia:
+        \[||f_n-f||\to 0\]
+        \item $f$ está en el espacio.
+    \end{enumerate}
+
+    $\forall \varepsilon>0\exists N=N(\varepsilon)$ tal que
+
+    \[||f_n-f_m||_\infty\leq \varepsilon,\quad \forall n,m\geq N\]
+
+    Para todo $x\in X$ fijo, tenemos entonces 
+
+    \[|f_n(x)-f_m(x)|\leq ||f_n-f_m||_\infty\leq \varepsilon\]
+
+    Esto es $\{f_n(x)\}_n$ es Cauchy en $\C$.
+
+    \[\implies f(x):=\lim_{n\to\infty} f_n(x) \text{ existe}\]
+
+    \begin{align*}|f_n(x)-f_m(x)|&=\lim_{m\to\infty} |f_n(x)-f_m(x)|\\
+    &\leq \varepsilon \quad \forall n\geq N(\varepsilon) \text{ independiente de }x\in X
+\end{align*}
+
+    \[\implies ||f_n-f||_\infty<\varepsilon,\quad \forall n\geq N(\varepsilon)\]
+
+    Esto es $f_n\to f$ uniformemente sobre $X$.
+
+    $\implies f$ es continua sobre $X$. 
+
+    ¿Por qué $f$ es acotada?
+
+    Considere $\varepsilon=1$
+
+    \[\implies ||f_n-f_{\bar N}||_\infty \leq 1\]
+
+    cuando $n\geq \bar N:=N(1)$.
+
+    \begin{align*}||f_n||_\infty &\leq ||f_{\bar N}||_\infty + ||f_n-f_{\bar N}||_\infty\\
+    &\leq ||f_{\bar N}||_\infty +1\end{align*}
+
+    \[\implies f(x)=\lim_{n\to\infty} f_n(x)\text{ es acotada}\]
+
+    \begin{fdefinition}
+        Sea $(V,||\cdot||)$ un espacio normado. $v_n\in V,n\in\N$. $\displaystyle\sum_{n=1}^\infty v_n$ es \color{red} sumable \color{black} si
+
+        \[S_m=\sum_{n=1}^m v_n\]
+
+        converge.
+
+        $\displaystyle\sum_{n} v_n$ es \color{red} absolutamente sumable \color{black} si 
+
+        \[\sum_{n=1}^\infty ||v_n||\]
+
+        converge.
+    \end{fdefinition}
+\end{proof}
+
+\begin{fproposition}
+    Si $\displaystyle\sum_{n=1}^\infty v_n$ es absolutamente sumable, entonces, $\{S_m\}$ es Cauchy
+\end{fproposition}
+
+\begin{ftheorem}
+    Un espacio normado $(V,||\cdot||)$ es un espacio de Banach si y solo si toda serie absolutamente sumable es sumable.
+\end{ftheorem}
+
+\begin{proof}
+    Próxima semana.
+\end{proof}
+
+
+
+
+
+
+\end{document}
