@@ -1,0 +1,433 @@
+\chapter{Espacios de Banach}
+
+\section{Nociones básicas}
+
+\begin{fdefinition}[Espacios métricos]
+    Un espacio métrico $(X,d)$ y $d:X\times X\to [0,\infty)$ la métrica que satisface:
+
+    \begin{enumerate}
+        \item $d(x,y)=0\iff x=y$
+        \item (simetría) $d(x,y)=d(y,x)$
+        \item (Desigualdad triangular) $d(x,y)\leq d(x,z)+d(z,y)$
+    \end{enumerate}
+\end{fdefinition}
+
+\begin{fdefinition}[]
+    Sea $V$ un espacio vectorial (sobre $\R$ o $\C$). Una norma en $V$ es una función $||\cdot||:V\to [0,\infty)$ que satsiface:
+
+    \begin{enumerate}
+        \item $||v||=0\iff v=0$
+        \item $||\lambda v||=|\lambda|\cdot ||v||$
+        \item (Desigualdad triangular) $||v+w||\leq ||v||+||w||$
+    \end{enumerate}
+\end{fdefinition}
+
+Una función $||\cdot||:V\to[0,\infty)$ que satisface solo $2.$ y $3.$ se llama \color{red} semi-norma \color{black}.
+
+Una espacio vectorial $V$ con una norma se llama \color{red} Espacio normado \color{black} $(V,||\cdot||)$.
+
+\begin{fproposition}
+    $(V,||\cdot||)$ define un espacio métrico con métrica $d(v,w):=||v-w||$.
+\end{fproposition}
+
+\begin{fexample}
+    \begin{itemize}
+        \item $V=\R^n,\C^n$ tiene la estructura de espacio normado:
+
+    \[|x|_2:=\left(\sum_{k=1}^n |x_k|^2\right)^{1/2},\quad x=(x_1,\ldots,x_n)\]
+
+    \item En $\R^2$, $|(x_1,x_2)|:=|x_1|$ define una semi-norma:
+
+
+    \[|(x_1,x_2)|=0\iff x_1=0,x_2\in\R\]
+
+    \item $|x|_\infty=\displaystyle\max_{k=1,\ldots,n}\{x_k\}$ es una norma.
+
+    \item \[|x|_p:=\left(\sum_{k=1}^n |x_k|^p\right)^{1/p},\quad p\in [1,\infty)\]
+    \end{itemize}
+
+\seba{Añadir dibujos de norma infinito y norma 1}
+
+
+\end{fexample}
+
+\begin{fproposition}
+
+En $\R^n$ y $\C^n$ todas normas son equivalentes: si $||\cdot||_1,||\cdot||_2$ son 2 normas, existe $c>0$ tal que
+
+\[\frac{1}{c}||v||_2\leq ||v||_1\leq c||v||_2,\quad \forall v\in V\]
+
+\end{fproposition}
+
+\begin{fdefinition}
+    Sea $X$ un espacio métrico. Definimos 
+
+    \[C_\infty(X):=\{f:X\to\C\text{ continuas y acotadas}\}\]
+
+\end{fdefinition}
+
+\begin{fexample}
+    $C_\infty([0,1]) = C([0,1])$ (funciones continuas)
+\end{fexample}
+
+\begin{fproposition}
+    $||f||_\infty:=\displaystyle\sup_{x\in X}|f(x)|$ define una norma en $C_\infty(X)$.
+\end{fproposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $||f||_\infty=0\iff f(x)=0\, \forall x\in X$.
+
+        \item \begin{align*}||\lambda f||_\infty&=\sup_x |\lambda f(x)|\\
+            &=\sup_x |\lambda|\cdot |f(x)|\\
+            &=|\lambda|\cdot ||f||_\infty
+        \end{align*}
+
+        \item \begin{align*}
+            |f_1(x)+f_2(x)|&\leq |f_1(x)|+|f_2(x)|\\
+            &\leq ||f_1||_\infty+||f_2||_\infty
+        \end{align*}
+    \end{enumerate}
+\end{proof}
+
+Convergencia en $||\cdot||_\infty$
+
+\[f_n\to f,\quad \text{en }C_\infty(X)\]
+
+si 
+
+\[||f_n-f||_\infty\xrightarrow{n\to\infty} 0\]
+
+\[\iff \forall \varepsilon>0 \exists N\in\N\text{ tal que}\]
+
+\[||f_n-f||_\infty<\varepsilon,\quad \forall n\geq N\]
+
+\[\iff |f_n(x)-f(x)|<\varepsilon,\quad \forall x\in X\]
+
+\begin{fexample}
+    $\K=\R$ o $\C$.
+
+    \[\ell^p(\K):=\{\{a_k\}_k \subseteq \K: ||a||_p<\infty\}\]
+
+    donde
+
+    \[||a||_p:=\begin{cases}\left(\displaystyle\sum_{k=1}^\infty |a_k|^p\right)^{1/p}&p\in [1,\infty)\\
+    \displaystyle\sup_{k\in\N} |a_k|& p=\infty\end{cases}\]
+\end{fexample}
+
+Sea $(X,\mathcal{B},\sigma)$ un espacio de medida.
+
+\[L^p(x,\sigma):=\{f:X\to\K \, \sigma\text{-medibles, tales que} ||f||_{L^p}<\infty\}\]
+
+donde 
+
+\[||f||_{L^p}:= \left(\int |f|^p\,d\sigma\right)^{1/p}\]
+
+\[||f||_{L^\infty}:=\esssup_x |f|\]
+
+\begin{fexample}
+    $X=[0,1]$, $\sigma=$ medida de Lebesgue. En $C([0,1])$ definimos
+
+    \[||f||_\infty =\sup |f(x)|\]
+    \[||f||_{L^1}=\int |f(x)|\,dx\]
+
+    Estas 2 normas \color{red} no son equivalentes \color{black}
+\end{fexample}
+
+\begin{fdefinition}
+    Un espacio normado $(V,||\cdot||)$ es un espacio de Banach si es \color{red} completo \color{black} con respecto a la métrica inducida.
+\end{fdefinition}
+
+\begin{fexample}
+    $\R^n,\C^n$ son espacios de Banach (con respecto a cualquier norma)
+    
+    $L^p(X,\mathcal{B},\sigma)$ es un espacio de Banach (cuando $(X,\mathcal{B},\sigma)$ es completo).
+\end{fexample}
+
+\begin{fproposition}
+    $C_\infty(X)$ es un espacio de Banach.
+\end{fproposition}
+
+\begin{proof}
+    $\{f_n\}\subseteq V=C_\infty(X)$ de Cauchy.
+
+    \begin{enumerate}
+        \item Adivinar el límite $f$.
+        \item Probar la convergencia:
+        \[||f_n-f||\to 0\]
+        \item $f$ está en el espacio.
+    \end{enumerate}
+
+    $\forall \varepsilon>0\exists N=N(\varepsilon)$ tal que
+
+    \[||f_n-f_m||_\infty\leq \varepsilon,\quad \forall n,m\geq N\]
+
+    Para todo $x\in X$ fijo, tenemos entonces 
+
+    \[|f_n(x)-f_m(x)|\leq ||f_n-f_m||_\infty\leq \varepsilon\]
+
+    Esto es $\{f_n(x)\}_n$ es Cauchy en $\C$.
+
+    \[\implies f(x):=\lim_{n\to\infty} f_n(x) \text{ existe}\]
+
+    \begin{align*}|f_n(x)-f(x)|&=\lim_{m\to\infty} |f_n(x)-f_m(x)|\\
+    &\leq \varepsilon \quad \forall n\geq N(\varepsilon) \text{ independiente de }x\in X
+\end{align*}
+
+    \[\implies ||f_n-f||_\infty<\varepsilon,\quad \forall n\geq N(\varepsilon)\]
+
+    Esto es $f_n\to f$ uniformemente sobre $X$.
+
+    $\implies f$ es continua sobre $X$. 
+
+    ¿Por qué $f$ es acotada?
+
+    Considere $\varepsilon=1$
+
+    \[\implies ||f_n-f_{\bar N}||_\infty \leq 1\]
+
+    cuando $n\geq \bar N:=N(1)$.
+
+    \begin{align*}||f_n||_\infty &\leq ||f_{\bar N}||_\infty + ||f_n-f_{\bar N}||_\infty\\
+    &\leq ||f_{\bar N}||_\infty +1\end{align*}
+
+    \[\implies f(x)=\lim_{n\to\infty} f_n(x)\text{ es acotada}\]
+
+    \begin{fdefinition}
+        Sea $(V,||\cdot||)$ un espacio normado. $v_n\in V,n\in\N$. $\displaystyle\sum_{n=1}^\infty v_n$ es \color{red} sumable \color{black} si
+
+        \[S_m=\sum_{n=1}^m v_n\]
+
+        converge.
+
+        $\displaystyle\sum_{n} v_n$ es \color{red} absolutamente sumable \color{black} si 
+
+        \[\sum_{n=1}^\infty ||v_n||\]
+
+        converge.
+    \end{fdefinition}
+\end{proof}
+
+\begin{fproposition}
+    Si $\displaystyle\sum_{n=1}^\infty v_n$ es absolutamente sumable, entonces, $\{S_m\}$ es Cauchy
+\end{fproposition}
+
+\begin{ftheorem}
+    Un espacio normado $(V,||\cdot||)$ es un espacio de Banach si y solo si toda serie absolutamente sumable es sumable.
+\end{ftheorem}
+
+\begin{proof}
+    $\impliedby:$ \begin{enumerate}
+        \item Tome una sucesión $\{v_n\}$ de Cauchy. Es suficiente demostrar que una subsucesión converge. $v_{n_k}\to v$ en $V$. Fije $\varepsilon>0$.
+        $\implies ||v_m-v||\leq \underbrace{||v_m-v_{n_k}||}_{\leq \varepsilon/2}+\underbrace{||v_{n_k}-v||}_{\leq \varepsilon/2}\leq \varepsilon$, tomando $k,m$ suficientemente grandes.
+
+        \item Dos trucos: Podemos ``acelerar'' la convergencia. Existe una subsucesión $\{v_{n_k}\}$ tal que 
+        
+        \begin{equation}||v_{n_{k+1}}-v_{n_k}||\leq 2^{-k}\end{equation}
+
+        \[||v_n-v_m||\leq 2^{-k}\quad \forall n,m\geq N(2^{-k}):=N_k\]
+
+        $n_k:=N_1+\ldots+N_k$
+
+        Afirmamos que $\{v_{n_k}\}$ converge.
+
+        Truco de la suma telescopica.
+
+        \[\sum_{k=1}^\infty (v_{n_{k+1}}-v_{n_k})\]
+
+        es absolutamente sumable debido a (1.1) entonces es sumable:
+
+        \[\sum_{k=1}^m (v_{n_{k+1}}-v_{n_k})\xrightarrow{m\to\infty} S\in V\]
+
+        Sumas parciales convergen 
+
+        \[v_{n_{m+1}}-v_{n_1}\xrightarrow{m\to\infty}S\in V\]
+
+        \[\implies v_{n_{m+1}}\xrightarrow{m\to\infty}S+v_{n_1}\in V\]
+
+    \end{enumerate}
+\end{proof}
+
+\section{Operadores y funcionales}
+
+Nos interesan las aplicaciones lineales entre espacios normados.
+
+\begin{fexample}
+    \begin{align*}T:C([0,1],\C)&\to C([0,1],\C)\\
+    f&\to F(x)=\int_0^x f(y)\, dy\end{align*}
+
+    $T$ es lineal.
+
+    \[F(x)=\int_0^1 \mathds{1}_{\{y<x\}} f(y)\,dy\]
+\end{fexample}
+
+\begin{fdefinition}
+    $V,W$ son 2 espacios vectoriales.
+
+    $T:V\to W$ es lineal si 
+
+    \[T(\lambda_1 v_1+\lambda_2 v_2)=\lambda_1 T(v_1)+\lambda_2 T(v_2)\quad \forall v_1,v_2\in V\text{ y } \lambda_1,\lambda_2\in \K\]
+
+\end{fdefinition}
+
+\begin{align*}T:C([0,1])&\to C([0,1])\\
+f&\to \int_0^1 \underbrace{K(x,y)}_{\text{Kernel}} f(y)\,dy:=Tf(x)\end{align*}
+
+operador integral. Cuando $K\in C([0,1]^2), T$ está bien definida.
+
+En $\dimn \infty$ vamos a exigir que los operadores lineales sean \color{red} continuos \color{black}.
+
+\begin{fdefinition}
+    $T:V\to W$, $V,W$ son espacios métricos. Decimos que $T$ es continuo si
+    
+    \[T^{-1}(O)\overset{ab}{\subseteq} V,\, \forall O\overset{ab}{\subseteq} V\]
+
+    \[\iff T^{-1}(C)\overset{cerr}{\subseteq} V\quad \forall C\overset{cerr}{\subseteq} W\]
+    $\iff v_n\to v$ en $V$ entonces $Tv_n\to Tv$ en $W$.
+\end{fdefinition}
+
+\begin{ftheorem}
+    Sean $V,W$ espacios normados. Entonces $T:V\to W$ operador lineal es continuo si y solo si
+
+    \begin{equation}||Tv||_W\leq C||v||\quad \forall v\in V\end{equation}
+
+    para alguna constante $C$.
+\end{ftheorem}
+
+\begin{fdefinition}
+    Operador lineal que satisface $1.2$ se llama \color{red} acotado \color{black}.
+\end{fdefinition}
+
+\begin{proof}
+    $\implies:$ Sea $T$ continuo. $B:=\{||w||_W<1\}$
+
+    $0\in T^{-1}(B)=B_r^v$
+
+    \[T^{-1}(B)\supseteq B_r^v:=\{v\in V:||v||_V<r\}\]
+
+    pues $T^{-1}(B)$ es abierto 
+
+    \[\implies T^{-1}(B)\supseteq \{v\in V:||v||_V=\frac{r}{2}\}\]
+
+    esfera de radio $\frac{r}{2}$.
+
+    \[||T\bar v||_W<1\]
+
+    Todo $v\in V,v\neq 0$ se puede escribir como $v=\frac{\bar v}{r/2}||v||_V$
+
+    Para algún $\bar v\in S_{r/2}^v$
+
+    Por lo tanto
+
+    \[||Tv||_W=||T(\frac{\bar v }{r/2}||v||_V)||_W\]
+
+    \[=||\frac{2}{r}||v||_V T(\bar v)||_W\]
+    \[=\frac{2}{r}||v||_V ||T\bar v||_W<1\]
+    \[\leq \frac{2}{r}||v||_V\quad \forall v\neq 0\]
+\end{proof}
+
+\begin{fexample}
+    \[Tf(x):=\int_0^1 K(x,y)f(y)\,dy\]
+
+    es acotado en $(C([0,1]),||||_\infty )$
+
+    \begin{align*}|Tf(x)|&\leq \int_0^1 \underbrace{|K(x,y)|}_{\leq M}|f(y)|\,dy\\
+    &\leq M\int_0^1 |f(y)|\,dy\leq M ||f||_\infty\quad \forall x\implies ||Tf||_\infty \leq M||f||_\infty\end{align*}
+\end{fexample}
+
+\begin{fdefinition}
+    Sean $V,W$ espacios normados. Defina $\mathcal{B}(V,W)$ como el conjunto de operadores lineales continuos acotados de $V$ a $W$.
+
+    Obviamente $\mathcal{B}(V,W)$ es un espacio vectorial.
+\end{fdefinition}
+
+Norma operador $T:V\to W$:
+
+\[||T||:=\sup_{||v||=1} ||Tv||\]
+
+Obviamente, $T\in \mathcal{B}(V,W), ||T||<\infty$
+
+\[||Tv||\leq C \underbrace{||v||}_1=C\]
+
+\[\implies ||T||\leq C\]
+
+De hecho, para $T\in \mathcal{B}(V,W)$
+
+\begin{align*}
+    ||T||&=\sup_{v\neq 0} \frac{||Tv||}{||v||}=\sup_{||v||\leq 1} ||Tv||\\
+    &=\inf \{C>0:||Tv||\leq C||v||\quad \forall v\in V\}
+\end{align*}
+
+Tenemos $||Tv||\leq ||T||||v||$
+
+\begin{ftheorem}
+    $\mathcal{B}(V,W)$ es un espacio normado bajo la norma operador.
+\end{ftheorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $||T||=0\implies ||Tv||=0\forall v\in V$
+         
+        $\implies Tv=0\implies T=0$.
+
+        \item $||\lambda T||=|\lambda| ||T||$
+
+        \item Sea $v\in V,||v||=1$. $\forall T,S\in\mathcal{B}(V,W),$
+        
+        \begin{align*}||(T+S)v||&=||Tv+Sv||\\
+        &\leq ||Tv||+||Sv||\\
+        &\leq ||T|| ||v||+||S|| ||v||=(||T||+||S||)||v||\end{align*}
+
+    \begin{align*}
+        &\implies ||(T+S)v||\leq ||T||+||S||\\
+        &\implies ||T+S||\leq ||T||+||S||
+    \end{align*}
+    \end{enumerate}
+\end{proof}
+
+    ¿Cuándo es $\mathcal{B}(V,W)$ completo?
+
+    \begin{ftheorem}
+        $\mathcal{B}(V,W)$ es Banach cuando $W$ es Banach.
+    \end{ftheorem}
+
+    \subsection{Aplicaciones}
+
+    \begin{fdefinition}
+        Sea $V$ un espacio normado sobre $\K$.
+
+        \[V^*=\mathcal{B}(V,\K)\]
+
+        se llama el espacio \color{red} dual \color{black} de $V$.
+    \end{fdefinition}
+
+    \begin{ftheorem}
+        Cuando $\K=\R,\C$ (completos) $V^*$ es un espacio de Banach
+    \end{ftheorem}
+
+    Elementos de $V^*$ se llaman \color{red} funcionales \color{black} en $V$.
+
+
+    \begin{fexample}
+        $[\ell^p(\C)]^* =?,p\in[1,\infty)$
+
+        Resulta que $?=l^q(\C)$ donde $\frac{1}{p}+\frac{1}{q}=1$.
+
+        Si $v\in \ell^p,w\in\ell^q$
+
+        podemos definir un funcional en $\ell^p$
+
+        \begin{align*}\ell_w:\ell^p(\C)&\to\C\\
+        v=\{v_k\}&\to \sum_{k=1}^\infty v_k\bar w_k\end{align*}
+
+        \[|\ell_w|\leq ||w||_{\ell^q}||v||_{\ell^p}\]
+
+        Es la desigualdad de Hölder discreta.
+    \end{fexample}
+
+    $(\ell^1)^*\simeq \ell^\infty$
+    $(\ell^2)^*\simeq \ell^2$
+
+    \begin{fnote}
+        $(\ell^\infty)^*\not\simeq \ell^1$
+    \end{fnote}
