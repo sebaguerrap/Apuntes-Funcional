@@ -186,7 +186,7 @@ Una espacio vectorial $V$ con una norma se llama \color{red} Espacio normado \co
 
 \begin{fproposition}
 
-En $\R^n$ y $\C^n$ todas normas son equivalentes: si $||\cdot||\cdot||_1,||\cdot||_2$ son 2 normas, existe $c>0$ tal que
+En $\R^n$ y $\C^n$ todas normas son equivalentes: si $||\cdot||_1,||\cdot||_2$ son 2 normas, existe $c>0$ tal que
 
 \[\frac{1}{c}||v||_2\leq ||v||_1\leq c||v||_2,\quad \forall v\in V\]
 
@@ -204,16 +204,16 @@ En $\R^n$ y $\C^n$ todas normas son equivalentes: si $||\cdot||\cdot||_1,||\cdot
 \end{fexample}
 
 \begin{fproposition}
-    $||f||_\infty:=\sup_{x\in X}|f(x)|$ define una norma en $C_\infty(X)$.
+    $||f||_\infty:=\displaystyle\sup_{x\in X}|f(x)|$ define una norma en $C_\infty(X)$.
 \end{fproposition}
 
 \begin{proof}
     \begin{enumerate}
-        \item $||f||_\infty=0\iff f(x)=0\, quad \forall x\in X$.
+        \item $||f||_\infty=0\iff f(x)=0\, \forall x\in X$.
 
         \item \begin{align*}||\lambda f||_\infty&=\sup_x |\lambda f(x)|\\
             &=\sup_x |\lambda|\cdot |f(x)|\\
-            &=|\lambda| ||f||_\infty
+            &=|\lambda|\cdot ||f||_\infty
         \end{align*}
 
         \item \begin{align*}
@@ -229,7 +229,7 @@ Convergencia en $||\cdot||_\infty$
 
 si 
 
-\[||f_n-f||_\infty\xrightarrow[n\to\infty] 0\]
+\[||f_n-f||_\infty\xrightarrow{n\to\infty} 0\]
 
 \[\iff \forall \varepsilon>0 \exists N\in\N\text{ tal que}\]
 
@@ -237,16 +237,14 @@ si
 
 \[\iff |f_n(x)-f(x)|<\varepsilon,\quad \forall x\in X\]
 
-\seba{arreglar/poner align}
-
 \begin{fexample}
     $\K=\R$ o $\C$.
 
-    \[l^p(\K):=\{\{a_k\}_{k=1}^n\subseteq \K: ||a||_p<\infty\}\]
+    \[\ell^p(\K):=\{\{a_k\}_k \subseteq \K: ||a||_p<\infty\}\]
 
     donde
 
-    \[||a||_p:=\begin{cases}\left(\sum_{k=1}^\infty |a_k|^p\right)^{1/p}&p\in [1,\infty)\\
+    \[||a||_p:=\begin{cases}\left(\displaystyle\sum_{k=1}^\infty |a_k|^p\right)^{1/p}&p\in [1,\infty)\\
     \displaystyle\sup_{k\in\N} |a_k|& p=\infty\end{cases}\]
 \end{fexample}
 
@@ -276,7 +274,7 @@ donde
 \begin{fexample}
     $\R^n,\C^n$ son espacios de Banach (con respecto a cualquier norma)
     
-    $L^p(x,\mathcal{B},\sigma)$ es un espacio de Banach (cuando $(X,\mathcal{B},\sigma) es completo$).
+    $L^p(X,\mathcal{B},\sigma)$ es un espacio de Banach (cuando $(X,\mathcal{B},\sigma)$ es completo).
 \end{fexample}
 
 \begin{fproposition}
@@ -305,7 +303,7 @@ donde
 
     \[\implies f(x):=\lim_{n\to\infty} f_n(x) \text{ existe}\]
 
-    \begin{align*}|f_n(x)-f_m(x)|&=\lim_{m\to\infty} |f_n(x)-f_m(x)|\\
+    \begin{align*}|f_n(x)-f(x)|&=\lim_{m\to\infty} |f_n(x)-f_m(x)|\\
     &\leq \varepsilon \quad \forall n\geq N(\varepsilon) \text{ independiente de }x\in X
 \end{align*}
 
@@ -372,15 +370,14 @@ donde
 
         es absolutamente sumable debido a (1.1) entonces es sumable:
 
-        \[\sum_{k=1}^m (v_{n_{k+1}}-v_{n_k})\xrightarrow[m\to\infty]{} S\in V\]
+        \[\sum_{k=1}^m (v_{n_{k+1}}-v_{n_k})\xrightarrow{m\to\infty} S\in V\]
 
         Sumas parciales convergen 
 
-        \[v_{n_{m+1}}-v_{n_1}\xrightarrow[m\to\infty]{}S\in V\]
+        \[v_{n_{m+1}}-v_{n_1}\xrightarrow{m\to\infty}S\in V\]
 
-        \[\implies v_{n_{m+1}}\xrightarrow[m\to\infty]{}S+v_{n_1}\in V\]
+        \[\implies v_{n_{m+1}}\xrightarrow{m\to\infty}S+v_{n_1}\in V\]
 
-        \seba{Arreglar xrightarrows, pasar los limite a arriba}
     \end{enumerate}
 \end{proof}
 
@@ -389,8 +386,8 @@ donde
 Nos interesan las aplicaciones lineales entre espacios normados.
 
 \begin{fexample}
-    \[T:C([0,1],\C)\to C([0,1],\C)\]
-    \[f\to F(x)=\int_0^x f(y)\, dy\]
+    \begin{align*}T:C([0,1],\C)&\to C([0,1],\C)\\
+    f&\to F(x)=\int_0^x f(y)\, dy\end{align*}
 
     $T$ es lineal.
 
@@ -414,16 +411,18 @@ operador integral. Cuando $K\in C([0,1]^2), T$ está bien definida.
 En $\dimn \infty$ vamos a exigir que los operadores lineales sean \color{red} continuos \color{black}.
 
 \begin{fdefinition}
-    $T:V\to W$, $V,W$ son espacios métricos. Decimos que $T$ es continuo si $T^{-1}(O)\subseteq V$ es abierto para todo $O\subseteq V$ abierto.
+    $T:V\to W$, $V,W$ son espacios métricos. Decimos que $T$ es continuo si
+    
+    \[T^{-1}(O)\overset{ab}{\subseteq} V,\, \forall O\overset{ab}{\subseteq} V\]
 
-    \[\iff T^{-1}(C)\subseteq V\quad \forall C\subseteq W\]
+    \[\iff T^{-1}(C)\overset{cerr}{\subseteq} V\quad \forall C\overset{cerr}{\subseteq} W\]
     $\iff v_n\to v$ en $V$ entonces $Tv_n\to Tv$ en $W$.
 \end{fdefinition}
 
 \begin{ftheorem}
     Sean $V,W$ espacios normados. Entonces $T:V\to W$ operador lineal es continuo si y solo si
 
-    \begin{equation}||Tv||_W\leq C||v||\forall v\in V\end{equation}
+    \begin{equation}||Tv||_W\leq C||v||\quad \forall v\in V\end{equation}
 
     para alguna constante $C$.
 \end{ftheorem}
@@ -543,7 +542,7 @@ Tenemos $||Tv||\leq ||T||||v||$
 
 
     \begin{fexample}
-        $[l^p(\C)]^* =?,p\in[1,\infty)$
+        $[\ell^p(\C)]^* =?,p\in[1,\infty)$
 
         Resulta que $?=l^q(\C)$ donde $\frac{1}{p}+\frac{1}{q}=1$.
 
