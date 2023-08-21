@@ -391,6 +391,51 @@ Tenemos $||Tv||\leq ||T||||v||$
         $\mathcal{B}(V,W)$ es Banach cuando $W$ es Banach.
     \end{ftheorem}
 
+    \begin{proof}
+        $T_n\in \mathcal{B}(V,W)$ Cauchy. Queremos demostrar que converge en $||\cdot||_{\mathcal{B}(V,W)}$.
+
+        \begin{enumerate}
+            \item $\forall v\in V,\{T_n v\}$ es Cauchy en $W$ pues 
+            \[||T_n v-T_n v||\leq ||T_n-T_w||\cdot ||v||\]
+
+            $\implies \{T_nv\}$ converge. Definimos 
+
+            \[Tv:=\lim_{n\to\infty} T_nv\]
+
+            \item ¿Por qué $T\in \mathcal{B}(V,W)$?
+            $\rightarrow$ lineal:
+
+            \[T(\lambda v)=\lim_{n\to\infty} T_n(\lambda v)=\lambda \lim_{n\to\infty} T_n v=\lambda T(v)\]
+
+            \[T(v_1+v_2)=T(v_1)+T(v_2)\]
+
+            $\rightarrow$ acotado:
+
+            $\{T_n\}$ es Cauchy.
+
+            $\{||T_n||\}$ es Cauchy en $[0,\infty)$
+
+            \[|||T_n||-||T_m|||\leq ||T_n-T_w||\]
+            \[\implies ||T_n||\leq C\quad \forall n\in \N\]
+
+            Sea $v\in V, ||v||=1$.
+
+            \begin{align*}||Tv||&=||\lim_{n\to\infty} T_n v||\\
+            &=\lim_{n\to\infty} \underbrace{||T_n v||}_{\leq C||v||=C}\leq C\end{align*}
+
+            \[\implies ||T||\leq C\]
+
+            \item Convergencia: $T_n\to T$ en norma operador. Sea $v\in V, ||v||=1$.
+            \[||(T_n-T)v||\]
+
+            $T_m v\to Tv$
+
+            \begin{align*}&=\lim_{m\to\infty}||(T_n-T_m)v||\\
+            &\leq \underbrace{||T_n-T_m||}_{\leq\varepsilon}\cdot ||v||\quad \forall n,m\geq N(\varepsilon)\\
+            &\implies ||T_n-T||\leq \varepsilon\quad \forall n\geq N(\varepsilon)\end{align*}
+        \end{enumerate}
+    \end{proof}
+
     \subsection{Aplicaciones}
 
     \begin{fdefinition}
@@ -431,3 +476,156 @@ Tenemos $||Tv||\leq ||T||||v||$
     \begin{fnote}
         $(\ell^\infty)^*\not\simeq \ell^1$
     \end{fnote}
+
+Cuando $V=W$ espacio de Banach, entonces $B(V,V)$ es un espacio de Banach. Es también \color{red} álgebra \color{black}.
+
+\[T,S\in B(V,V)\implies TS\in B(V,V)\]
+
+\begin{align*}
+    ||TS||=\sup_{||v||=1} ||T(Sv)||&\leq ||T||\cdot ||Sv||\\
+    &\leq ||T||\cdot ||S||\cdot ||v||\leq ||T||\cdot ||S||
+\end{align*}
+
+Cómo resolver ecuaciones del tipo
+
+\[(T-\lambda I)u=v\]
+
+donde $v\in V\leftarrow$ un espacio de Banach, $T\in B(V,V)$, $\lambda\neq 0$.
+
+Queremos construir el operador \color{red} inverso \color{black}
+
+\[S:=(T-\lambda I)^{-1}\]
+
+Cuando $|\lambda|>||T||$, $S$ se puede construir a través de la \color{red} serie de Neumann \color{black}
+
+\[-\lambda (I-\underbrace{\frac{T}{\lambda}}_{||T/\lambda||<1})u=v\]
+
+Sabemos que 
+
+\[(1-x)^{-1}=\sum_{n=0}^\infty x^n\quad |x|<1\]
+
+Definimos 
+
+\begin{equation}S:=-\frac{1}{\lambda}\sum_{n=0}^\infty \left(\frac{T}{\lambda}\right)^n\label{eq:2.3}\end{equation}
+
+\ref{eq:2.3} define $S\in B(V,V)$ ya que
+
+\[\sum_{n=0}^\infty \left(\frac{T}{\lambda}\right)^n\]
+
+es sumable pues es absolutamente sumable en el espacio de Banach $B(V,V)$.
+
+$\rightarrow$ ¿por qué $(T-\lambda I)S=S(T-\lambda I)=I$?
+
+Para verificar que $S(T-\lambda I)=I$, 
+
+\[S_N=\sum_{n=0}^N -\frac{1}{\lambda} \left(\frac{T}{\lambda}\right)^n\]
+
+\begin{align*}S_N(T-\lambda I)&=S_N T-S_N \lambda=\sum_{n=0}^N -\left(\frac{T}{\lambda}\right)^{n+1}-\sum_{n=0}^N -\left(\frac{T}{\lambda}\right)^{n}\\
+&=\underbrace{-\left(\frac{T}{\lambda}\right)^{N+1}}_{\to 0 \text{ en }B(V,V)}+I\end{align*}
+
+¿Cómo obtener espacios normados/Banach de otros espacios?
+
+\begin{fdefinition}[Espacio cociente]
+    Sea $W$ un subespacio del espacio vectorial $V$.
+
+    \[V/W:=\{[v],v\in V\}\]
+
+    $[\cdot]$ se define a través $v_1\sim v_2$ si $v_1-v_2\in W$.
+
+    Se nota también $V\mod W$ y se llama el espacio cociente.
+\end{fdefinition}
+
+Es útil denotar $[v]=v+W$
+
+Una construcción de subespacio $W\subseteq V$ tal que $V/W$ es normado es a través de una \color{red} semi-norma \color{black} definida en $V$.
+
+\begin{fexample}
+    $V=C^1([0,1])=$ espacio de funciones en $[0,1]$ con derivadas continuas en $[0,1]$.
+
+    \[||f||:=\max_{t\in [0,1]}|f'(t)|\]
+
+    \[||f||=0\iff f=\text{const}\]
+\end{fexample}
+
+\begin{ftheorem}
+    Sea $(V,||\cdot||)$ un espacio vectorial semi-normado. Entonces $Z:=\{v\in V:||v||=0\}$ es un subespacio de $V$ y
+    
+    \begin{equation}||v+Z||_{V/Z}:=||v||\label{eq:2.4}\end{equation}
+    
+    define una norma en $V/Z$.
+\end{ftheorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $Z$ es un subespacio vectorial.
+        
+        \[z_1,z_2\in Z\implies z_1+z_2\in Z\]
+
+        \[||z_1+z_2||\leq ||z_1||+||z_2||=0\]
+
+        \[z\in Z\implies \lambda z\in Z\]
+
+        Así, $V/Z$ tiene la estructura de un espacio vectorial.
+
+        \item Tenemos que comprobar que \ref{eq:2.4} es una buena definición:
+
+        Si $v_1,v_2$ son 2 representantes de $[v]$:
+
+        \[v_1=v_2+z,\quad z\in Z\]
+
+        \begin{align*}
+            ||v_1||\leq ||v_2||+||z||\implies ||v_1||\leq ||v_2||\\
+            ||v_2||\leq ||v_1||\implies ||v_1||=||v_2||
+        \end{align*}
+
+        \[||v+z||_{V/Z}=0\]
+        \[\implies v+Z=Z\implies v\in Z\]
+
+        Las otras 2 proposiciones se heredan de manera obvia
+    \end{enumerate}
+\end{proof}
+
+$C^1([0,1])/const$ es un espacio normado con la norma inducida.
+
+Otra construcción similar:
+\begin{fproposition}
+    Si $W\overset{cerr}{\subseteq}V$ subespacio cerrado de un espacio normado $(V,||\cdot||)$, entonces $V/W$ tiene una norma:
+
+    \[||[v]||_{V/W}:=\inf_{w\in W}||v-w||\]
+\end{fproposition}
+
+\begin{proof}
+    En ayudantía
+\end{proof}
+
+\subsubsection*{Completación de espacios normados}
+
+\begin{fdefinition}
+    Sea $(V,||\cdot||)$ un espacio normado. La \color{red} completación \color{black} de $V$ es un espacio de Banach $(\tilde V,||\cdot||_{\tilde V})$ con una aplicación lineal 
+
+    \[\mathcal{J}_{\tilde V}:V\to\tilde V\]
+
+    que satisface las siguientes propiedades:
+
+    \begin{enumerate}
+        \item $\mathcal{J}_{\tilde V}$ es uno a uno
+        \item $\mathcal{J}_{\tilde V}(V)$ es denso en $\tilde V$
+        \item $\mathcal{J}_{\tilde V}(V)$ es una isometría:
+        
+        \[||\mathcal{J}_{\tilde V}(v)||_{\tilde V}=||v||_{V}\quad \forall v\in V\]
+    \end{enumerate}
+\end{fdefinition}
+
+\begin{ftheorem}
+    Todo espacio normado $V$ tiene una completación. Esta es única en el siguiente sentido:
+
+    \seba{hacer dibujo}
+
+    $\tilde V=\{\text{sucesiones de Cauchy en $V$ que convergen}\}$
+
+    $\{v_n\}\sim\{w_n\}$ si $||v_n-w_n||\to 0$
+
+    Sea $\tilde v\in \tilde V$ 
+
+    \seba{ESTOY HASTA EL PICO}
+\end{ftheorem}
