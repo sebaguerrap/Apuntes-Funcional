@@ -1,0 +1,183 @@
+\section{El teorema de Baire}
+
+$(X,d)$ espacio métrico.
+
+\[B_r(x)=\{y\in X:d(x,y)<r\}\]
+\[\overline{B_r}(x)=\{y\in X:d(x,y)\leq r\}\]
+
+$O\subseteq X$ es abierto si $\forall x\in O,\exists B_r(x)\in O$. $\bigcup_\alpha O_\alpha$ es abierto.
+
+$F\subseteq X$ es cerrado si $F^c$ es abierto. $\bigcap_\alpha F_\alpha$ es cerrado.
+
+\[\overline{E}=\bigcap_{F\supseteq E} F\]
+
+\[\mathring{E}=\bigcup_{O\subseteq E}O\]
+
+\[E\overset{denso}{\subseteq} X \text{ si }\overline{E}=X\]
+
+
+\begin{fdefinition}
+    a
+    % $E\subseteq X$ es \textbf{denso en ninguna parte} si $\mathaccent{\overline{E}}=\varnothing$.
+    \seba{arreglar}
+\end{fdefinition}
+
+esencialmente, denso en ninguna parte $E$ significa que $E$ no contiene bolas abiertas.
+
+\begin{fexample}
+    $E=\{x\}$ es denso en niguna parte.
+\end{fexample}
+
+\begin{fproposition}
+    F es cerrado y denso en ninguna parte $\iff F^c$ es abierto y denso.
+\end{fproposition}
+
+\subsubsection*{La noción de categoria de Baire}
+
+\begin{fdefinition}
+    $E\subseteq X$ cat I si $E=\bigcup_{k}E_k$ donde $E_k$ es denso en ninguna parte.
+\end{fdefinition}
+
+\begin{fexample}
+    $\mathbb{Q}$ es cat I.
+\end{fexample}
+
+\begin{fdefinition}
+    Si $G$ tiene $G^c$ que es cat I, decimos que $G$ es \textbf{genérico}.
+\end{fdefinition}
+
+\begin{fdefinition}
+    $E$ es de cat II si no es de primera categoría.
+\end{fdefinition}
+
+\paragraph*{Observaciones}
+
+\begin{enumerate}
+    \item Si $E$ es cat I, y $F\subseteq E$ es cat I
+    
+    \begin{align*}&F\subseteq E\subseteq \bigcup_k E_k\\
+    &\implies F=\bigcup_k E_k\cap F,\quad \overline{E_k\cap F}\subseteq \overline{E_k}\\
+    &\implies E_k\cap F \text{ son densos en niguna parte.}
+    \end{align*}
+
+    \item Si $\{E_k\}_{k\in\N}$ de cat I, $\bigcup_{k} E_k=\bigcup_{k}\bigcup_l \underbrace{E_{kl}}_{\text{denso en NP}}$ es una unión contable.
+    
+    \item No hay conexión entre conjuntos de cat I y conjuntos despreciables del punto de vista de teoría de la medida.
+    \begin{fexample}
+        $G_j=\bigcup_{n} (q_n-2^{-(n+j+1)},q_n+2^{-(n+j+1)})$
+
+        $\{q_j\}$ enumeración de $\Q$.
+
+        $G_j$ es abierto y denso en $\R$.
+
+        \begin{align*}
+            &\implies E_j=G_j^c \text{ es cerrado y denso en NP}\\
+            &\implies E:=\bigcup_j E_j \text{ es cat I}
+        \end{align*}
+
+        y de plena medida en $\R$.
+
+        $\iff E^c$ es de medida $0$ de Lebesgue.
+
+        \begin{align*}
+            |E^c|&=|\bigcap E_j^c|\\
+            &=|\bigcap G_j|\leq |G_j|\\
+            |G_j|&\leq \sum_{n=1}^\infty 2\cdot 2^{-(n+j+1)}\\
+            &=2^{-j}\xrightarrow{j\to\infty} 0
+        \end{align*}
+    \end{fexample}
+    
+\end{enumerate}
+
+
+\begin{ftheorem}[Teorema de Baire]
+    Sea $(X,d)$ \textbf{completo}. Entonces, $X$ es de la cat II en sí mismo.
+\end{ftheorem}
+
+\begin{proof}
+    Supongamos que $X$ es de cat I en sí:
+
+    \[X=\bigcup_{k} \underbrace{E_k}_{\text{densos en NP}}=\bigcup_{k} \underbrace{\overline{E_k}}_{=F_k \text{ denso en NP y cerrado}}\]
+
+    Llegaremos a una contradicción si demostramos que hay un $x\not\in F_k,\quad \forall k$.
+
+    $F_1\neq X$. $\overline{B_{r_1}}(x_1)\subseteq F^c$, $\overline{B_{r_2}}(x_2)\subseteq F_2^c$.
+
+    De esta manera obtenemos bolas cerradas $\overline{B_{r_k}}(x_k)$ tales que
+
+    \begin{enumerate}
+        \item \[\overline{B_{r_{k+1}}}(x_{k+1})\subseteq \overline{B_{r_k}}(x_k)\]
+        \item \[\overline{B_{r_k}}(x_k)\subseteq F_k^c\]
+        \item \[r_{k+1}\leq \frac{r_k}{2}\implies r_k\to 0\]
+    \end{enumerate}
+
+    $\{x_k\}$ es Cauchy pues:
+
+    \[\forall k,l\geq n, x_k,x_l\in \overline{B_{r_n}}(x_n)\]
+
+    \[\implies |x_k-x_l|\leq 2 r_n\xrightarrow{n\to\infty} 0\]
+
+    \[\implies x_k\to x\in X\]
+
+    Como $x_k\in \overline{B_{r_k}}\quad \forall k\geq n$,
+
+    \[\implies x=\lim x_k\in \overline{B_{r_n}}(x_n)\subseteq F_n^c\]
+
+    Por lo que $x\not\in F_n\quad \forall n$.
+    
+\end{proof}
+
+\begin{fcorollary}\label{theo:2.3.2.1}
+    $G\subseteq X$ es \textbf{genérico} $\implies$ denso en $X$, con $X$ completo.
+\end{fcorollary}
+
+\begin{proof}
+    Asumimos que $G$ genérico no es denso, entonces hay una bola $B$
+
+    \[\implies \overline{B}\subseteq G^c=\bigcup_k {E_k}\subseteq \bigcup \overline{E_k}\]
+
+    \[\implies \overline{B}=\bigcup_{k} \underbrace{\overline{E_k}\cap \overline{B}}_{\text{cerrados y densos en NP}}\]
+
+    Pero $\overline{B}$ es un espacio métrico completo, contradicción con el teorema de Baire.
+\end{proof}
+
+\begin{fcorollary}
+    $X$ completo, $X=\bigcup_k F_k\leftarrow$ cerrado.
+
+    Entonces, por lo menos uno $F_k$ contiene una bola.
+\end{fcorollary}
+
+\subsection{Aplicaciones}
+
+\begin{ftheorem}
+    El conjunto de funciones continuas en $[0,1]$ que no son derivable en nigún punto es \textbf{denso} en $C([0,1])$
+\end{ftheorem}
+
+\begin{proof}
+    Sea $\mathcal{D}=\{f\in C([0,1]):f'(x_*) \text{ existe en un punto } x_*\in [0,1]\}$
+
+    Queremos demostrar que $\mathcal{D}$ es cat I en $C([0,1])$.
+
+    Por \ref{theo:2.3.2.1}, $\mathcal{D}^c$ es genérico $\implies$ denso en $C([0,1])$.
+
+    Si $f\in \mathcal{D}\implies f'(x_*)$ existe
+
+    \[\implies \lim_{x\to x_*} \frac{f(x)-f(x_*)}{x-x_*}\]
+
+    existe.
+
+    \[\implies |f(x)-f(x_*)|\leq M|x-x_*|\quad \forall x\in [0,1]\]
+
+    para algún $M>0$.
+
+    \[\implies \mathcal{D}\subseteq \bigcup_{N=1}^\infty E_N\]
+
+    $E_N:=\{f\in C([0,1]):|f(x)-f(x_*)|\leq N|x-x_*|\text{ para algún $x_*\in[0,1]$}\}$
+
+    Estaremos listos si probamos que:
+
+    \begin{enumerate}
+        \item $E_N$ es cerrado en $C([0,1])$
+        \item $E_N$ es denso en ninguna parte.
+    \end{enumerate}
+\end{proof}

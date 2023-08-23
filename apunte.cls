@@ -30,6 +30,7 @@
 \RequirePackage{amsthm}
 \RequirePackage{amssymb}
 \RequirePackage{mathtools}
+\RequirePackage{accents}
 \RequirePackage{bbm}
 \RequirePackage{dsfont} %\mathds{} para la función indicatriz
 \RequirePackage{bm} % bold math
