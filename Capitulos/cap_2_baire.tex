@@ -150,7 +150,7 @@ esencialmente, denso en ninguna parte $E$ significa que $E$ no contiene bolas ab
 \subsection{Aplicaciones}
 
 \begin{ftheorem}
-    El conjunto de funciones continuas en $[0,1]$ que no son derivable en nigún punto es \textbf{denso} en $C([0,1])$
+    El conjunto de funciones continuas en $[0,1]$ que no son derivables en nigún punto es \textbf{denso} en $C([0,1])$
 \end{ftheorem}
 
 \begin{proof}
@@ -179,5 +179,132 @@ esencialmente, denso en ninguna parte $E$ significa que $E$ no contiene bolas ab
     \begin{enumerate}
         \item $E_N$ es cerrado en $C([0,1])$
         \item $E_N$ es denso en ninguna parte.
+    \end{enumerate}
+
+    \begin{enumerate}
+        \item $f_n\in E_N$ y $f_n\to f$, en $||\cdot||_\infty$.
+        
+        $[0,1]\ni x_n^*\to x^*$ (podemos extraer una subsucesión que converge)
+
+        \[|f_n(x)-f_n(x_n^*)|\leq N|x-x_n^*|\quad \forall x\in[0,1]\]
+
+        Queremos demostrar que 
+
+        \[|f(x)-f(x^*)|\leq N|x-x^*|\]
+
+        \begin{align*}
+            |f(x)-f(x^*)|\leq \underbrace{|f(x)-f_n(x)|}_{\leq ||f-f_n||_\infty\leq \varepsilon/2}+|f_n(x)-f_n(x^*)|+\underbrace{|f_n(x^*)-f(x^*)|}_{\leq \varepsilon/3}
+        \end{align*}
+
+        \begin{align*}
+            |f_n(x)-f_n(x^*)|&\leq |f_n(x)-f_n(x^*)|+|f_n(x_n^*)-f_n(x^*)|\\
+            &\leq N|x-x_n^*|+N|x_n^*-x^*|\\
+            &\leq N(|x-x^*|+|x^*-x_n^*|)+N|x_n^*-x^*|\\
+            &\leq N|x-x^*|+\underbrace{2N|x_n^*-x^*|}_{\varepsilon/3}
+        \end{align*}
+
+        \item ¿Por qué $E_N$ es denso en NP de $X$?
+        \[P_M=\{\text{funciones continuas en $[0,1]$ derivables a trozos, }|f'|=M\}\]
+
+        son funciones zig-zag. Cuando $M>N$, $P_M\cap E_N=\varnothing$. Además, $P_M$ es denso en $C([0,1])$.
+        Como consecuencia, $E_N$ no puede tener interior no trivial ya que $E_N$ no puede tener una bola abierta (hay funciones de $P_M$ en $E_N$ y $P_M$ es denso).
+
+        Mostraremos que  $P_M$ es denso.
+
+        \[P=\{\text{las funciones continuas lineales a tozos}\}\overset{denso}{\subseteq}C([0,1])\]
+
+        Podemos aproximar cada $f\in P$ con una función $g\in P_M$ arbitrariamente bien.
+    \end{enumerate}
+\end{proof}
+
+\subsubsection*{Teorema de la Aplicación Abierta y Teorema del grafo cerrado}
+
+Sean $(X,||\cdot||_X),(Y,||\cdot||_Y)$ espacios de Banach.
+
+\[T\in \mathcal{B}(X,Y)\implies T^{-1}(O)\overset{ab}{\subseteq}X\quad \forall O\overset{ab}{\subseteq}Y\]
+
+Si $T$ es biyectiva adicionalmente, entonces $S:=T^{-1}$ es lineal (no necesariamente acotada).
+Sin embargo, si $S$ es continua, entonces $S^{-1}(U)\overset{ab}{\subseteq},\forall U\overset{ab}{\subseteq}X$
+
+\[\iff T(U)\overset{ab}{\subseteq}Y\quad \forall U\overset{ab}{\subseteq}X\]
+
+\begin{fdefinition}
+    Sea $T:X\to Y$ una aplicación. Decimos que $T$ es abierta si 
+    
+    \[T(U)\overset{ab}{\subseteq}Y\quad \forall U\overset{ab}{\subseteq}X\]
+\end{fdefinition}
+
+Si $T:X\to Y$ es lineal, continua y biyectiva, entonces $T^{-1}:Y\to X$ es lineal. ¿Es $T^{-1}$ continua?
+
+Lo será cuando $T$ es abierta.
+
+\begin{ftheorem}[Aplicación Abierta]
+    Si $X,Y$ son espacios de Banach, $T\in \mathcal{B}(X,Y)$ y sobreyectiva, entonces $T$ es abierta.
+\end{ftheorem}
+
+\begin{fcorollary}
+    Si $X,Y$ son espacios de Banach, $T\in\mathcal{B}(X,Y)$ es biyectiva, entonces $T^{-1}\in\mathcal{B}(Y,X)$. Existen $c,C>0$ tales que
+
+    \[c||x||_X\leq ||\underbrace{Tx}_{y}||_Y\leq C||x||_X\quad \forall x\in X\]
+
+    \[c||T^{-1}y||_X\leq ||y||_Y\]
+\end{fcorollary}
+
+\begin{proof}[Demostración del teorema \ref{theo:2.3.4}]
+    \begin{enumerate}
+        \item Será suficiente demostrar que $T(B_2^X\supseteq B_\delta^Y)$. ($B_r^X=B_r^X(0)$)
+        
+        Por linealidad
+
+        \begin{align*}
+            T(B_r^X(x))&=T(x+B_r^X)\\
+            &=Tx+T(B_r^X)={y+\frac{r}{2}T(B_2^X)}\\
+            &\supseteq y+\frac{r}{2}B_\delta^Y=B_{\frac{\delta r}{2}}^Y(y)\\
+        \end{align*}
+
+        \item Vamos a demostrar que $\overline{T(B_1^X)}\supseteq B_\delta^X$ para algún $\delta>0$
+        
+        Por la sobreyectividad:
+
+        \[cat II\rightarrow Y=\bigcup_{n=1}^\infty \overline{T(B_n^X)}\]
+
+        Entonces, $T(B_n^X)\supseteq B_r^Y(y)$ para algún $n\in\N,r>0,y\in Y$. Tomamos $\tilde y$ tal que $|\tilde y-y|\leq \frac{r}{2}$ e $\tilde y=Tx$ para algún $x\in B_n^X$.
+
+        \begin{align*}
+            T(B_{2n}^x(\tilde x))\supseteq \overline{T(B_n^X)}\supseteq B_r^Y(y)\supseteq B_{\frac{r}{2}}^Y(y)
+        \end{align*}
+
+        Restando $Tx$
+
+        \[T(B_{2n}^X)\supseteq B_{\frac{r}{2}}^X\]
+
+        Reescalando
+
+        \[\overline{T(B_1^X)}\supseteq B_{\frac{r}{4n}^Y}\quad \delta=\frac{r}{4n}\]
+
+        \item Tenemos $T(B_1^X)\supseteq B_\delta^Y$. Reescalando
+        
+        \[\overline{T(B_{2^{-k}}^X)}\supseteq B_{\delta 2^{-k}}^Y\]
+
+        ¿Por qué $T(B_2^X)\supseteq B_\delta^Y$?
+
+        Fije $y_0\in B_\delta^Y$. Podemos encontrar $x_0\in B_1^X$ tal que 
+
+        \[||y_0-Tx_0||_Y<\frac{\delta}{2}\]
+
+        \[\implies y_1:=y_0-Tx_0\in B_{\delta/2}^Y\]
+
+        $\implies$ existe $x_1\in B_{\frac{1}{2}}^X$ tal que 
+
+        \[||y_1-Tx_1||<\frac{\delta}{4}\]
+
+        De esta manera construimos sucesiones $\{x_n\},\{y_n\}$, tales que
+
+        \begin{enumerate}
+            \item $x_n\in B_{2^{-n}}^X, y_n\in B_{\delta 2^{-n}}^Y$
+            \item $y_{n+1}=y_n-Tx_n$
+        \end{enumerate}
+
+        $x:=\displaystyle\sum_{n=0}^\infty x_n\in X$ porque $X$ es Banach. Veremos que $Tx=y$ y $x\in B_2^X$.
     \end{enumerate}
 \end{proof}
