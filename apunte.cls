@@ -203,6 +203,7 @@
 \newcommand{\limit}[1][]{\xrightarrow[\hphantom{\hspace{1.5em}}]{#1}}
 \DeclareMathOperator{\dimn}{dim} % Operador dimensión
 \DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand{\inn}[1]{\left\langle #1\right\rangle}
 
 % COMENTARIOS ---------------
 \newcommand{\com}[3]{{\colorbox{#2}{\bfseries\sffamily\scriptsize\textcolor{white}{#1}}}

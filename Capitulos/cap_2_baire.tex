@@ -242,7 +242,7 @@ Lo será cuando $T$ es abierta.
     Si $X,Y$ son espacios de Banach, $T\in \mathcal{B}(X,Y)$ y sobreyectiva, entonces $T$ es abierta.
 \end{ftheorem}
 
-\begin{fcorollary}
+\begin{fcorollary}\label{theo:2.3.4.1}
     Si $X,Y$ son espacios de Banach, $T\in\mathcal{B}(X,Y)$ es biyectiva, entonces $T^{-1}\in\mathcal{B}(Y,X)$. Existen $c,C>0$ tales que
 
     \[c||x||_X\leq ||\underbrace{Tx}_{y}||_Y\leq C||x||_X\quad \forall x\in X\]
@@ -306,5 +306,66 @@ Lo será cuando $T$ es abierta.
         \end{enumerate}
 
         $x:=\displaystyle\sum_{n=0}^\infty x_n\in X$ porque $X$ es Banach. Veremos que $Tx=y$ y $x\in B_2^X$.
+
+        $x$ es convergente puesto que es absolutamente convergente.
+
+        \[||x||=\sum_{n=1}^\infty ||x_k||\leq 2\]
+
+        Afirmamos que $Tx=y_0$. Por contradicción
+
+        \begin{align*}Tx&=\lim_{N\to\infty} T(\sum_{n=0}^N x_k)\\
+        &=\lim_{N\to\infty} \sum_{k=0}^N \underbrace{Tx_k}_{y_k-y_{k+1}}\\
+        &=\lim_{N\to\infty} (y_0-y_{N+1})\\\
+        &=y_0
+    \end{align*}
+
+    ya que $y_{N+1}\to 0$.
     \end{enumerate}
 \end{proof}
+
+\subsubsection*{Teorema del Grafo Cerrado}
+
+\begin{fdefinition}
+    Sean $X,Y$ espacios métricos. Decimos que $T:X\to Y$ es \textbf{cerrada} si su grafo en $X\times Y$
+
+    \[G_T=\{(x,Tx)\in X\times Y\}\]
+
+    es cerrado en $X\times Y$.
+\end{fdefinition}
+
+En otras palabras,
+
+\[(x_n,Tx_n)\to (x,y)\in X\times Y\implies (x,y)\in G_T\iff y=Tx\]
+
+\begin{fnote}
+    $T:X\to Y$ es continua $\implies T$ es cerrada.
+
+    \[x_n\to x\implies Tx_n\to Tx\implies (x_n,Tx_n)\to (x,Tx)\]
+\end{fnote}
+
+\begin{ftheorem}
+    Sean $X,Y$ Banach. Entonces, $T\in \mathcal{B}(X,Y)\iff T$ es lineal y cerrada.
+\end{ftheorem}
+
+\begin{proof}
+    $\impliedby:$ Utilizaremos el hecho que si $X,Y$ son Banach, entonces $X\times Y$ es Banach.
+
+    \[||(x,y)||_{X\times Y}:=||x||_X+||y||_Y\]
+
+    \[G_T:=\{(x,Tx)\}\subseteq X\times Y\]
+
+    \begin{enumerate}
+        \item $G_T$ es un subespacio de $X\times Y$.
+        \item $G_T\overset{cerr}{\subseteq}X\times Y$
+
+        Entonces $G_T$ es un espacio de Banach en sí. Tenemos las proyecciones $\Pi_X:G_T\to X$ y $\Pi_Y:G_T\to Y$ continuas y lineales.
+
+        \[T=\Pi_Y\circ (\Pi_X)^{-1}\]
+
+        ya que $\Pi_x$ es biyectiva, continua y lineal (en un espacio de Banach a otro Banach). Por el teorema $\ref{theo:2.3.4.1}$, $\Pi_X^{-1}$ es continua. Por lo que $T=\Pi_Y\circ \Pi_X^{-1}$ es continua.
+    \end{enumerate}
+\end{proof}
+
+\paragraph*{Significado} Si queremos demostrar que una aplicación lineal $T:X\to Y$ es continua, $x_n\to X\implies Tx_n\to T_x$
+
+Podemos asumir adicionalmente que $TX_n\to Ty$, y demostrar que $y=Tx$
