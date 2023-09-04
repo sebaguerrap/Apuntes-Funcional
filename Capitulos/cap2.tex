@@ -2,6 +2,8 @@
 
 \section{Nociones básicas}
 
+\subsection{Espacios Normados}
+
 \begin{fdefinition}[Espacios métricos]
     Un espacio métrico $(X,d)$ y $d:X\times X\to [0,\infty)$ la métrica que satisface:
 
@@ -134,6 +136,8 @@ donde
     Estas 2 normas \color{red} no son equivalentes \color{black}
 \end{fexample}
 
+\subsection{Espacios de Banach}
+
 \begin{fdefinition}
     Un espacio normado $(V,||\cdot||)$ es un espacio de Banach si es \color{red} completo \color{black} con respecto a la métrica inducida.
 \end{fdefinition}
@@ -249,6 +253,8 @@ donde
 \end{proof}
 
 \section{Operadores y funcionales}
+
+\subsection{Operadores Lineales}
 
 Nos interesan las aplicaciones lineales entre espacios normados.
 
@@ -436,7 +442,7 @@ Tenemos $||Tv||\leq ||T||||v||$
         \end{enumerate}
     \end{proof}
 
-    \subsection{Aplicaciones}
+    \subsection{Espacio Dual}
 
     \begin{fdefinition}
         Sea $V$ un espacio normado sobre $\K$.
@@ -523,6 +529,8 @@ Para verificar que $S(T-\lambda I)=I$,
 \begin{align*}S_N(T-\lambda I)&=S_N T-S_N \lambda=\sum_{n=0}^N -\left(\frac{T}{\lambda}\right)^{n+1}-\sum_{n=0}^N -\left(\frac{T}{\lambda}\right)^{n}\\
 &=\underbrace{-\left(\frac{T}{\lambda}\right)^{N+1}}_{\to 0 \text{ en }B(V,V)}+I\end{align*}
 
+\subsection{Espacio cociente}
+
 ¿Cómo obtener espacios normados/Banach de otros espacios?
 
 \begin{fdefinition}[Espacio cociente]
@@ -598,7 +606,7 @@ Otra construcción similar:
     En ayudantía
 \end{proof}
 
-\subsubsection*{Completación de espacios normados}
+\subsection{Completación de espacios normados}
 
 \begin{fdefinition}
     Sea $(V,||\cdot||)$ un espacio normado. La \color{red} completación \color{black} de $V$ es un espacio de Banach $(\tilde V,||\cdot||_{\tilde V})$ con una aplicación lineal 
@@ -631,5 +639,3 @@ Otra construcción similar:
 \end{ftheorem}
 
 \input{Capitulos/cap_2_baire}
-
-\input{Capitulos/cap2_hilbert.tex}

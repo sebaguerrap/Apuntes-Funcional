@@ -204,6 +204,8 @@
 \DeclareMathOperator{\dimn}{dim} % Operador dimensión
 \DeclareMathOperator*{\esssup}{ess\,sup}
 \newcommand{\inn}[1]{\left\langle #1\right\rangle}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\I}{Im}
 
 % COMENTARIOS ---------------
 \newcommand{\com}[3]{{\colorbox{#2}{\bfseries\sffamily\scriptsize\textcolor{white}{#1}}}

@@ -1,5 +1,7 @@
 \section{El teorema de Baire}
 
+\subsection{Categorias de Baire}
+
 $(X,d)$ espacio métrico.
 
 \[B_r(x)=\{y\in X:d(x,y)<r\}\]
@@ -17,9 +19,7 @@ $F\subseteq X$ es cerrado si $F^c$ es abierto. $\bigcap_\alpha F_\alpha$ es cerr
 
 
 \begin{fdefinition}
-    a
-    % $E\subseteq X$ es \textbf{denso en ninguna parte} si $\mathaccent{\overline{E}}=\varnothing$.
-    \seba{arreglar}
+    $E\subseteq X$ es \textbf{denso en ninguna parte} si $\mathring{\overline{E}}=\varnothing$.
 \end{fdefinition}
 
 esencialmente, denso en ninguna parte $E$ significa que $E$ no contiene bolas abiertas.
@@ -147,7 +147,7 @@ esencialmente, denso en ninguna parte $E$ significa que $E$ no contiene bolas ab
     Entonces, por lo menos uno $F_k$ contiene una bola.
 \end{fcorollary}
 
-\subsection{Aplicaciones}
+\subsection{Aplicación}
 
 \begin{ftheorem}
     El conjunto de funciones continuas en $[0,1]$ que no son derivables en nigún punto es \textbf{denso} en $C([0,1])$
@@ -217,7 +217,7 @@ esencialmente, denso en ninguna parte $E$ significa que $E$ no contiene bolas ab
     \end{enumerate}
 \end{proof}
 
-\subsubsection*{Teorema de la Aplicación Abierta y Teorema del grafo cerrado}
+\subsection{Teorema de la Aplicación Abierta}
 
 Sean $(X,||\cdot||_X),(Y,||\cdot||_Y)$ espacios de Banach.
 
@@ -252,7 +252,7 @@ Lo será cuando $T$ es abierta.
 
 \begin{proof}[Demostración del teorema \ref{theo:2.3.4}]
     \begin{enumerate}
-        \item Será suficiente demostrar que $T(B_2^X\supseteq B_\delta^Y)$. ($B_r^X=B_r^X(0)$)
+        \item Será suficiente demostrar que $T(B_2^X)\supseteq B_\delta^Y$. ($B_r^X=B_r^X(0)$)
         
         Por linealidad
 
@@ -323,7 +323,7 @@ Lo será cuando $T$ es abierta.
     \end{enumerate}
 \end{proof}
 
-\subsubsection*{Teorema del Grafo Cerrado}
+\subsection{Teorema del Grafo Cerrado}
 
 \begin{fdefinition}
     Sean $X,Y$ espacios métricos. Decimos que $T:X\to Y$ es \textbf{cerrada} si su grafo en $X\times Y$

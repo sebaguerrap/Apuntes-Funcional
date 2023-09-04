@@ -1,0 +1,334 @@
+\chapter{Espacios de Hilbert}
+
+\section{Conceptos Básicos}
+
+\begin{fdefinition}
+    Sea $H$ un espacio vectorial sobre $\K=\R$ o $\C$. Un producto interno $\langle \cdot,\cdot\rangle$ es una función $H\times H\to \K$ que satisface
+
+    \begin{enumerate}
+        \item Linealidad en $\langle\cdot,y\rangle,\quad \forall y\in H$:
+        
+        \[\langle x_1+x_2,y\rangle=\langle x_1,y\rangle+\langle x_2,y\rangle\]
+        \[\langle \lambda x,y\rangle = \lambda \langle x,y\rangle\]
+
+        \item (Hermiticidad)
+        
+        \[\langle y,x\rangle=\overline{\langle x,y\rangle}\]
+
+        (En $\K=\R$, esto es simetría)
+
+        \item (Definidad) $\langle x,x\rangle\geq 0$ y $\langle x,x\rangle=\implies x=0$
+    \end{enumerate}
+\end{fdefinition}
+
+\begin{fnote}
+    1. y 2., implican que $\langle x,\cdot\rangle$ es lineal conjugada en la segunda entrada.
+
+    \[\langle x,\lambda y+z\rangle=\overline{\lambda}\langle x,y\rangle + \langle x,z\rangle\]
+\end{fnote}
+
+\paragraph*{Terminología} Tal función se llama \textbf{forma sesquilineal}
+
+\begin{fnote}
+    $\K=\R$, $\inn{\cdot,\cdot}$ es una \textbf{forma simétrica definida positiva}
+\end{fnote}
+
+Decimos que $(H,\inn{\cdot,\cdot})$ es un \textbf{espacio pre-Hilbertiano}
+
+De 1. y 2., $\inn{0,y}=0$, $\inn{x,0}=0$
+
+Definimos $||x||:=\inn{x,x}^{1/2}$
+
+\begin{fproposition}[Desigualdad de Cauchy-Schwarz]
+    Sea $H$ un espacio pre-Hilbertiano
+
+    \[|\inn{x,y}|\leq ||x||\cdot ||y||\quad \forall x,y\in H\]
+\end{fproposition}
+
+\begin{proof}
+    Si $y=0$, la desigualdad es verdadera. Podemos asumir que $y\neq 0$.
+
+    \begin{align*}
+        0&\leq \inn{x+\lambda y,x+\lambda y}\\
+        &=\inn{x,x}+\lambda\inn{y,x}+\overline{\lambda}\inn{x,y}+\lambda \overline{\lambda}\inn{y,y}\\
+        &=||x||^2 +\underbrace{\lambda \overline{\inn{x,y}}+\overline{\lambda}\inn{x,y}}_{2\Re (\inn{x,y}\overline{\lambda})}+|\lambda|^2|\cdot |y||^2
+    \end{align*}
+
+    Evaluando en $\lambda=-\dfrac{\inn{x,y}}{||y||^2}$
+
+    \begin{align*}
+        0&\leq ||x||^2+2\Re (\inn{x,y}\frac{-\overline{\inn{x,y}}}{||y||^2})\\
+        0&\leq ||x||^2-2\frac{|\inn{x,y}|^2}{||y||^2}+\frac{|\inn{x,y}|^2}{||y||^2}\\
+        &\implies ||x||^2\geq \frac{|\inn{x,y}|^2}{||y||^2}
+    \end{align*}
+\end{proof}
+
+\begin{fproposition}
+    $||\cdot||$ define una norma $H$.
+\end{fproposition}
+\begin{proof}
+    \begin{enumerate}
+        \item Definidad $\checkmark$
+        \item $||\lambda x||=\inn{\lambda x,\lambda x}^{1/2}=(\lambda \overline{\lambda}||x||^2)^{1/2}=|\lambda|\cdot ||x||$
+        \item (Desigualdad triangular)
+        
+        \begin{align*}
+            ||x+y||^2=||x||^2+2\Re (\inn{x,y})+||y||^2&\leq ||x||^2+2||x||\cdot ||y||+||y||^2\\
+            &=(||x||+||y||)^2
+        \end{align*}
+    \end{enumerate}
+\end{proof}
+
+\begin{fproposition}
+    $\inn{\cdot,\cdot}$ es continuo en $H\times H$
+\end{fproposition}
+
+\begin{proof}
+    $x_n\to x$ en $||\cdot$ e $y_n\to y$ en $||\cdot||$
+
+    \begin{align*}
+        |\inn{x_n,y_n}-\inn{x,y}|&=|\inn{x_n-x,y_n}+\inn{x,y_n-y}|\\
+        &\leq |\inn{x_n-x,y_n}|+|\inn{x,y_n-y}|\\
+        &\leq ||x_n-x||\cdot ||y_n||+||x||\cdot ||y_n-y||\\
+        &\xrightarrow[n\to\infty]{} 0
+    \end{align*}
+\end{proof}
+
+\begin{fdefinition}
+    Decimos que $x\perp y$ en el espacio pre-Hilbertiano $H$ si $\inn{x,y}=0$. Si $E\subseteq H$ subconjunto, definimos el \textbf{espacio ortogonal}
+
+    \[E^\perp :=\{x\in H:x\perp y\quad \forall y\in E\}\]
+\end{fdefinition}
+
+$E^\perp$ es un \textbf{subespacio} de $H$ y es cerrado:
+
+$x_n\in E^\perp$ y $x_n\to x$ en $H$ entonces 
+
+\[\inn{x,y}=\lim_{n\to\infty} \inn{x_n,y}=0\quad \forall y\in E\]
+
+\begin{ftheorem}[Pitagoras]
+    Si $x_1,\ldots,x_n\in H$ (pre-Hilbertiano) son mutuamente ortogonales, entonces 
+
+    \[||x_1+\cdots+x_n||^2=\sum_{k=1}^n ||x_k||^2\]
+\end{ftheorem}
+
+\begin{fproposition}[Ley del paralelogramo]
+    \[||x+y||^2+||x-y||^2=2||x||^2+2||y||^2\]
+\end{fproposition}
+
+\begin{proof}
+    \begin{align*}
+        ||x\pm y||^2=||x||^2\pm 2\Re \inn{x,y}+||y||^2
+    \end{align*}
+
+    Sumando los 2 términos (diagonales), estamos listos.
+\end{proof}
+
+\begin{fdefinition}
+    Decimos que un espacio $(H,\inn{\cdot,\cdot})$ pre-Hilbertiano es un espacio de \textbf{Hilbert} si es \textbf{completo} respecto $||\cdot||$ inducida por $\inn{\cdot,\cdot}$
+\end{fdefinition}
+
+\begin{fexample}
+    $(\C^n,\inn{\cdot,\cdot})$. $\inn{x,y}=\sum_{k=1}^n x_k\overline{y_k}$ es un espacio de Hilbert.
+\end{fexample}
+
+\begin{fexample}
+    $(\ell^2,\inn{\cdot,\cdot})$. $\inn{\{x_k\},\{y_k\}}=\sum_{k=1}^\infty x_k\overline{y_k}$
+\end{fexample}
+
+¿$\ell^p$ tiene una estructura de espacio de Hilbert? $\iff p=2$
+
+\begin{fexample}
+    $(X,\mathcal{M},\mu)$ es un espacio de medida, definimos 
+
+    \[L^2(X,\mathcal{M},\mu)=\{f:X\to\C\text{ medibles}:\int_X|f|^2\,d\mu<\infty\}/_\sim\]
+
+    $f_1\sim f_2$ si $\{f_1\neq f_2\}$ es despreciable.
+\end{fexample}
+
+\section{Teorema de la Proyección}
+
+Sea $H$ un espacio de Hilbert. $C\subseteq R^n$ cerrado y convexo. Existe único $y\in C$ tal que $y$ minimiza la distancia entre $x$ y $C$.
+
+\begin{fdefinition}
+    Sea $C$ un subconjunto de un espacio vectorial $V$. Decimos que $C$ es \textbf{convexo} en $V$ si
+
+    \[\forall x,y\in C\quad (1-t)x+ty\in C\quad \forall t\in [0,1]\]
+\end{fdefinition}
+
+\begin{ftheorem}
+    Sea $C\subseteq H$ un subconjunto cerado y convexo del espacio de Hilbert $H$. Entonces $\forall x\in H,\exists! y=P_C x\in C$ que satisface:
+
+    \[||x-P_C x||=d(x,C)=\inf_{c\in C} ||x-c||\]
+
+    Además, $y=P_C x\iff \Re \inn{c-y,x-y}\leq 0,\quad \forall c\in C$
+\end{ftheorem}
+
+\begin{proof}
+    Tome $\{y_n\}\subseteq C$, tal que 
+
+    \[d_n:=||x-y_n||\xrightarrow{n\to\infty} d:=d(x_n,c)\]
+
+    $\{y_n\}$ será convergente si es Cauchy, ya que $y_n\to y\in H$. Ya que $C$ es cerrado, de hecho $y\in C$.
+
+    Por la ley del paralelogramo, con $v=x-y_n,w=x-y_m$
+
+    \begin{align*}
+        2 d_n^2+2 d_m^2&=||v-w||^2+||v+w||^2\\
+        &=||y_n-y_m||^2+||2x-(y_n+y_m)||^2\\
+        &=||y_n-y_m||^2+4\left|\left|x-\underbrace{\frac{y_n+y_m}{2}}_{\in C}\right|\right|^2\\
+        &\geq ||y_n-y_m||^2+4d^2
+    \end{align*}
+
+    Luego,
+
+    \begin{align*}
+        ||y_n-y_m||^2&\leq 2d_n^2+d_m^2-4d^2\\
+        &\xrightarrow{n,m\to\infty} 0
+    \end{align*}
+
+    por lo que $\{y_n\}$ es Cauchy.
+
+    $y=\displaystyle\lim_{n\to\infty} y_n$,
+
+    \[||x-y||=\lim_{n\to\infty} \overbrace{||x-y_n||}^{d_n}=d\]
+
+    Este minimizador es el único!. Si hubiera otro $z\neq y$, aplicamos el mismo argumento a $\{y,z,y,z,\ldots\}$ que no converge por construcción, pero es Cauchy, lo que es una contradicción.
+
+    $\implies:$ Sea $c\in C$ y considere $(1-t)y+tc$, $t\in [0,1]$.
+
+    \begin{align*}
+        ||x-(1-t)y-tc||^2&=||x-y-t(c-y)||^2\\
+        &=||x-y||^2-2t\Re \inn{x-y,c-y}+t^2||c-y||^2\\
+        &\geq ||x-y||^2
+    \end{align*}
+
+    \[\implies 2t\Re \inn{x-y,c-y}\leq t^2||c-y||^2\]
+    \[\implies 2\Re \inn{x-y,c-y}\leq 0\]
+
+    $\impliedby:$ Evalúe $||x-(1-t)y+tc||^2$ en $t=1$.
+
+    \begin{align*}
+        ||x-c||^2&=||x-y||^2-2\Re \inn{x-y,c-y}+||c-y||^2\\
+        \implies & ||x-c||^2-||x-y||^2=||c-y||^2-2\Re \inn{x-y,c-y}\\
+        \implies &||x-c||^2\geq ||x-y||^2\quad \forall c\in C
+    \end{align*}
+
+    Tenemos igualdad $\iff c=y$. 
+\end{proof}
+
+\begin{fexample}
+    $W\subseteq H$ es un subespacio $\implies W$ es convexo.
+\end{fexample}
+
+\begin{ftheorem}
+    Sea $F\subseteq H$ un subespacio cerrado. Entonces $H=F\oplus F^\perp$, es decir, que todo $x\in H$ se puede escribir de manera única como $x=y+z$ con $y\in F$ y $z\in F^\perp$. Además $y=P_Fx, z=P_{F^\perp} x$. y 
+
+    \[P_F:H\to H\]
+
+    es lineal, acotado y satisface:
+
+    \begin{itemize}
+        \item $||P_F||\leq 1$ ($=1$ cuando $F=\{0\}$)
+        \item $P_F^2=P_F$
+        \item $\I P_F=F$, $\ker P_F=F^\perp$
+        \item $\inn{P_Fx_1,x_2}=\inn{x_1,P_Fx_2}$
+    \end{itemize}
+\end{ftheorem}
+
+\begin{fdefinition}
+    $P_F$ se llama la \textbf{proyección ortogonal}
+\end{fdefinition}
+
+\begin{proof}
+    Ya que $F\cap F^\perp=\{0\}$, la unicidad se cumple.
+
+    \[y+z=y'+z'\implies y-y'=z'-z=0\]
+
+    Tome $x\in H$. Define $y=P_Fx$. Queremos demostrar que $x:x-y\in F^\perp$. Del teorema \ref{theo:2.5.1} sabemos que 
+    
+    $$\Re\inn{c-y,x-y}\leq 0\quad \forall c\in F$$.
+
+    \[\implies \Re \inn{v,z}\leq 0\quad\forall v\in F\]
+
+    \[\implies \Re \inn{\lambda v,z}\leq 0\quad \forall \lambda\in \K\]
+
+    \[\implies \Re \lambda\inn{v,z}\leq 0\]
+
+    \seba{añadir align}
+
+    tome $\lambda=\overline{\inn{v,z}}$
+
+    \[\implies\Re |\inn{v,z}|^2\leq 0\]
+
+    \[\implies |\inn{v,z}|=0\implies z\in F^\perp\]
+
+    \large{Propiedades de $P_F$:} $x_1=y_1+z,\quad x_2=y_2+z_2$
+
+    \begin{align*}
+        \inn{P_Fx_1,x_2}&=\inn{y_1,x_2}\\
+        &=\inn{y_1,y_2+z_2}\\
+    \end{align*}
+
+    \begin{align*}
+        \inn{x_1,P_F x_2}&=\inn{y_1+z_1,y_2}\\
+        &=\inn{y_1,y_2}
+    \end{align*}
+
+    Por lo que $P_F$ es lineal
+
+    \begin{align*}
+        \inn{P_F(x_1+x_2),x_3}&=\inn{x_1+x_2,P_F x_3}\\
+        &=\inn{x_1,P_Fx_3}+\inn{x_2,P_Fx_3}\\
+        &=\inn{P_Fx_1,x_3}+\inn{P_Fx_2,x_3}\\
+        &=\inn{(P_Fx_1+P_Fx_2),x_3}
+    \end{align*}
+
+    \[\iff P_F(x_1+x_2)=P_Fx_1+P_Fx_2\]
+
+    $P_F(\lambda x)=\lambda P_F x$ de la misma manera.
+
+    $P_F/_F=\Id/_F$ 
+
+    \begin{align*}
+        &\implies P_F^2 x=P_F(P_Fx)=P_F x\quad \forall x\in H\\
+        &\implies P_F^2=P_F
+    \end{align*}
+
+    $||P_F x||^2=||y||^2\leq ||x||^2$ mientras
+
+    \[||x||^2\leq ||y||^2+||z||^2\]
+    \[\implies ||P_F||\leq 1\]
+
+\end{proof}
+
+\section{Teorema de Representación de Riesz}
+
+\begin{ftheorem}
+    Sea $H$ un espacio de Hilbert y sea $f\in H^*$ un funcional lineal acotado. Entonces existe único $u\in H$ tal que 
+
+    \[f(x)=\inn{x,u}\quad \forall x\in H\]
+\end{ftheorem}
+
+\paragraph*{Observaciones}
+
+\begin{enumerate}
+    \item $||f||_*=||u||$ por Cauchy-Schwarz
+    \item \begin{align*}
+        H^*&\to H\\
+        f&\to u_f
+    \end{align*}
+    es biyectiva. Para todo $v\in H$ define $f_v(x):\inn{x,v}$
+    \item $f_1+f_2\to u_{f_1+f_2}=u_{f_1}+u_{f_2}$, ya que
+    
+    \begin{align*}
+        (f_1+f_2)(x)&=f_1(x)+f_2(x)=\inn{x,u_{f_1}}+\inn{x,u_{f_2}}\\
+        &=\inn{x,u_{f_1}+u_{f_2}}\implies u_{f_1+f_2}=u_{f_1}+u_{f_2}
+    \end{align*}
+
+    \item ¿$\lambda f\to u_{\lambda f}=\lambda u_f$?
+    
+    \begin{align*}
+        [\lambda f](x)=\lambda (f(x))=\lambda\inn{x,u_f}=\inn{x,\overline{\lambda}u_f}
+    \end{align*}
+\end{enumerate}
