@@ -250,9 +250,7 @@ Sea $H$ un espacio de Hilbert. $C\subseteq R^n$ cerrado y convexo. Existe único
     $$\Re\inn{c-y,x-y}\leq 0\quad \forall c\in F$$.
 
     \[\implies \Re \inn{v,z}\leq 0\quad\forall v\in F\]
-
     \[\implies \Re \inn{\lambda v,z}\leq 0\quad \forall \lambda\in \K\]
-
     \[\implies \Re \lambda\inn{v,z}\leq 0\]
 
     \seba{añadir align}
@@ -260,7 +258,6 @@ Sea $H$ un espacio de Hilbert. $C\subseteq R^n$ cerrado y convexo. Existe único
     tome $\lambda=\overline{\inn{v,z}}$
 
     \[\implies\Re |\inn{v,z}|^2\leq 0\]
-
     \[\implies |\inn{v,z}|=0\implies z\in F^\perp\]
 
     \large{Propiedades de $P_F$:} $x_1=y_1+z,\quad x_2=y_2+z_2$
@@ -318,7 +315,7 @@ Sea $H$ un espacio de Hilbert. $C\subseteq R^n$ cerrado y convexo. Existe único
         H^*&\to H\\
         f&\to u_f
     \end{align*}
-    es biyectiva. Para todo $v\in H$ define $f_v(x):\inn{x,v}$
+    es una isometría biyectiva, lineal-conjugada. Para todo $v\in H$ define $f_v(x):\inn{x,v}$
     \item $f_1+f_2\to u_{f_1+f_2}=u_{f_1}+u_{f_2}$, ya que
     
     \begin{align*}
@@ -332,3 +329,198 @@ Sea $H$ un espacio de Hilbert. $C\subseteq R^n$ cerrado y convexo. Existe único
         [\lambda f](x)=\lambda (f(x))=\lambda\inn{x,u_f}=\inn{x,\overline{\lambda}u_f}
     \end{align*}
 \end{enumerate}
+
+\begin{fnote}
+    Teorema falso. Cuando $H$ es solo espacio pre-Hilbertiano, por ejemplo,
+
+    \[H=C([-1,1])\]
+
+    con producto interno usual.
+
+    \[f(x)=\int_0^1 x(t)\,dt\in H^*\]
+
+\end{fnote}
+
+\begin{proof}
+    Si $f=0\implies u=0$. Asumimos que $f\neq 0$ y consideramos $F:=\ker f=\{x\in H:f(x)=0\}$. $F$ es un subespacio de $H$ cerrado. Si $f\neq 0\implies F\neq H$. Por el teorema de la proyección (\ref{theo:3.2.2})
+
+    \[H=F\oplus F^\perp\]
+
+    Elije $z\in F^\perp\setminus\{0\}$. Afirmamos que $u=\overline{f(z)}z|z|^2\neq 0$ satisface $f=\inn{\cdot,u}$. Ya que 
+
+    \begin{align*}
+        f(z)x-f(x)z\in F\\
+        \implies f(z)x-f(x)z\perp z\\
+        \inn{f(z)x,z}-\inn{f(x)z,z}=0\\
+        \implies \inn{x,\overline{f(z)}z}=f(x)||z||^2\\
+        \implies f(x)=\inn{x,\frac{\overline{f(x)}z}{||z||^2}}
+    \end{align*}
+
+    Entonces $u\in H$ que satisface $f=\inn{\cdot,u}$. Es único: si tenemos $u,u'\in H$ 
+
+    \begin{align*}
+        f(x)&=\inn{x,u}=\inn{x,u'}\\\
+        &\implies \inn{x,u-u'}=0\quad \forall x\in H\\
+        &\implies u-u'\in H^\perp=\{0\}
+    \end{align*}
+\end{proof}
+
+\section{Bases Ortonormales}
+
+Sea $V$ un espacio vectorial sobre $\K$. Un subconjunto $\{v_\alpha\}_{\alpha\in A}$ es LI si $\forall I\overset{\text{finito}}{\subseteq} A$, 
+
+\[\sum_{i\in I}c_iv_i=0\implies c_i=0\quad \forall i\in I\]
+
+\[\gen (\{u_\alpha\}_{\alpha\in A})=\left\{\sum_{i\in I}c_iu_i:I\overset{\text{finito}}{\subseteq} A, c_i\in \K\right\}\]
+
+\begin{fdefinition}
+    Sea $H$ un espacio de Hilbert, $\{e_\alpha\}_{\alpha\in A}$ es ortonormal (o.n.) si 
+
+    \[\inn{e_\alpha,e_\beta}=\delta_{\alpha\beta}\quad \text{$\delta$ de Kronecker}\]
+\end{fdefinition}
+
+Suponga que $\{e_1,\ldots,e_n\}$ es o.n.
+
+\[F:=\gen(\{e_i\}_i^n)\subseteq H\]
+
+es un subespacio cerrado. Podemos definir $P_F$
+
+\[P_F x=\underbrace{\sum_{i=1}^n \inn{x,e_i}e_i}_{y}\]
+
+Es suficiente demostrar que $x-y\perp F$.
+
+\begin{align*}
+    \inn{x-\sum_{x,e_i}e_i,e_k}=0\quad \forall k= 1,\ldots,n
+\end{align*}
+
+\begin{align*}
+    ||P_F x||^2&\leq ||x||^2
+\end{align*}
+
+Por Pitagoras
+
+\begin{align*}
+    =\sum_{i=1}^n ||\inn{x,e_i}e_i||^2\leq ||x||^2\\
+    \implies \sum_{i=1}^n |\inn{x,e_i}|^2\leq ||x||^2
+\end{align*}
+
+\begin{fproposition}[Desigualdad de Bessel]
+    Sea $S=\{e_\alpha\}_\alpha$ un conjunto o.n. Entonces,
+
+    \[\sum_{\alpha} |\inn{x,e_\alpha}|^2\leq ||x||^2 \]
+\end{fproposition}
+
+\[\sum_\alpha r_\alpha:=\sup\left\{\sum_{i\in I}r_i:I\subseteq A\right\}\]
+
+\begin{proof}
+    Utilizando $\sum_{i=1}^n |\inn{x,e_i}|^2\leq ||x||^2$, y tomando supremo.
+\end{proof}
+
+\paragraph{Consecuencias} $\{\alpha:\inn{x,e_\alpha}\neq 0\}=\bigcup_{n=1}^\infty \{\alpha \in A:|\inn{x,e_\alpha}|\geq \frac{1}{n}\}$ es \textbf{contable}: Si es infinito: $|\inn{x,e_{\alpha_k}}|^2>\frac{1}{n^2}, k=1,\ldots$. Sumando suficientes términos superaríamos $||x||^2$, que no es posible por Bessel.
+
+\begin{fdefinition}
+    \[\hat x(\alpha)=\inn{x,e_\alpha}\]
+
+    \textbf{coeficientes de Fourier} respecto a $\{e_\alpha\}$
+\end{fdefinition}
+
+\[\sum_\alpha |\hat x(\alpha)|^2\leq ||x||^2\]
+
+¿Cuando tenemos igualdad?
+
+\begin{ftheorem}
+    Sea $\mathcal{B}=\{e_\alpha\}_{\alpha\in A}$ un subconjunto o.n. del espacio de Hilbert $H$. Los siguientes enunciados son equivalentes:
+
+    \begin{enumerate}
+        \item \[\sum_\alpha |\hat x(\alpha)|^2=||x||^2\]
+        \item $\mathcal{B}$ es \textbf{maximal} en el sentido de:
+        
+        Si $x\in H$, tal que $x\perp e_\alpha,\forall \alpha\in A\implies x=0$
+
+        \item $\forall x\in H$, 
+        
+        \[x=\sum_{\alpha}\inn{x,e_\alpha}e_\alpha\]
+
+        donde la suma en el lado derecho tiene solo un número contable de términos no ceros y la suma de estos converge a $x$ en $||\cdot||$ independiente de su orden.
+
+        \item $\gen(\mathcal{B})$ es denso en $H$
+    \end{enumerate}
+\end{ftheorem}
+
+\begin{fdefinition}
+    Decimos que un conjunto $\{e_\alpha\}_{\alpha\in A}$ o.n. es una \textbf{base ortonormal} si satisface cualquiera de $\emph{1.-4.}$
+\end{fdefinition}
+
+\begin{proof}
+    $\emph{2.}\implies \emph{3.}$ Sea $e_{\alpha_1},\ldots,e_{\alpha_n},\ldots$ una enumeración de los $\{e_\alpha\}_{\alpha\in \mathcal{J}}$ para los cuales $\hat x(\alpha)\neq 0$. Por Bessel:
+
+    \[\sum_{k=1}^\infty |\hat x(\alpha_k)|^2\leq ||x||^2<\infty\]
+
+    \[\implies \sum_{k=n}^m |\hat x(\alpha_k)|^2\xrightarrow{m,n\to\infty} 0\]
+
+    Por Pitagoras,
+
+    \[||\sum_{k=n^m}\inn{x,e_{\alpha_k}}e_{\alpha_k}||\xrightarrow
+    {m,n\to\infty} 0\]
+
+    Sea $S_n=\sum_{k=1}^n \hat x(\alpha_k)e_{\alpha_k}$. $\{S_n\}$ es Cauchy en $H$
+
+    \[\implies S_n\xrightarrow{n\to\infty} S\quad\text{en $H$}\]
+
+    Además 
+
+    \begin{align*}
+        \inn{x-S,e_\alpha}&=\inn{x,e_\alpha}-\inn{S,e_\alpha}\\
+        &=\inn{x,e_\alpha}-\lim_{n\to\infty} \inn{S_n,e_\alpha}\\
+        &=\begin{cases}
+            0 &\text{cuando $\alpha\in \mathcal{J}$}\\
+            0 &\text{cuando $\alpha\notin \mathcal{J}$}
+        \end{cases}
+        &\implies x-S=0\implies x=S
+    \end{align*}
+
+    $\emph{3.}\implies \emph{1.}$: Por continuidad de la norma 
+
+    \begin{align*}||x||^2&=||\lim_{n\to\infty} S_n||^2\\
+        &=\lim_{n\to\infty} ||S_n||^2\\
+        &=\lim_{n\to\infty} \sum_{k=1}^n |\hat x(\alpha_k)|^2\\
+        &=\sum_\alpha |\hat x(\alpha)|^2
+    \end{align*}
+
+    $\emph{1.}\implies \emph{2.}$: obvio 
+
+    \[||x||^2=\sum_\alpha |\inn{x,e_\alpha}|^2=0\implies x=0\]
+
+    $\emph{3.}\implies \emph{4.}$: Si $x\perp e_\alpha,\quad\forall \alpha$, 
+
+    \begin{align*}
+        &\implies x\perp \gen(\{e_\alpha\})\\
+        &\overset{\text{continuidad}}{\implies} x\perp \overline{\gen(\{e_\alpha\})}=H\\
+        &\implies x=0
+    \end{align*}
+
+\end{proof}
+
+\begin{fexample}
+    $\ell^2$, $e_k=\{(0,\ldots,\underbrace{1}_k,0,\ldots)\},k\in\N$.
+
+    \[||x||^2=\sum |x_i|^2=\sum |\inn{x,e_i}|^2\]
+\end{fexample}
+
+\begin{ftheorem}
+    Todo espacio de Hilbert tiene una \textbf{base ortonormal}.
+\end{ftheorem}
+
+\begin{proof}
+    Utiliza el Lema de Zorn
+\end{proof}
+
+\begin{fdefinition}
+    $X$ espacio métrico es \textbf{separable} si existe un subconjunto $C\subseteq X$ contable y denso en $X$.
+\end{fdefinition}
+
+\begin{fexample}
+    $\ell^p,p\in [1,\infty)$ es separable. 
+
+    $L^2([0,1])$ es separable. $\text{Polinomios con coeficientes$\in\K$}\ovserset{\text{denso}}{\subseteq}C([0,1])\overset{\text{denso}}{\subseteq} L^2([0,1])$
+\end{fexample}

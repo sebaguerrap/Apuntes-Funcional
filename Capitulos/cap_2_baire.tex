@@ -268,21 +268,21 @@ Lo será cuando $T$ es abierta.
 
         \[cat II\rightarrow Y=\bigcup_{n=1}^\infty \overline{T(B_n^X)}\]
 
-        Entonces, $T(B_n^X)\supseteq B_r^Y(y)$ para algún $n\in\N,r>0,y\in Y$. Tomamos $\tilde y$ tal que $|\tilde y-y|\leq \frac{r}{2}$ e $\tilde y=Tx$ para algún $x\in B_n^X$.
+        Entonces, $T(B_n^X)\supseteq B_r^Y(y)$ para algún $n\in\N,r>0,y\in Y$. Tomamos $\tilde y$ tal que $|\tilde y-y|\leq \frac{r}{2}$ e $\tilde y=T\tilde x$ para algún $\tilde x\in B_n^X$.
 
         \begin{align*}
-            T(B_{2n}^x(\tilde x))\supseteq \overline{T(B_n^X)}\supseteq B_r^Y(y)\supseteq B_{\frac{r}{2}}^Y(y)
+            T(B_{2n}^x(\tilde x))\supseteq \overline{T(B_n^X)}\supseteq B_r^Y(y)\supseteq B_{\frac{r}{2}}^Y(\tilde y)
         \end{align*}
 
-        Restando $Tx$
+        Restando $T\tilde x$
 
         \[T(B_{2n}^X)\supseteq B_{\frac{r}{2}}^X\]
 
         Reescalando
 
-        \[\overline{T(B_1^X)}\supseteq B_{\frac{r}{4n}^Y}\quad \delta=\frac{r}{4n}\]
+        \[\overline{T(B_1^X)}\supseteq B_{\frac{r}{4n}}^Y\quad \delta=\frac{r}{4n}\]
 
-        \item Tenemos $T(B_1^X)\supseteq B_\delta^Y$. Reescalando
+        \item Tenemos $\overline{T(B_1^X)}\supseteq B_\delta^Y$. Reescalando
         
         \[\overline{T(B_{2^{-k}}^X)}\supseteq B_{\delta 2^{-k}}^Y\]
 
@@ -311,9 +311,9 @@ Lo será cuando $T$ es abierta.
 
         \[||x||=\sum_{n=1}^\infty ||x_k||\leq 2\]
 
-        Afirmamos que $Tx=y_0$. Por contradicción
+        Afirmamos que $Tx=y_0$ por construcción.
 
-        \begin{align*}Tx&=\lim_{N\to\infty} T(\sum_{n=0}^N x_k)\\
+        \begin{align*}Tx&=\lim_{N\to\infty} T\left(\sum_{n=0}^N x_k\right)\\
         &=\lim_{N\to\infty} \sum_{k=0}^N \underbrace{Tx_k}_{y_k-y_{k+1}}\\
         &=\lim_{N\to\infty} (y_0-y_{N+1})\\\
         &=y_0
