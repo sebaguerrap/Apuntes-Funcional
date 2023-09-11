@@ -522,5 +522,157 @@ Por Pitagoras
 \begin{fexample}
     $\ell^p,p\in [1,\infty)$ es separable. 
 
-    $L^2([0,1])$ es separable. $\text{Polinomios con coeficientes$\in\K$}\ovserset{\text{denso}}{\subseteq}C([0,1])\overset{\text{denso}}{\subseteq} L^2([0,1])$
+    $L^2([0,1])$ es separable. $\text{Polinomios con coeficientes $\in\K$}\overset{\text{denso}}{\subseteq}C([0,1])\overset{\text{denso}}{\subseteq} L^2([0,1])$
+
+    \seba{Faltan los polinomios con coefs $\in\Q$} cuando $\K=\R \text{ o } \C$.
 \end{fexample}
+
+\begin{ftheorem}
+    $H$ es separable si y solo si existe una \textbf{base ortonormal} para $H$ que es \textbf{contable}. En este caso, toda base o.n. es contable.
+\end{ftheorem}
+
+\begin{proof}
+    $\implies:$ $\{x_n\}\subseteq H$ es denso. $x_1,\ldots,x_n,\ldots$ Descartando posiblemente términos, podemos asumir que $x_1,\ldots,x_n$ son LI $\forall n\in\N$ y todos los descartados pertenecen a $\gen(\{x_k\})$. De esta manera, $\gen(\{x_k\})$ es denso en $H$.
+
+    Por Gram-Schmidt producimos una sucesión $\{y_k\}_{k=1}^\infty$ tal que, $\gen(\{y_k\}_{k=1}^n)=\gen(\{x_k\}_{k=1}^n)\forall n\in\N$ y $\mathcal{B}=\{y_k\}$ es un conjunto o.n.
+
+    $\mathcal{B}$ es o.n. y $\gen(\mathcal{B})=\gen(\{x_k\})$ es denso en $H$. Entonces $\mathcal{B}$ es una base ortonormal contable.
+
+    $\impliedby:$ Sea $\{e_k\}_k$ una base o.n. contable.
+
+    \[G_n:=\gen(\{e_k\}_{k=1}^n)=\left\{\sum_{k=1}^n \lambda_ke_k,\lambda_k\in\K\right\}\]
+
+    $\implies\gen(\{e_k\}_k)=\bigcup_{n=1}^\infty G_n$ es denso en $H$.
+
+    \[\bigcup_{n=1}^\infty \hat{G_n}\overset{\text{denso}}{\subseteq} \bigcup_{n=1}^\infty G_n\]
+
+    donde $\hat{G_n}=\{\sum_{i=1}^n \lambda_i e_i,\lambda_k\in\Q \text{ si }\K=\R, \lambda_k\in \Q+i\Q \text{ si } \K=\C\}$
+
+    \seba{añadir cases en vola}
+
+    Sea $\{u_\alpha\}_{\alpha\in\mathcal{A}}$ otra base o.n. 
+
+    \[A_n=\left\{\alpha\in\mathcal{A}:\inn{\overbrace{x}^{e_n},u_\alpha}\neq 0\right\}\text{ es contable}\]
+
+    Además, para cada $\alpha\in\mathcal{A}$, 
+
+    \[\inn{u_\alpha,e_k}\neq 0\text{ para algún }k\]
+
+    por la maximalidad de la base $\{e_n\}_n$ (que es contable). Entonces, $\mathcal{A}=\bigcup_{k=1}^\infty A_k$ es contable.
+\end{proof}
+
+Vamos a demostrar que todo espacio de Hilbert separable es $\ell^2=\{\{x_k\}\in \K^n:\sum ||x_k|^2|<\infty\}$
+
+\begin{fdefinition}
+    Sean $H_1,H_2$ dos espacios de Hilbert. Un \textbf{isomorfismo} $T:H_1\to H_2$ se llama \textbf{unitario} si 
+
+    \[\inn{Tx_1,Tx_2}_{H_2}=\inn{x_1,x_2}_{H_1}\quad\forall x_1,x_2\in H_1\]
+\end{fdefinition}
+
+$T$ unitario $\implies T$ es una \textbf{isometría}:
+
+\[||Tx||_{H_2}^2=\inn{Tx,Tx}_{H_2}=\inn{x,x}_{H_1}=||x||_{H_1}^2\]
+
+\begin{ftheorem}
+    Todo espacio de Hilbert separable es unitariamente isomorfo a $\ell^2$.
+\end{ftheorem}
+
+\begin{proof}
+    Sea $\{e_n\}$ una base o.n. contable para $H$.
+
+    \begin{align*}
+        H&\to \ell^2\\
+        x&\to \hat x=(\hat x(1),\hat x(2),\ldots)
+    \end{align*}
+
+    donde $\hat x(k)=\inn{x,e_k}$.
+
+    Por Parseval,
+
+    \[||\hat x||_{\ell^2}^2=\sum_{k}|\hat x(k)|^2=||x||^2<\infty\]
+
+    \[\implies \hat x\in \ell^2\implies T\text{ es bien definido}\]
+
+    es lineal, inyectivo (por maximalidad), sobreyectivo: si $c\in\ell^2, \sum_{k=1}^n c_k e_k\xrightarrow{H} x_c$, donde 
+
+    \[\hat x_c(k)=\inn{x_c,e_k}=c_k\quad\forall k\in\N\]
+
+    Es una isometría: \textbf{Identidad de Parseval}.
+
+    \[||Tx||_{\ell^2}^2=||x||_H^2\]
+
+    Identidad de Polarización:\\*
+    $\K=\R:\inn{x,y}=\frac{1}{4}(||x+y||^2-||x-y||^2)$\\*
+    $\K=\C:\inn{x,y}=\frac{1}{4}(||x+y||^2-||x-y||^2+i||x+iy||^1-i||x-iy||^2)$
+
+    Por lo tanto, $T$ preserva el producto interno:
+
+    \[\inn{Tx_1,Tx_2}_{\ell^2}=\inn{x_1,x_2}_H\]
+\end{proof}
+
+\section{Series de Fourier}
+
+$f:\R\to\C$ periódica de período $2\pi$.
+
+$F:\Pi\to\C$, $\Pi$ es el círculo unitario.
+
+\[F(e^{i\theta})=f(\theta)\]
+
+\[\hookrightarrow \tilde f:[-\pi,\pi]\to\C\]
+
+con
+
+\[\tilde f(-\pi)=\tilde f(\pi)\]
+
+Vamos a asumir que $\inn{f,g}_{L^2}:=\int_{-\pi}^\pi f(x)\overline{g(x)}\,dx$
+
+\[f\in L^2(\Pi)=\left\{f:\R\to\C\text{ medibles, periódicas-$2\pi$ t.q.} \int_{-\pi}^\pi |f(x)|\,dx<\infty\right\}=L^2([-\pi,\pi])\]
+
+Definimos 
+
+\[e_n=\frac{1}{\sqrt{2\pi}}e^{inx}\quad n=0,\pm 1,\pm 2,\ldots\]
+
+\begin{fproposition}
+    $\{e_n\}$ es un conjunto ortonormal de $L^2(\Pi)$.
+\end{fproposition}
+
+\begin{proof}
+    \begin{align*}
+        \inn{e_n,e_m}&=\int_{-\pi}^\pi e_n(x)\overline{e_m(x)}\,dx\\
+        &=\int_{-\pi}^\pi \frac{2}{\pi} e^{inx}e^{-imx}\,dx\\
+        &=\frac{1}{2\pi}\int_{-\pi}^\pi e^{i(n-m)x}\,dx\\
+        &=\begin{cases}
+            \frac{2\pi}{2\pi}=1&n=m\\
+            \left.\frac{e^{i(n-m)x}}{i(n-m)}\right|_{x=-\pi}^{x=\pi}&n\neq m
+        \end{cases}
+    \end{align*}
+\end{proof}
+
+\begin{fdefinition}
+    Sea $f\in L^2(\Pi)$. Defina 
+    
+    \begin{align*}
+        \hat f (n)&=\inn{f,e_n}_{L^2}\\
+        &=\frac{1}{\sqrt{2\pi}}\int_{-\pi}^\pi f(x) e^{-inx}\,dx
+    \end{align*}
+    coeficiente de Fourier.
+
+    \[f\to \sum_{n\in\Z}\hat f(n)e_n\]
+
+    serie de Fourier.
+\end{fdefinition}
+
+\[S_N f(x)=\sum_{|n|\leq N} \hat f(n)\frac{1}{\sqrt{2\pi}} e^{inx}\]
+
+suma de Fourier parcial.
+
+Preguntas:
+
+\begin{enumerate}
+    \item ¿Converge $S_n f$ a $f$ en $L^2$?
+    \item ¿Converge $S_N f(x)$ a $f(x)$ puntualmente?
+    
+    ¿Si falla para algún $x$, es este comportamiento raro o genérico?
+
+    \item ¿Converge $S_N f$ a $f$ en otras normas (e.g. $L^p$,p>1)?
+\end{enumerate}
