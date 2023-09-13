@@ -672,7 +672,180 @@ Preguntas:
     \item ¿Converge $S_n f$ a $f$ en $L^2$?
     \item ¿Converge $S_N f(x)$ a $f(x)$ puntualmente?
     
-    ¿Si falla para algún $x$, es este comportamiento raro o genérico?
+    Si falla para algún $x$, ¿es este comportamiento raro o genérico?
 
     \item ¿Converge $S_N f$ a $f$ en otras normas (e.g. $L^p$,p>1)?
 \end{enumerate}
+
+\begin{ftheorem}
+    $f\in L^2(\Pi)$, $S_N f\xrightarrow{L^2}f$ cuando $N\to\infty$.
+\end{ftheorem}
+
+\begin{fnote}
+    El enunciado $\iff$,  $\mathcal{B}=\{e_n(x)\}_{n\in\Z}$ es una base o.n. para $L^2(\Pi)$
+\end{fnote}
+
+\begin{proof}
+    Entonces será suficiente demostrar que $\mathcal{B}$ es maximal:
+
+    \[\hat f(n)=0\quad\forall n\in\Z\implies f=0\]
+\end{proof}
+
+\begin{ftheorem}
+    $f\in L^2(\Pi)$. Entonces, 
+
+    \[S_n f(x)=\int_{-\pi}^\pi D_N(x-t)f(t)\,dt\]
+
+    donde 
+
+    \[D_N(x)=\begin{cases}
+        \frac{2N+1}{2\pi}& x=0\\
+        \frac{\sin(N+\frac{1}{2})x}{2\pi\sin \frac{x}{2}}&x\neq 0
+    \end{cases}\]
+\end{ftheorem}
+
+\begin{proof}
+    \begin{align*}
+        S_n f&=\sum_{|n|\leq N}\inn{f,e_n} e_n(x)\\
+        &=\sum_{|n|\leq N} \frac{1}{2\pi}\left( \int_{\Pi} f(t)e^{-int}\,dt\right) e^{inx}\\
+        &=\int_{\Pi} \underbrace{\left(\sum_{|n|\leq N} \frac{1}{2\pi} e^{in(x-t)}\right)}_{D_N(x-t)}f(t)\,dt
+    \end{align*}
+
+    donde 
+
+    \[D_N(x)=\sum_{|n|\leq N} \frac{1}{2\pi} e^{inx}\]
+
+    Kernel de Dirichlet.
+
+    \[D_N(0)=\frac{2N+1}{2\pi}\quad \text{Para }x\neq 0\]
+
+    \begin{align*}
+        D_N(x)&=\frac{1}{2\pi} e^{-inx} \sum_{n=0}^{2N} e^{inx}\\
+        &=\frac{1}{2\pi} e^{inx} \frac{e^{i(2N+1)x}-1}{e^{ix}-1}\\
+        &=\frac{1}{2\pi} \frac{e^{i(N+1)x}-e^{-iNx}}{e^{ix}-1}\\
+        &=\frac{1}{2\pi}\frac{e^{i(N+\frac{1}{2})x}-e^{-i(N+\frac{1}{2})x}}{e^{ix/2}-e^{-ix/2}}\\
+        &=\frac{1}{2\pi}\frac{2i \sin(N+\frac{1}{2})x}{2i \sin \frac{x}{2}}
+    \end{align*}
+\end{proof}
+
+\begin{fnote}
+    $D_N(x)$ es $2\pi$-periodico, par, suave y 
+
+    \[\int_\Pi D_N(x)\,dx=1\]
+
+    \seba{añadir foto del kernel de Dirichlet}
+
+    Es difícil demostrar directamente que $S_ f(x)\to f(x)$ ($D_N(x)$ cambia de signo y oscila muy rápidamente). 
+\end{fnote}
+
+\paragraph{Desvío} En lugar de demostrar que $S_N f\xrightarrow{L^2}f$ directamente, vamos a considerar la sucesión \textbf{media de Cesàro}
+
+\[\sigma_N f=\frac{S_0 f+S_1 f+\cdots + S_{N+1}f}{N}\]
+
+\begin{fnote}
+    $S_N f$ converge a $f$, $\sigma_N f$ converge a $f$
+\end{fnote}
+
+\begin{ftheorem}[Fejér]
+    \[\sigma_N f\xrightarrow{L^2} f\]
+
+    Cuando $f\in C(\Pi)$, 
+
+    \[\sigma_N f\xrightarrow{\text{unif.}} f\text{ en }\Pi\]
+\end{ftheorem}
+
+Si $\hat f(n)=0\quad\forall n\in\Z$
+
+\[\ mplies S_n f \equiv 0\quad \forall n\in\Z\implies \sigma_N f\equiv 0\]
+
+\[\overset{\text{Fejer}}{\implies} f=\lim_{N\to\infty}\sigma_N f=0\implies \text{Maximalidad de }\mathcal{B}\]
+
+\begin{fproposition}
+    Sea $f\in L^2(\Pi)$. Entonces 
+
+    \[\sigma_N f(x)=\int_{-\pi}^\pi F_N(x-t)f(t)\,dt\]
+
+    donde 
+
+    \[F_N(x)=\begin{cases}
+        \frac{1}{2\pi}N & x=0\\
+        \frac{1}{2\pi N} \frac{\sin^2(Nx/2)}{\sin^2 \frac{x}{2}}& x\neq 0
+    \end{cases}\]
+
+    es el Kernel de Fejér.
+\end{fproposition}
+
+\begin{proof}
+    \begin{align*}
+        \sigma_N f&=\frac{1}{N} \sum_{n=0}^{N-1} S_n f\\
+        &\downarrow\\
+        F_N(x)&=\frac{1}{N}\sum_{n=0}^{N-1} D_n(x)
+    \end{align*}
+
+    $x=0$
+    
+    \begin{align*}
+        F_N(0)&=\dfrac{1}{N}\displaystyle\sum_{n=0}^{N-1} \overbrace{\frac{1}{2\pi} (2n+1)}^{D_n(0)}\\
+        &=\frac{1}{2\pi} N
+    \end{align*}
+
+    $x\neq 0$,
+
+    \begin{align*}
+        F_N(x)&=\frac{1}{N}\cdot \frac{1}{2\pi} \sum_{n=0}^{N-1} \frac{\sin ((n+\frac{1}{2})x)}{\sin\frac{x}{2}}\\
+        &=\frac{1}{2\pi N}\cdot \frac{1}{\sin^2 \frac{x}{2}}\sum_{n=0}^{N-1} \underbrace{\sin(n+\frac{1}{2})x\sin \frac{x}{2}}_{\frac{1}{2}\left(\cos(nx)-\cos((n+1)x)\right)}\\
+        &=\frac{2}{\pi N}\frac{1}{\sin^2 \frac{x}{2}}\underbrace{\frac{1}{2}(\cos(0x)-\cos(Nx))}_{\sin^2 \frac{Nx}{2}}\\
+        &=\frac{1}{2\pi N}\frac{\sin^2 \frac{Nx}{2}}{\sin^2\frac{x}{2}}
+    \end{align*}
+\end{proof}
+
+Propiedades de $F_N(x)$
+
+\begin{enumerate}
+    \item $F_N(x)\geq 0$, suave, periódico-$2\pi$, par 
+    \item \[\int_\Pi F_N(x)\,dx=1\]
+    
+    (como promedio de $D_N(x)$)
+
+    \item \[|F_N(x)|\leq \frac{1}{2\pi N\sin^2 \frac{\delta}{2}}\quad \delta\leq |x|\leq \pi\]
+\end{enumerate}
+
+\seba{añadir foto pero borrarla pa zapit}
+
+\paragraph{Notación}
+
+\begin{align*}
+    S_N f(x)&=\int_\Pi D_N(x-t)f(t)\,dt=D_N*f\\
+    \sigma_N f(x)&=\int_\Pi F_N(x-t)f(t)\,dt=F_N*f
+\end{align*}
+
+Convolución: $f\in C(\Pi)$, $g\in L^1(\Pi)$
+
+\[f*g(x)=\int_{-\pi}^\pi f(x-t)g(t)\,dt\]
+
+tomando $\tau=x-t$
+
+\[f*g(x)=\int_{x-\pi}^{x+\pi} f(\tau)g(x-\tau)\,d\tau=\int_{-\pi}^\pi f(\tau) g(x-\tau)=g*f(x)\]
+
+\begin{fdefinition}
+    $\{K_n\}_{n\in\N}$ es una familia de buenos kernels en $L^1(\Pi)$ si
+
+    \begin{enumerate}
+        \item \[\int_\Pi K_n(x)\,dx=1\]
+        \item \[\sup_n \int_\Pi |K_n(x)|\,dx<\infty\]
+        \item \[\int_{\delta\leq |x|\leq \pi} |K_n(x)|\,dx \xrightarrow{n\to\infty} 0\quad \forall \delta >0\]
+    \end{enumerate}
+\end{fdefinition}
+
+\begin{fnote}
+    $\{F_N(x)\}_{N\in\N}$ es una familia de buenos kernels
+\end{fnote}
+
+\begin{ftheorem}
+    Si $\{K_N\}_{N\in\N}$ es una familia de buenos kernels en $L^1(\Pi)$ y $f\in C(\Pi)$, entonces 
+
+    \[K_N*f=f*K_N\to f\]
+
+    uniformemente en $\Pi$
+\end{ftheorem}
+
