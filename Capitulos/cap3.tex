@@ -626,7 +626,7 @@ con
 
 Vamos a asumir que $\inn{f,g}_{L^2}:=\int_{-\pi}^\pi f(x)\overline{g(x)}\,dx$
 
-\[f\in L^2(\Pi)=\left\{f:\R\to\C\text{ medibles, periódicas-$2\pi$ t.q.} \int_{-\pi}^\pi |f(x)|\,dx<\infty\right\}=L^2([-\pi,\pi])\]
+\[f\in L^2(\Pi)=\left\{f:\R\to\C\text{ medibles, periódicas-$2\pi$ t.q.} \int_{-\pi}^\pi |f(x)|^2\,dx<\infty\right\}=L^2([-\pi,\pi])\]
 
 Definimos 
 
@@ -685,19 +685,14 @@ Preguntas:
     El enunciado $\iff$,  $\mathcal{B}=\{e_n(x)\}_{n\in\Z}$ es una base o.n. para $L^2(\Pi)$
 \end{fnote}
 
-\begin{proof}
     Entonces será suficiente demostrar que $\mathcal{B}$ es maximal:
-
     \[\hat f(n)=0\quad\forall n\in\Z\implies f=0\]
-\end{proof}
+
 
 \begin{ftheorem}
     $f\in L^2(\Pi)$. Entonces, 
-
-    \[S_n f(x)=\int_{-\pi}^\pi D_N(x-t)f(t)\,dt\]
-
+    \[S_N f(x)=\int_{-\pi}^\pi D_N(x-t)f(t)\,dt\]
     donde 
-
     \[D_N(x)=\begin{cases}
         \frac{2N+1}{2\pi}& x=0\\
         \frac{\sin(N+\frac{1}{2})x}{2\pi\sin \frac{x}{2}}&x\neq 0
@@ -712,16 +707,14 @@ Preguntas:
     \end{align*}
 
     donde 
-
     \[D_N(x)=\sum_{|n|\leq N} \frac{1}{2\pi} e^{inx}\]
-
     Kernel de Dirichlet.
-
-    \[D_N(0)=\frac{2N+1}{2\pi}\quad \text{Para }x\neq 0\]
+    \[D_N(0)=\frac{2N+1}{2\pi}\]
+    Para $x\neq 0$,
 
     \begin{align*}
-        D_N(x)&=\frac{1}{2\pi} e^{-inx} \sum_{n=0}^{2N} e^{inx}\\
-        &=\frac{1}{2\pi} e^{inx} \frac{e^{i(2N+1)x}-1}{e^{ix}-1}\\
+        D_N(x)&=\frac{1}{2\pi} e^{-iNx} \sum_{n=0}^{2N} e^{inx}\\
+        &=\frac{1}{2\pi} e^{-iNx} \frac{e^{i(2N+1)x}-1}{e^{ix}-1}\\
         &=\frac{1}{2\pi} \frac{e^{i(N+1)x}-e^{-iNx}}{e^{ix}-1}\\
         &=\frac{1}{2\pi}\frac{e^{i(N+\frac{1}{2})x}-e^{-i(N+\frac{1}{2})x}}{e^{ix/2}-e^{-ix/2}}\\
         &=\frac{1}{2\pi}\frac{2i \sin(N+\frac{1}{2})x}{2i \sin \frac{x}{2}}
@@ -735,12 +728,12 @@ Preguntas:
 
     \seba{añadir foto del kernel de Dirichlet}
 
-    Es difícil demostrar directamente que $S_ f(x)\to f(x)$ ($D_N(x)$ cambia de signo y oscila muy rápidamente). 
+    Es difícil demostrar directamente que $S_N f(x)\to f(x)$ ($D_N(x)$ cambia de signo y oscila muy rápidamente). 
 \end{fnote}
 
 \paragraph{Desvío} En lugar de demostrar que $S_N f\xrightarrow{L^2}f$ directamente, vamos a considerar la sucesión \textbf{media de Cesàro}
 
-\[\sigma_N f=\frac{S_0 f+S_1 f+\cdots + S_{N+1}f}{N}\]
+\[\sigma_N f=\frac{S_0 f+S_1 f+\cdots + S_{N-1}f}{N}\]
 
 \begin{fnote}
     $S_N f$ converge a $f$, $\sigma_N f$ converge a $f$
@@ -756,8 +749,7 @@ Preguntas:
 
 Si $\hat f(n)=0\quad\forall n\in\Z$
 
-\[\ mplies S_n f \equiv 0\quad \forall n\in\Z\implies \sigma_N f\equiv 0\]
-
+\[\implies S_n f \equiv 0\quad \forall n\in\Z\implies \sigma_N f\equiv 0\]
 \[\overset{\text{Fejer}}{\implies} f=\lim_{N\to\infty}\sigma_N f=0\implies \text{Maximalidad de }\mathcal{B}\]
 
 \begin{fproposition}
@@ -781,16 +773,12 @@ Si $\hat f(n)=0\quad\forall n\in\Z$
         &\downarrow\\
         F_N(x)&=\frac{1}{N}\sum_{n=0}^{N-1} D_n(x)
     \end{align*}
-
     $x=0$
-    
     \begin{align*}
         F_N(0)&=\dfrac{1}{N}\displaystyle\sum_{n=0}^{N-1} \overbrace{\frac{1}{2\pi} (2n+1)}^{D_n(0)}\\
         &=\frac{1}{2\pi} N
     \end{align*}
-
     $x\neq 0$,
-
     \begin{align*}
         F_N(x)&=\frac{1}{N}\cdot \frac{1}{2\pi} \sum_{n=0}^{N-1} \frac{\sin ((n+\frac{1}{2})x)}{\sin\frac{x}{2}}\\
         &=\frac{1}{2\pi N}\cdot \frac{1}{\sin^2 \frac{x}{2}}\sum_{n=0}^{N-1} \underbrace{\sin(n+\frac{1}{2})x\sin \frac{x}{2}}_{\frac{1}{2}\left(\cos(nx)-\cos((n+1)x)\right)}\\
