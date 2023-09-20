@@ -826,7 +826,7 @@ tomando $\tau=x-t$
 \end{fdefinition}
 
 \begin{fnote}
-    $\{F_N(x)\}_{N\in\N}$ es una familia de buenos kernels
+    $\{F_N(x)\}_{N\in\N}$ es una familia de buenos kernels pero $\{D_N\}$ \textbf{no} lo es. Veremos que 2. falla para el kernel de Dirichlet.
 \end{fnote}
 
 \begin{ftheorem}
@@ -837,3 +837,186 @@ tomando $\tau=x-t$
     uniformemente en $\Pi$
 \end{ftheorem}
 
+\begin{fcorollary}
+    \[\sigma_N f\xrightarrow[N\to\infty]{\text{unif}} f\text{ para }f\in C(\Pi)\]
+
+\end{fcorollary}
+
+\begin{proof}[Demsotración del teorema \ref{theo:3.5.6}]
+    \begin{align*}
+        K_n*f(x)-f(x)&=f*K_n(x)-f(x)\\
+        &=\int f(x-y)K_n(y)\,dy-f(x)\\
+        &=\int (f(x-y)-f(x))K_n(y)\,dy
+    \end{align*}
+
+    \begin{align*}
+        \implies |K_n*f(x)-f(x)|&\leq \int_\Pi |f(x-y)-f(x)||K_n(y)|\,dy\\
+        &=\int_{|y|<\delta} |f(x-y)-f(x)||K_n(y)|\,dy+\int_{|y|>\delta} |f(x-y)-f(x)||K_n(y)|\,dy\\
+        &\leq \varepsilon\int_\mathbb{T} |K_n(y)|\,dy+2\max_\Pi |f|\int_{|y|>\delta}|K_n(y)|\,dy\\
+        &\leq C\varepsilon
+    \end{align*}
+    cuando $n$ es suficientemente grande.
+\end{proof}
+
+\begin{fcorollary}
+    Si $f\in C(\Pi)$ y $\hat f(n)=0\ \forall n\in\Z\implies f\equiv 0$.
+\end{fcorollary}
+
+\begin{proof}
+    \begin{align*}
+        &\sigma_N f\equiv 0\\
+        &\downarrow \text{unif}\\
+        &f\equiv 0
+    \end{align*}
+\end{proof}
+
+\begin{fcorollary}
+    Suponga que $f\in C(\Pi)$ y su serie de Fourier converge absoluta y uniformemente, es decir:
+
+    \[\sum_n |\hat f(n) e_n(x)|=\sum_n |\hat f(n)|\frac{1}{\sqrt{2\pi}}<\infty\]
+
+    Entonces, 
+
+    \[S_N f\to f\text{ unif}\]
+\end{fcorollary}
+
+\begin{proof}
+    Defina 
+
+    \[g(x):=\sum_{n\in\Z}\hat f(n)e_n(x)\in C(\Pi)\]
+
+    por convergencia absoluta uniforme.
+
+    \[h(x):=g(x)-f(x)\]
+    \begin{align*}
+        \hat h(n)=\hat g(n)-\hat f(n)&=\inn{\sum_{k} \hat f(k)e_k(x),e_n(x)}-\hat f(n)\\
+        &=\hat f(n)-\hat f(n)=0
+    \end{align*}
+
+    Se puede intercambiar la suma con la integral por convergencia uniforme y el corolario anterior, se concluye que $h\equiv 0$.
+\end{proof}
+
+Tenemos la convergencia $\sigma_N f\xrightarrow{\text{unif}} f$ para $f\in C(\Pi)$. Queremos pasar a convergencia en $L^2$. Vamos a utilizar la \textbf{densidad} de $C(\Pi)\subseteq L^2(\Pi)$. Vamos a necesitar la estimación adicional:
+
+\begin{fproposition}
+    \[||\sigma_N f||_{L^2}\leq ||f||_{L^2}\]
+\end{fproposition}
+
+\begin{proof}
+    $\sigma_N f=\frac{1}{N}(S_0 f+\cdots+S_{N-1} f)$
+
+    \begin{align*}
+        ||\sigma_N f||_{L^2} \leq \frac{1}{N} \sum_{k=0}^{N-1} ||S_k f||_{L^2}
+    \end{align*}
+
+    Tenemos,
+
+    \[||S_k f||_{L^2}\leq ||f||_{L^2}\text{ (Bessel)}\]
+
+    $S_k f=$ proyección de $f$ en $\gen(\{e_l\}_{|l|\leq k})$
+
+    \[||\sigma_N f||_{L^2}\leq \frac{1}{N}N||f||_{L^2}\]
+\end{proof}
+
+De hecho, tenemos 
+
+\begin{fproposition}
+    Si $f\in L^p(\Pi)$, $1\leq p<\infty$, entonces 
+
+    \[||\sigma_N f||_{L^p}\leq ||f||_{L^p}\]
+\end{fproposition}
+
+\begin{ftheorem}
+    Sea $f\in L^p(\Pi)$, $1\leq p<\infty$. Entonces,
+
+    \[\sigma_N f\xrightarrow{L^p} f\]
+\end{ftheorem}
+
+\begin{proof}
+    Fije $\varepsilon>0$. Aproxime $f\in L^p(\Pi)$ con $g\in C(\Pi)$:
+
+    \[||f-g||_{L^p}\leq \varepsilon\]
+    \begin{align*}
+        \sigma_N f-f&=\sigma_N g-g +\sigma_N (f-g)-(f-g)\\
+        ||\sigma_N f-f||_{L^p}&\leq ||\sigma_N g-g||_{L^p}+||\sigma_N (f-g)||_{L^p}+||f-g||_{L^p}\\
+        &\leq C\varepsilon
+    \end{align*}
+
+    Podemos elegir $N$ suficientemente gtande, tal que 
+
+    \[||\underbrace{\sigma_N g-g}_{h}||_{\infty}\leq \varepsilon\]
+
+    por convergencia uniforme.
+
+    \begin{align*}
+        ||h||_{L^p}&=\left(\int_\Pi |h|^p\,dx\right)^{1/p}\\
+        &\leq \left(\int_\Pi \varepsilon^p\,dx\right)^{1/p}=(2\pi)^{1/p}\varepsilon
+    \end{align*}
+\end{proof}
+
+\begin{fcorollary}
+    \[S_N f\xrightarrow{L^2} f\]
+\end{fcorollary}
+
+\begin{proof}
+    \[\sigma_N f\xrightarrow{L^2}f\]
+\end{proof}
+
+\begin{flemma}[Riemann-Lebesgue]
+    $f\in L^1(\Pi)$, $\hat f(n)=\frac{1}{2\pi}\int_\Pi f(x)e^{-inx}\,dx\xrightarrow{n\to\infty} 0$
+\end{flemma}
+
+\begin{proof}
+    Fije $\varepsilon>0$. Utilizaremos que 
+
+    \[\sigma_N f\xrightarrow{L^1}f\]
+
+    Podemos encontrar $N$ suficientemente grande, tal que
+
+    \[||\underbrace{f-\sigma_N f}_{g}||_{L^1}\leq \varepsilon\]
+
+    $n>N$,
+
+    \begin{align*}
+        \hat g(n)&=\hat f(n)-\cancelto{0}{\widehat{\sigma_N f}(n)}\\
+        \implies |\hat f(n)|&=|\hat g(n)|\leq \frac{1}{\sqrt{2\pi}}\int |g(x)e^{-inx}|\,dx=\frac{1}{\sqrt{2\pi}}\int |g|\,dx\leq \varepsilon/\sqrt{\pi}
+    \end{align*}
+\end{proof}
+
+\begin{align*}
+    L^2(\Pi)&\to \ell_\Z^2=\{(\ldots,a_{-1},a_0,a_1,\ldots):\sum_{k\in\Z}|a_k|^2<\infty\}\\
+    f&\to \hat f=(\ldots,\hat f_{(-1)},\hat f_{(0)},\hat f_{(1)},\ldots)
+\end{align*}
+
+es un isomorfismo unitario.
+
+\begin{align*}
+    L^1(\Pi)&\xrightarrow{\mathcal{F}} \hat c_0=\{(\ldots,a_{-1},a_0,a_1,\ldots):\lim_{|n|\to\infty} a_n=0\}\\
+    f&\to \hat f
+\end{align*}
+
+\begin{ftheorem}
+    $L^1(\Pi)\xrightarrow{\mathcal{F}} \hat c_0$ es lineal, acotado e inyectivo.
+\end{ftheorem}
+
+\begin{proof}
+    lineal \checkmark
+
+    \begin{align*}
+        ||\hat f||_{\ell^\infty}&\leq ?\\
+        |\hat f(n)|&\leq \frac{1}{\sqrt{2\pi}}\int |f(x)e^{-inx}|\,dx\\
+        &\leq \frac{1}{\sqrt{2\pi}}||f||_{L^1}
+    \end{align*}
+
+    por lo que $||\hat f||_{\ell^\infty}\leq \frac{1}{\sqrt{2\pi}} ||f||_{L^1}$
+
+    $\rightarrow$ inyectivo? Suponga que $\hat f=0\iff \hat f(n)=0\quad\forall n\in\Z$
+
+    \begin{align*}
+        &\sigma_N f\equiv 0\\
+        &\downarrow L^1\\
+        &f\equiv 0
+    \end{align*}
+
+    pero $\mathcal{F}$ no es sobreyectiva.
+\end{proof}

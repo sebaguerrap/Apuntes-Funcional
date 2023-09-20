@@ -7,6 +7,7 @@
 
 
 % --------------- PAQUETES MÍNIMOS ---------------
+\RequirePackage{cancel} % Para tachar cosas
 \RequirePackage{fullpage}
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
