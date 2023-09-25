@@ -208,6 +208,9 @@
 \DeclareMathOperator{\Id}{Id}
 \DeclareMathOperator{\I}{Im}
 \DeclareMathOperator{\gen}{Gen}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\T}{\mathbb{T}}
+\DeclareMathOperator{\sgn}{sgn}
 
 % COMENTARIOS ---------------
 \newcommand{\com}[3]{{\colorbox{#2}{\bfseries\sffamily\scriptsize\textcolor{white}{#1}}}

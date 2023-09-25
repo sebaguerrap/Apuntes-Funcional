@@ -614,7 +614,7 @@ $T$ unitario $\implies T$ es una \textbf{isometría}:
 
 $f:\R\to\C$ periódica de período $2\pi$.
 
-$F:\Pi\to\C$, $\Pi$ es el círculo unitario.
+$F:\T\to\C$, $\T$ es el círculo unitario.
 
 \[F(e^{i\theta})=f(\theta)\]
 
@@ -626,14 +626,14 @@ con
 
 Vamos a asumir que $\inn{f,g}_{L^2}:=\int_{-\pi}^\pi f(x)\overline{g(x)}\,dx$
 
-\[f\in L^2(\Pi)=\left\{f:\R\to\C\text{ medibles, periódicas-$2\pi$ t.q.} \int_{-\pi}^\pi |f(x)|^2\,dx<\infty\right\}=L^2([-\pi,\pi])\]
+\[f\in L^2(\T)=\left\{f:\R\to\C\text{ medibles, periódicas-$2\pi$ t.q.} \int_{-\pi}^\pi |f(x)|^2\,dx<\infty\right\}=L^2([-\pi,\pi])\]
 
 Definimos 
 
 \[e_n=\frac{1}{\sqrt{2\pi}}e^{inx}\quad n=0,\pm 1,\pm 2,\ldots\]
 
 \begin{fproposition}
-    $\{e_n\}$ es un conjunto ortonormal de $L^2(\Pi)$.
+    $\{e_n\}$ es un conjunto ortonormal de $L^2(\T)$.
 \end{fproposition}
 
 \begin{proof}
@@ -649,7 +649,7 @@ Definimos
 \end{proof}
 
 \begin{fdefinition}
-    Sea $f\in L^2(\Pi)$. Defina 
+    Sea $f\in L^2(\T)$. Defina 
     
     \begin{align*}
         \hat f (n)&=\inn{f,e_n}_{L^2}\\
@@ -678,11 +678,11 @@ Preguntas:
 \end{enumerate}
 
 \begin{ftheorem}
-    $f\in L^2(\Pi)$, $S_N f\xrightarrow{L^2}f$ cuando $N\to\infty$.
+    $f\in L^2(\T)$, $S_N f\xrightarrow{L^2}f$ cuando $N\to\infty$.
 \end{ftheorem}
 
 \begin{fnote}
-    El enunciado $\iff$,  $\mathcal{B}=\{e_n(x)\}_{n\in\Z}$ es una base o.n. para $L^2(\Pi)$
+    El enunciado $\iff$,  $\mathcal{B}=\{e_n(x)\}_{n\in\Z}$ es una base o.n. para $L^2(\T)$
 \end{fnote}
 
     Entonces será suficiente demostrar que $\mathcal{B}$ es maximal:
@@ -690,7 +690,7 @@ Preguntas:
 
 
 \begin{ftheorem}
-    $f\in L^2(\Pi)$. Entonces, 
+    $f\in L^2(\T)$. Entonces, 
     \[S_N f(x)=\int_{-\pi}^\pi D_N(x-t)f(t)\,dt\]
     donde 
     \[D_N(x)=\begin{cases}
@@ -702,8 +702,8 @@ Preguntas:
 \begin{proof}
     \begin{align*}
         S_n f&=\sum_{|n|\leq N}\inn{f,e_n} e_n(x)\\
-        &=\sum_{|n|\leq N} \frac{1}{2\pi}\left( \int_{\Pi} f(t)e^{-int}\,dt\right) e^{inx}\\
-        &=\int_{\Pi} \underbrace{\left(\sum_{|n|\leq N} \frac{1}{2\pi} e^{in(x-t)}\right)}_{D_N(x-t)}f(t)\,dt
+        &=\sum_{|n|\leq N} \frac{1}{2\pi}\left( \int_{\T} f(t)e^{-int}\,dt\right) e^{inx}\\
+        &=\int_{\T} \underbrace{\left(\sum_{|n|\leq N} \frac{1}{2\pi} e^{in(x-t)}\right)}_{D_N(x-t)}f(t)\,dt
     \end{align*}
 
     donde 
@@ -724,7 +724,7 @@ Preguntas:
 \begin{fnote}
     $D_N(x)$ es $2\pi$-periodico, par, suave y 
 
-    \[\int_\Pi D_N(x)\,dx=1\]
+    \[\int_\T D_N(x)\,dx=1\]
 
     \seba{añadir foto del kernel de Dirichlet}
 
@@ -742,9 +742,9 @@ Preguntas:
 \begin{ftheorem}[Fejér]
     \[\sigma_N f\xrightarrow{L^2} f\]
 
-    Cuando $f\in C(\Pi)$, 
+    Cuando $f\in C(\T)$, 
 
-    \[\sigma_N f\xrightarrow{\text{unif.}} f\text{ en }\Pi\]
+    \[\sigma_N f\xrightarrow{\text{unif.}} f\text{ en }\T\]
 \end{ftheorem}
 
 Si $\hat f(n)=0\quad\forall n\in\Z$
@@ -753,7 +753,7 @@ Si $\hat f(n)=0\quad\forall n\in\Z$
 \[\overset{\text{Fejer}}{\implies} f=\lim_{N\to\infty}\sigma_N f=0\implies \text{Maximalidad de }\mathcal{B}\]
 
 \begin{fproposition}
-    Sea $f\in L^2(\Pi)$. Entonces 
+    Sea $f\in L^2(\T)$. Entonces 
 
     \[\sigma_N f(x)=\int_{-\pi}^\pi F_N(x-t)f(t)\,dt\]
 
@@ -791,7 +791,7 @@ Propiedades de $F_N(x)$
 
 \begin{enumerate}
     \item $F_N(x)\geq 0$, suave, periódico-$2\pi$, par 
-    \item \[\int_\Pi F_N(x)\,dx=1\]
+    \item \[\int_\T F_N(x)\,dx=1\]
     
     (como promedio de $D_N(x)$)
 
@@ -803,11 +803,11 @@ Propiedades de $F_N(x)$
 \paragraph{Notación}
 
 \begin{align*}
-    S_N f(x)&=\int_\Pi D_N(x-t)f(t)\,dt=D_N*f\\
-    \sigma_N f(x)&=\int_\Pi F_N(x-t)f(t)\,dt=F_N*f
+    S_N f(x)&=\int_\T D_N(x-t)f(t)\,dt=D_N*f\\
+    \sigma_N f(x)&=\int_\T F_N(x-t)f(t)\,dt=F_N*f
 \end{align*}
 
-Convolución: $f\in C(\Pi)$, $g\in L^1(\Pi)$
+Convolución: $f\in C(\T)$, $g\in L^1(\T)$
 
 \[f*g(x)=\int_{-\pi}^\pi f(x-t)g(t)\,dt\]
 
@@ -816,11 +816,11 @@ tomando $\tau=x-t$
 \[f*g(x)=\int_{x-\pi}^{x+\pi} f(\tau)g(x-\tau)\,d\tau=\int_{-\pi}^\pi f(\tau) g(x-\tau)=g*f(x)\]
 
 \begin{fdefinition}
-    $\{K_n\}_{n\in\N}$ es una familia de buenos kernels en $L^1(\Pi)$ si
+    $\{K_n\}_{n\in\N}$ es una familia de buenos kernels en $L^1(\T)$ si
 
     \begin{enumerate}
-        \item \[\int_\Pi K_n(x)\,dx=1\]
-        \item \[\sup_n \int_\Pi |K_n(x)|\,dx<\infty\]
+        \item \[\int_\T K_n(x)\,dx=1\]
+        \item \[\sup_n \int_\T |K_n(x)|\,dx<\infty\]
         \item \[\int_{\delta\leq |x|\leq \pi} |K_n(x)|\,dx \xrightarrow{n\to\infty} 0\quad \forall \delta >0\]
     \end{enumerate}
 \end{fdefinition}
@@ -830,15 +830,15 @@ tomando $\tau=x-t$
 \end{fnote}
 
 \begin{ftheorem}
-    Si $\{K_N\}_{N\in\N}$ es una familia de buenos kernels en $L^1(\Pi)$ y $f\in C(\Pi)$, entonces 
+    Si $\{K_N\}_{N\in\N}$ es una familia de buenos kernels en $L^1(\T)$ y $f\in C(\T)$, entonces 
 
     \[K_N*f=f*K_N\to f\]
 
-    uniformemente en $\Pi$
+    uniformemente en $\T$
 \end{ftheorem}
 
 \begin{fcorollary}
-    \[\sigma_N f\xrightarrow[N\to\infty]{\text{unif}} f\text{ para }f\in C(\Pi)\]
+    \[\sigma_N f\xrightarrow[N\to\infty]{\text{unif}} f\text{ para }f\in C(\T)\]
 
 \end{fcorollary}
 
@@ -850,16 +850,16 @@ tomando $\tau=x-t$
     \end{align*}
 
     \begin{align*}
-        \implies |K_n*f(x)-f(x)|&\leq \int_\Pi |f(x-y)-f(x)||K_n(y)|\,dy\\
+        \implies |K_n*f(x)-f(x)|&\leq \int_\T |f(x-y)-f(x)||K_n(y)|\,dy\\
         &=\int_{|y|<\delta} |f(x-y)-f(x)||K_n(y)|\,dy+\int_{|y|>\delta} |f(x-y)-f(x)||K_n(y)|\,dy\\
-        &\leq \varepsilon\int_\mathbb{T} |K_n(y)|\,dy+2\max_\Pi |f|\int_{|y|>\delta}|K_n(y)|\,dy\\
+        &\leq \varepsilon\int_\mathbb{T} |K_n(y)|\,dy+2\max_\T |f|\int_{|y|>\delta}|K_n(y)|\,dy\\
         &\leq C\varepsilon
     \end{align*}
     cuando $n$ es suficientemente grande.
 \end{proof}
 
 \begin{fcorollary}
-    Si $f\in C(\Pi)$ y $\hat f(n)=0\ \forall n\in\Z\implies f\equiv 0$.
+    Si $f\in C(\T)$ y $\hat f(n)=0\ \forall n\in\Z\implies f\equiv 0$.
 \end{fcorollary}
 
 \begin{proof}
@@ -871,7 +871,7 @@ tomando $\tau=x-t$
 \end{proof}
 
 \begin{fcorollary}
-    Suponga que $f\in C(\Pi)$ y su serie de Fourier converge absoluta y uniformemente, es decir:
+    Suponga que $f\in C(\T)$ y su serie de Fourier converge absoluta y uniformemente, es decir:
 
     \[\sum_n |\hat f(n) e_n(x)|=\sum_n |\hat f(n)|\frac{1}{\sqrt{2\pi}}<\infty\]
 
@@ -883,7 +883,7 @@ tomando $\tau=x-t$
 \begin{proof}
     Defina 
 
-    \[g(x):=\sum_{n\in\Z}\hat f(n)e_n(x)\in C(\Pi)\]
+    \[g(x):=\sum_{n\in\Z}\hat f(n)e_n(x)\in C(\T)\]
 
     por convergencia absoluta uniforme.
 
@@ -896,7 +896,7 @@ tomando $\tau=x-t$
     Se puede intercambiar la suma con la integral por convergencia uniforme y el corolario anterior, se concluye que $h\equiv 0$.
 \end{proof}
 
-Tenemos la convergencia $\sigma_N f\xrightarrow{\text{unif}} f$ para $f\in C(\Pi)$. Queremos pasar a convergencia en $L^2$. Vamos a utilizar la \textbf{densidad} de $C(\Pi)\subseteq L^2(\Pi)$. Vamos a necesitar la estimación adicional:
+Tenemos la convergencia $\sigma_N f\xrightarrow{\text{unif}} f$ para $f\in C(\T)$. Queremos pasar a convergencia en $L^2$. Vamos a utilizar la \textbf{densidad} de $C(\T)\subseteq L^2(\T)$. Vamos a necesitar la estimación adicional:
 
 \begin{fproposition}
     \[||\sigma_N f||_{L^2}\leq ||f||_{L^2}\]
@@ -921,19 +921,19 @@ Tenemos la convergencia $\sigma_N f\xrightarrow{\text{unif}} f$ para $f\in C(\Pi
 De hecho, tenemos 
 
 \begin{fproposition}
-    Si $f\in L^p(\Pi)$, $1\leq p<\infty$, entonces 
+    Si $f\in L^p(\T)$, $1\leq p<\infty$, entonces 
 
     \[||\sigma_N f||_{L^p}\leq ||f||_{L^p}\]
 \end{fproposition}
 
 \begin{ftheorem}
-    Sea $f\in L^p(\Pi)$, $1\leq p<\infty$. Entonces,
+    Sea $f\in L^p(\T)$, $1\leq p<\infty$. Entonces,
 
     \[\sigma_N f\xrightarrow{L^p} f\]
 \end{ftheorem}
 
 \begin{proof}
-    Fije $\varepsilon>0$. Aproxime $f\in L^p(\Pi)$ con $g\in C(\Pi)$:
+    Fije $\varepsilon>0$. Aproxime $f\in L^p(\T)$ con $g\in C(\T)$:
 
     \[||f-g||_{L^p}\leq \varepsilon\]
     \begin{align*}
@@ -949,8 +949,8 @@ De hecho, tenemos
     por convergencia uniforme.
 
     \begin{align*}
-        ||h||_{L^p}&=\left(\int_\Pi |h|^p\,dx\right)^{1/p}\\
-        &\leq \left(\int_\Pi \varepsilon^p\,dx\right)^{1/p}=(2\pi)^{1/p}\varepsilon
+        ||h||_{L^p}&=\left(\int_\T |h|^p\,dx\right)^{1/p}\\
+        &\leq \left(\int_\T \varepsilon^p\,dx\right)^{1/p}=(2\pi)^{1/p}\varepsilon
     \end{align*}
 \end{proof}
 
@@ -963,7 +963,7 @@ De hecho, tenemos
 \end{proof}
 
 \begin{flemma}[Riemann-Lebesgue]
-    $f\in L^1(\Pi)$, $\hat f(n)=\frac{1}{2\pi}\int_\Pi f(x)e^{-inx}\,dx\xrightarrow{n\to\infty} 0$
+    $f\in L^1(\T)$, $\hat f(n)=\frac{1}{2\pi}\int_\T f(x)e^{-inx}\,dx\xrightarrow{n\to\infty} 0$
 \end{flemma}
 
 \begin{proof}
@@ -984,19 +984,19 @@ De hecho, tenemos
 \end{proof}
 
 \begin{align*}
-    L^2(\Pi)&\to \ell_\Z^2=\{(\ldots,a_{-1},a_0,a_1,\ldots):\sum_{k\in\Z}|a_k|^2<\infty\}\\
+    L^2(\T)&\to \ell_\Z^2=\{(\ldots,a_{-1},a_0,a_1,\ldots):\sum_{k\in\Z}|a_k|^2<\infty\}\\
     f&\to \hat f=(\ldots,\hat f_{(-1)},\hat f_{(0)},\hat f_{(1)},\ldots)
 \end{align*}
 
 es un isomorfismo unitario.
 
 \begin{align*}
-    L^1(\Pi)&\xrightarrow{\mathcal{F}} \hat c_0=\{(\ldots,a_{-1},a_0,a_1,\ldots):\lim_{|n|\to\infty} a_n=0\}\\
+    L^1(\T)&\xrightarrow{\mathcal{F}} \hat c_0=\{(\ldots,a_{-1},a_0,a_1,\ldots):\lim_{|n|\to\infty} a_n=0\}\\
     f&\to \hat f
 \end{align*}
 
 \begin{ftheorem}
-    $L^1(\Pi)\xrightarrow{\mathcal{F}} \hat c_0$ es lineal, acotado e inyectivo.
+    $L^1(\T)\xrightarrow{\mathcal{F}} \hat c_0$ es lineal, acotado e inyectivo.
 \end{ftheorem}
 
 \begin{proof}
@@ -1018,5 +1018,189 @@ es un isomorfismo unitario.
         &f\equiv 0
     \end{align*}
 
-    pero $\mathcal{F}$ no es sobreyectiva.
+    pero $\mathcal{F}$ no es sobreyectiva. Si $\F$ fuera inyectivo, sería un isomorfismo continuo. Por teorema de aplicación abiert, tenemos que $\F^{-1}$ es acotada:
+
+    \begin{align*}
+        ||\F^{-1}\hat f||_{L^1}\leq c||\hat f||_{\infty}\\
+        ||f||_{L^1}\leq c||\hat f||_{\infty}
+    \end{align*}
+
+    Tomamos $f(x)=D_N(x)=\frac{1}{\sqrt{2\pi}}\sum_{|n|\leq N}\frac{1}{\sqrt{2\pi}}e^{inx}=\frac{1}{\sqrt{2\pi}}\sum_{|n|\leq N}e_n(x)$.
+
+    \begin{align*}
+        \hat f(n)&=\inn{f,e_n}\\
+        &=\frac{1}{\sqrt{2\pi}} \inn{e_n,e_n}\quad |n|\leq N\\
+        &=0\quad |n|>N
+    \end{align*}
+
+    $||\hat f||_\infty=\frac{1}{\sqrt{2\pi}}$
+
+    \begin{fproposition}
+        \[||D_N||_{L^1}\geq C\log N\]
+    \end{fproposition}
+
+    \begin{fcorollary}
+        $f_N:=D_N$ contradice $||f||_{L^1}\leq c||\hat f||_\infty$
+    \end{fcorollary}
+
+    \[D_N(x)=\frac{1}{2\pi}\frac{\sin(N+\frac{1}{2})x}{\sin \frac{x}{2}}\]
+    \[||D_N||=\int_{-\infty}^\infty |D_N(x)|\,dx=\frac{1}{2\pi}\int_0^\infty \frac{|\sin(N+\frac{1}{2})|}{\sin \frac{x}{2}}\]
+    \[||D_N||\geq \frac{2}{\pi}\int_0^\pi \frac{\sin(N+\frac{1}{2})x}{x}\,dx\]
+
+    $u=(N+\frac{1}{2})x$
+
+    \[=\frac{2}{3\pi}\int_0^{(N+\frac{1}{2})\pi} \frac{|\sin u|}{u}\,du\geq \frac{2}{\pi}\int_0^{N\pi}\frac{|\sin u|}{u}\,du\]
+    \[=\frac{2}{\pi}\sum_{k=1}^N \int_{(k-1)\pi}^{k\pi} \frac{|\sin u|}{u}\,du\]
+    \[\geq \frac{2}{\pi}\sum_{k=1}^N \frac{1}{k}\int_{(k-1)\pi}^{k\pi} |\sin u|\,du\]
+    \[=\frac{2}{\pi}\sum_{k=1}^N \frac{1}{k}\underbrace{\int_0^\pi |\sin u|\,dy}_{c'}\]
+    \[=\frac{2c'}{\pi}\sum_{k=1}^N \frac{1}{k}\geq c\log N\]
+    \seba{añadir align}
+\end{proof}
+
+Vimos que $\forall f\in L^2(\T)$, $S_Nf\xrightarrow{L^2}f$. 
+
+Q. ¿Converge $S_nf\to f$ puntualmente?\\
+A. ¡Generalmente no!
+
+Q. ¿Converge $S_N f\to f$ c.t.p? Es fácil ver (si conocemos teoría de integración) que existe una subsucesión 
+
+\[S_{N_k}f\to f\quad \text{c.t.p}\]
+
+(dada la convergencia $S_N f\xrightarrow{L^2}f$)\\
+A. (Teorema de Carleson) Sí, $S_nf\to f\quad \text{c.t.p}$ (Difícil).
+
+\subsection{Convergencia puntual de la serie de Fourier}
+
+Vieron en ayudantía un ejemplo de función $f\in C(\T)$ tal que 
+
+\[S_N f(0)\not\to f(0)\]
+
+De hecho, este ejemplo es \textbf{genérico}
+
+\begin{ftheorem}
+    Para todo $x\in \T$, existe un conjunto genérico $A_x\subseteq C(\T)$ tal que 
+
+    \[\sup_N |S_N f(x)|=\infty\]
+\end{ftheorem}
+
+La demostración utiliza el marco del \textbf{principio de acotación uniforme}/Teorema de Banach-Steinhaus
+
+\begin{ftheorem}[Banach-Steinhaus]
+    Sea $X$ Banach, $Y$ un espacio normado. Sean $T_k\in \mathcal{B}(X,Y)$, $k\in I$, no necesariamente contable. Entonces 
+
+    \begin{enumerate}
+        \item o $\sup_k ||T_k||<\infty$
+        \item o $\sup_k ||T_k x||=\infty$ para todo $x\in A$, donde $A\subseteq X$ es un subconjunto genérico $G_\delta$.
+    \end{enumerate}
+
+    \seba{cambiar enumerate a letras a., b.}
+\end{ftheorem}
+
+\begin{fnote}
+    Si $\sup_k ||T_k x||<\infty$ $\forall x\in X$, entonces $||T_k||$ son uniformemente acotadas.
+\end{fnote}
+
+\begin{fcorollary}
+    Sean $X$ Banach, $Y$ normado. Sean $T_k\in\mathcal{B}(X,Y)$. Suponga que $\forall x\in X$
+
+    \[\lim_{k\to\infty} T_k x\eqqcolon Tx\quad \text{existe}\]
+
+    Entonces, $T\in \mathcal{B}(X,Y)$ y 
+
+    \[||T||\leq \liminf_{k\to\infty} ||T_k||<\infty\]
+\end{fcorollary}
+
+\begin{proof}
+    $\lim_{k\to\infty} T_k x=Tx$.
+
+    \[\implies \forall x\in X\quad \sup_k ||T_k x||<\infty\]
+
+    (sucesión que converge es acotada)
+
+    \[\implies \sup_k ||T_k||<\infty\]
+
+    Que $T$ es lineal, fácil $\checkmark$
+
+    \[||Tx||=||\lim_{k\to\infty}T_k x||=\ im_{k\to\infty} ||T_k x||\]
+    \[=\sup_n\inf_{k\geq n}||T_k x||\leq (\sup_n\inf_{k\geq n} ||T_k||)x=(\liminf_{k\to\infty} ||T_k||)||x||\]
+
+    \seba{añadir align}
+\end{proof}
+
+\begin{proof}[Demostración del teorema de Banach-Steinhaus (\ref{theo:3.5.14})]
+    Defina $\psi(x):=\sup_k ||T_k x||$.
+    \[U_n=\{x\in X:\psi(x)>n\}=\bigcup_{k} \underbrace{\{||T_k x|| > n\}}_{\text{abierto pues $T_k$ es continuo}}\]
+
+    Tenemos 2 posibilidades:
+
+    \begin{enumerate}
+        \item Si todos los $U_n$'s son densos en $X$,
+        \[\implies A\coloneqq \bigcap_{n=1}^\infty U_n \quad \text{es genérico},G_\delta\]
+
+        $\forall x\in A$, $\psi(x)>n\quad \forall n\in\N$
+        \[\implies \psi(x)=\infty\quad \text{(caso \emph{b.})}\]
+
+        \item Si unos de los $U_n$'s \textbf{no} es denso, entonces $U_m^c$ contiene una bola $B=B_r(a)$.
+        
+        \begin{align*}
+            \psi(x)\leq m\quad \forall x\in B_r(a)\\
+            \implies ||T_k x||\leq m\quad \forall x\in B_r(a),\forall k\\
+            \implies ||T_k(a+y)||\leq m\quad \forall y\in B_r(0),\forall k\\
+        \end{align*}
+
+        $\forall y\in B_r(0)$
+
+        \begin{align*}
+            ||T_k y||&\leq ||T_k a||+||T_k(y-a)||\\
+            &=||T_k a||+||T_k(a-y)||\\
+            &\leq m + m = 2m
+        \end{align*}
+
+        \[\implies ||T_k y||\leq \frac{2m}{r}||y||\quad \forall y\in X,\forall k\]
+    \end{enumerate}
+\end{proof}
+
+\begin{proof}[Demostración del teorema \ref{theo:3.5.13}]
+    Será suficiente demostrar el teorema para $x=0$. Aplicaremos el principio de acotación uniforme (Banach-Steinhaus) a 
+
+    \begin{align*}
+        S_N^0:C(\T)&\to\C\\
+        f&\to S_n f(0)
+    \end{align*}
+
+    Estaremos listos cuando probemos que 
+
+    \[\sup_N ||S_N^0||=\infty\]
+    $\iff$ estamos en la alternativa \emph{b.}
+    \[\implies \sup_N |S_N f(0)|=\infty\forall f\in A, A\overset{gen.}{\subseteq} C(\T)\]
+
+    Recordando que $(S_N f(x)=D_N*f(x))$
+
+    \begin{align*}
+        S_N^{(0)}&=S_N f(0)\\
+        &=\int_{-\pi}^\pi D_N(0-y)f(y)\,dy\\
+        &=\int_{-\pi}^\pi D_N(y)f(y)\,dy\\
+        \implies |S_N f(0)|\leq \int_{-\pi}^\pi |D_n(y)|\cdot|f(y)|\,dy&\leq ||D_N||_{L^1}||f||_{\infty}\\
+        \implies ||S_N^0||\leq ||D_N||_{L^1}
+    \end{align*}
+
+    Pero, de hecho, afirmamos que 
+
+    \[||S_N^0||=||D_N||_{L^1}\]
+
+    Noten que cuando ponemos $f(y)=\sgn D_n(y)$
+
+    \[S_N f(0)=\int_{-\pi}^\pi D_N(y)\sgn D_N(y)\,dy=||D_N||_{L^1}\]
+
+    $f=\sgn D_N\in L^1(\T)$, $\implies$ podemos encontrar $f_k\in C(\T)$:
+
+    \[||f_k-f||_{L^1}\xrightarrow{k\to\infty}0\]
+
+    \begin{align*}
+        S_N f_k(0)&=\int D_N(y)(f_k-f)(y)\,dy+\underbrace{\int D_N(y)f(y)\,dy}_{||D_N||_{L^1}}\xrightarrow{k\to\infty} ||D_N||_{L^1}
+    \end{align*}
+
+    mientras 
+
+    \[\left|\int D_N(y)(f_k-f)(y)\,dy\right|\leq \max_\T |D_N|||f_k-f||_{L^1}\xrightarrow{k\to\infty}0\]
 \end{proof}
