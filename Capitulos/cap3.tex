@@ -1204,3 +1204,136 @@ La demostración utiliza el marco del \textbf{principio de acotación uniforme}/
 
     \[\left|\int D_N(y)(f_k-f)(y)\,dy\right|\leq \max_\T |D_N|||f_k-f||_{L^1}\xrightarrow{k\to\infty}0\]
 \end{proof}
+
+\section{Repaso/Crash course en teoría de la medida}
+
+$\Omega = \{M_1,\ldots,M_{100}\}$ pila de monedas. $V:\Omega\to [0,\infty)$. En el caso de Chile tenemos $Im V=\{1,5,10,50,100,500\}$. Queremos calcular el valor total de la pila de monedas. Hay 2 métodos:
+
+\begin{enumerate}
+    \item Dividimos la pila en grupos de digamos 10 monedas: $M_1,\ldots,M_{10}$ y así sucesivamente. Luego, sumamos los valores de cada grupo y sumamos los resultados. Esto corresponde con la integral de Riemann
+    \item Dividimos las monedas en grupos de acuerdo al valor 
+    \[E_1=\{M\in\Omega:V(M)=\alpha_1\}\]
+    \[E_2=\{M\in\Omega: V(m)=\alpha_2\}\]
+    \[\vdots\]
+    \[E_N\]
+
+    Luego, $S=\displaystyle\sum_{k=1}^N \alpha_k (\# E_k)$. Esto corresponde con la integral de Lebesgue.
+\end{enumerate}
+
+\subsection{Espacios de medida y funciones medibles}
+
+\begin{fdefinition}[Espacio de medida]
+    un espacio de medida $(\Omega, \mathcal{M}, \mu)$.
+\end{fdefinition}
+
+\begin{fdefinition}[$\sigma$-álgebra]
+    Una colección $\mathcal{M}$ de subconjuntos de $\Omega$ es una $\sigma$-álgebra si
+
+    \begin{enumerate}
+        \item $\Omega\in \mathcal{M}$
+        \item $E\in \mathcal{M}\implies E^c\coloneqq \Omega\setminus E\in \mathcal{M}$
+        \item $\{E_k\}_{k=1}^\infty\subseteq \mathcal{M}\implies \bigcup_{k=1}^\infty E_k\in\mathcal{M}$
+    \end{enumerate}
+\end{fdefinition}
+
+Podemos ver que $\varnothing\in \mathcal{M}$, $\bigcap_{k} E_k\in\mathcal{M}$ si $\forall E_k\in\mathcal{M}$ y $E\setminus F\in\mathcal{M}$ si $E,F\in\mathcal{M}$.
+
+\begin{fexample}
+    $\Omega=\{a,b\}$,
+
+    \[\mathcal{M}_1=\{\varnothing,\Omega\}\]
+    \[\mathcal{M}_2=\{\varnothing, \{a\},\{b\},\{a,b\}\}\]
+
+    son $\sigma$-álgebras.
+\end{fexample}
+
+\begin{fexample}
+    Si $\Omega$ es un espacio métrico (topológico más general).
+
+    \[\mathcal{B}_\Omega\to \sigma\text{-álgebra de Borel}\]
+
+    definida como la menor $\sigma$-álgebra que contiene todos los abiertos de $\Omega$.
+\end{fexample}
+
+\begin{fdefinition}
+    Una medida $\mu:\mathcal{M}\to[0,\infty]$ que satisface:
+
+    \begin{enumerate}
+        \item $\mu(\varnothing)=0$
+        \item $\{E_k\}_{k=!}^\infty$ de conjuntos en $\mathcal{M}$ mutuamente disjuntos, 
+        \[\mu\left(\bigcup_{k=1}^\infty E_k\right)=\sum_{k=1}^\infty \mu(E_m)\]
+
+        Esto se llama $\sigma$-aditividad
+    \end{enumerate}
+\end{fdefinition}
+
+Las siguientes propiedades son consecuencias fáciles de la definición:
+
+\begin{enumerate}
+    \item (Aditividad finita) 
+    \[\mu\left(\bigcup_{k=1}^N E_k\right)=\sum_{k=1}^N \mu(E_k)\]
+
+    \item Si $A,B\in\mathcal{M}$ y $A\subseteq B$ 
+    \[\implies \mu(B)=\mu(A\cup B\setminus A)=\mu(A)+\mu(B\setminus A)\geq \mu(A)\]
+
+    \item (subaditividad) Si $\{E_k\}\subseteq \mathcal{M}$, no necesariamente disjuntos,
+    
+    \[\mu\left(\bigcup_{k=1}^\infty E_k\right)\leq \sum_{k=1}^\infty \mu(E_k)\]
+
+    \item $E_1\subseteq E_2\subseteq \cdots\subseteq E_{k+1}\subseteq \cdots$, sucesión creciente de medibles, 
+    
+    \[E=\bigcup_k E_k, E_k\uparrow E\]
+    \[\mu(E)=\lim_{k\to\infty} \mu(E_k)\]
+
+    \item $E_1\supseteq E_2\supseteq \cdots$
+    \[E=\bigcap_{k=1}^\infty E_k, E_k\downarrow E\]
+    \[\mu(E)=\lim_{n\to\infty} \mu(E_k)\]
+
+    si $\mu(E_1)<\infty$
+\end{enumerate}
+
+\begin{fexample}
+    $(\N,\mathcal{P}(\N),\mu)$,
+
+    \[\mu(E)=\sum_{n\in E}\mu_n \leftarrow \text{pesos}\in [0,\infty)\]
+
+    Cuando todos los $\mu_n\equiv 1$, $\mu$ es la medida de contar.
+\end{fexample}
+
+\begin{ftheorem}
+    Existe una $\sigma$-álgebra $\mathcal{M}$ de subconjuntos de $\R^n$ y 
+
+    \[|\cdot|:\mathcal{M}\to[0,\infty]\]
+
+    con las siguientes propiedades:
+
+    \begin{enumerate}
+        \item $\mathcal{M}$ contiene todos los abiertos ($\supseteq B_{\R^n}$)
+        \item $|B|=\text{Vol} (B)$ para toda la bola abierta $B\subseteq \R^n$
+        \item (completitud) Si $A\subseteq B$, donde $B\in\mathcal{M}$ y $|B|=0$, entonces $A\in\mathcal{M}$ y $|A|=0$.
+    \end{enumerate}
+\end{ftheorem}
+
+Conjuntos de medida 0 $=$ conjuntos \textbf{despreciables}.
+
+\paragraph{Notación:} Una propiedad se cumple para x c.t.p (en casi todas partes) si se cumple para todo $x\in E^c$ donde $E$ es despreciable.
+
+\paragraph{La medida producto}: $(\Omega_1,\mathcal{M}_1,\mu_1)$ y $\Omega_2,\mathcal{M}_2,\mu_2$. Existe una única medida $\mu:\mathcal{M}_1\times \mathcal{M}_2\to[0,\infty]$ donde $\mathcal{M}_1\times \mathcal{M}_2\coloneqq$ la menor $\sigma$-álgebra que contiene todos los $E_1\times E_2$ con $E_1\in\mathcal{M},E_2\in\mathcal{M}_2$ tal que 
+\[\mu(E_1\times E_2)=\mu_1(E_1)\mu_2(E_2)\]
+
+\begin{fexample}
+    $(\R^n,\mathcal{B}_{\R^n},|\cdot|=\lambda_n)$ y $(\R^m, \mathcal{B}_{\R^m},|\cdot|=\lambda_m)$
+
+    \[\mathcal{B}_{\R^n}\times \mathcal{B}_{\R^m}=\mathcal{B}_{\R^n\times \R^m}\]
+    \[\lambda\coloneqq \lambda_n\times \lambda_m=\lambda_{m+n}\]
+
+    que es la medida de Lebesgue en $\R^{m+n}$.
+\end{fexample}
+
+\begin{fdefinition}
+    $f:\Omega\to [-\infty,\infty]$ es \textbf{medible} si $\{x\in \Omega:f(x)>r\}\in\mathcal{M}\quad \forall r\in[-\infty,\infty]$
+    \[\iff f^{-1}(I)\in \mathcal{M}\quad\forall I\subseteq [-\infty,\infty]\]
+    \[\iff f^{-1}(O)\in\mathcal{M}\quad\forall O\overset{ab}{\subseteq}[-\infty,\infty]\]
+\end{fdefinition}
+
+Esta clase de funciones con valores reales es cerrada bajo las operaciones usuales: $+,\times$ y tomar $\sup_k$,$\inf_k$,$\limsup_k$,$\liminf_k$. Si $\{f_k\}_{k=1}^\infty$ sucesión de funciones medibles, entonces $\sup_k f_k$, $\int_k f_k$, $\liminf_k f_k$, $\limsup_k f_k$ son medibles.
