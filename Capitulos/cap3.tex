@@ -612,6 +612,8 @@ $T$ unitario $\implies T$ es una \textbf{isometría}:
 
 \section{Series de Fourier}
 
+\subsection{Series de Fourier y convergencia}
+
 $f:\R\to\C$ periódica de período $2\pi$.
 
 $F:\T\to\C$, $\T$ es el círculo unitario.
@@ -1260,7 +1262,7 @@ Podemos ver que $\varnothing\in \mathcal{M}$, $\bigcap_{k} E_k\in\mathcal{M}$ si
 
     \begin{enumerate}
         \item $\mu(\varnothing)=0$
-        \item $\{E_k\}_{k=!}^\infty$ de conjuntos en $\mathcal{M}$ mutuamente disjuntos, 
+        \item $\{E_k\}_{k=1}^\infty$ de conjuntos en $\mathcal{M}$ mutuamente disjuntos, 
         \[\mu\left(\bigcup_{k=1}^\infty E_k\right)=\sum_{k=1}^\infty \mu(E_m)\]
 
         Esto se llama $\sigma$-aditividad
@@ -1361,7 +1363,7 @@ Esta clase de funciones con valores reales es cerrada bajo las operaciones usual
     $s_n(x)\nearrow f(x),\quad n\to\infty$
 \end{fexample}
 
-\section{La integral de Lebesgue}
+\subsection{La integral de Lebesgue}
 
 \paragraph{Funciones simples}
 
@@ -1463,7 +1465,9 @@ En $\mathcal{L}^1(\mu)$, la integral es un funcional lineal (POS) que es $\geq 0
 
 \end{ftheorem}
 
-\subsection{Normas}
+\section{Espacios de Lebesgue $L^p$}
+
+\subsection{Espacios $L^p$}
 
 Defina: 
 
@@ -1472,7 +1476,7 @@ Defina:
 
 \[\mathcal{L}_\K^p(\mu)\coloneqq \{\text{funciones medibles}:\Omega\to\K:||f||_p<\infty\}\]
 
-\begin{fproposition}\label{theo:3.7.4}
+\begin{fproposition}\label{theo:3.7.1}
     $||\cdot||_p$ es una \textbf{semi-norma} en $L_\K^p(\mu)$. Además, 
 
     \[||f||_p=0\iff f=0\quad\text{c.t.p.}\]
@@ -1486,7 +1490,7 @@ Defina:
     es un espacio \textbf{normado} con norma $||\cdot||_p$.
 \end{fcorollary}
 
-\begin{proof}[Demostración de la proposición \ref{theo:3.7.4}]
+\begin{proof}[Demostración de la proposición \ref{theo:3.7.1}]
     $||\lambda f||_p=|\lambda|\cdot ||f||_p$.
 
     Desigualdad triangular = desigualdad de Minkowski
@@ -1557,4 +1561,177 @@ Defina:
         &\leq |f|\cdot |f+g|^{p-1}+|g|\cdot |f+g|^{p-1}\\
         \int|f+g|^p\,d\mu&\leq \int |f|\cdot |f+g|^{p-1}+\int |g|\cdot |f+g|^{p-1}\\
     \end{align*}
+\end{proof}
+
+\begin{ftheorem}[Riesz-Fischer]
+    $L^p(\mu)$ es un espacio de Banach.
+\end{ftheorem}
+
+\begin{proof}
+    $f_k\in L^p(\mu)$, $k\in\N$. Queremos demostrar que si 
+
+    \[\sum_{k=1}^\infty ||f_k||_p\eqqcolon M<\infty\]
+    \[\implies \sum_{k=1}^n f_k\xrightarrow{L^p}F\in L^p\]
+
+    $p=\infty$ (ejercicio). Sea $p\in[1,\infty)$
+
+    \[G_n(x)\coloneqq \sum_{k=1}^n |f_k(x)|\quad \text{medible}, \geq 0\nearrow_{n\to\infty} G(x)\coloneqq \sum_{k=1}^\infty |f_k(x)|\]
+
+    Por teorema de convergencia monotona,
+
+    \[\int G(x)^p\,d\mu=\lim_{n\to\infty}\int G_n(x)^p\,d\mu\]
+
+    \[\left(\int G_n(x)^p\,d\mu\right)=||G_n||_p\leq \sum_{k=1}^n ||f_K||_p\leq M\]
+
+    por Minkowski.
+
+    \[\implies \int G_n(x)^p\,d\mu\leq M^p\]
+    \[\implies G^p\in L^1\quad (G\in L^p)\]
+
+    En particular, $0\leq G^p(x)<\infty\quad \mu-\text{c.t.p.}$
+
+    \[\implies G(x)<\infty\quad \mu-\text{c.t.p.}\]
+
+    es decir, $\mu-\text{c.t.p.}$, $\sum |f_k(x)|$ converge. Defina
+    \[F(x)=\begin{cases}
+        \sum_{k=1}^\infty f_k(x) &x \text{ tal que } G(x)<\infty\\
+        0&\text{e.o.c.}
+    \end{cases}\]
+
+    $F$ es medible y $F\in L^p(\mu)$ pues
+
+    \[|F(x)|\leq \sum_{k=1}^\infty |f_k(x)|=G(x)\quad \mu-\text{c.t.p.}\]
+
+    \[\implies |F(x)|^p\leq G(x)^p\quad \mu-\text{c.t.p.}\]
+    \[\implies \int |F(x)|^p\leq \int G(x)^p<\infty\]
+
+    Falta establecer la convergencia en $L^p$:
+
+    \[\left|\left|F-\sum_{k=1}^N f_k\right|\right|_p\xrightarrow{N\to\infty}0\]
+
+    \[\left|F-\sum_{k=1}^n f_k\right|(x)\leq \sum_{k=N+1}^\infty |f_k|(x)\leq G(x)\quad\mu-\text{c.t.p.}\]
+    \[\implies \left|F-\sum_{k=1}^N f_k\right|^p\leq G^p\quad \mu-\text{c.t.p.}\]
+
+    Por definición de $F$, 
+    
+    \[|F-\sum_{k=1}^N f_k|\xrightarrow{N\to\infty}0\quad\mu-\text{c.t.p.}\]
+    
+    Por el teorema de convergencia dominada 
+
+    \[\int \left|F-\sum_{k=1}^N f_k\right|^p\,d\mu\xrightarrow{N\to\infty}\int 0\,d\mu=0\]
+
+\end{proof}
+
+\subsection{Los espacios $L^p$ y dualidad}
+
+$1\leq p\leq\infty$, $q\rightarrow$ exponente dual: $\frac{1}{p}+\frac{1}{q}=1$
+    
+$p=1\to q=\infty$\\
+$p=2\to q=2$\\
+$p=\infty\to q=1$
+
+Se puede definir un \textbf{emparejamiento} entre $L^p$ y $L^q$.
+
+\begin{align*}
+    \inn{\cdot,\cdot}:L^p(\mu)\times L^q(\mu)&\to\K\\
+    f,g&\to \inn{f,g}\coloneqq \int fg\,d\mu
+\end{align*}
+
+es bien definido:
+
+\[f\in L^p,g\in L^q\implies |fg|\in L^1\]
+
+\[\left(\int |fg|\,d\mu\right)\leq ||f||_p||g||_q<\infty\]
+\[\implies fg\in L^1\]
+\[\implies |\inn{f,g}|=\left|\int fg\right|\leq \int |fg|\leq ||f||_p||g||_q\]
+
+Debido a esto podemos definir $\ell_g\in (L^p)^*$
+
+\begin{align*}
+   \ell_g:L^p(\mu)&\to\K\\
+   f&\to \inn{f,g}
+\end{align*}
+
+es lineal y acotado con 
+
+\[||\ell_g||_{(L^p)^*}\leq ||g||_q\]
+
+De esta manera tenemos una aplicación
+
+\begin{align*}
+    \phi:L^p(\mu)&\to [L^p(\mu)]^*\\
+    g&\to\ell_g
+\end{align*}
+
+$\phi$ es lineal, acotada e inyectiva $(\ell_g=0\implies g=0)$.
+
+\subsection{Teorema de Representación de Riesz}
+
+\begin{ftheorem}
+    Sea $(\Omega,\mathcal{M},\mu)$ $\sigma-$finito. Sea $1\leq p<\infty$
+
+Entonces $\phi$ es un \textbf{isomorfismo isométrico}:
+
+\[\forall \ell\in (L^p(\mu))^*,\exists !g\in L^p(\mu)\text{ tal que } \ell(f)=\inn{f,g}\quad\forall f\in L^p\]
+
+con $||\ell||_{(L^p)^*}=||g||_q$.
+
+\end{ftheorem}
+
+\begin{fnote}
+    \begin{enumerate}
+        \item Incluye el caso $p=2$ (Espacio de Hilbert).
+        \item $\Omega:\N,\mu=\text{medida de contar}$
+        
+        \[L^p(\mu)=\{f:\N\to\K:\left(\sum |f_k|^p\right)^{1/p}<\infty\}=\ell^p\]
+
+        \item El teorema dice que
+        
+        \[(\ell^p)^*\simeq l^q\quad p\in [1,\infty)\]
+
+        \item $p=\infty$: $(L^\infty)^*\not\simeq L^1$
+        
+        \[\phi:L^1 \not \hookrightarrow (L^\infty)^*\quad\text{ no es sobreyectiva}\]
+    \end{enumerate}
+\end{fnote}
+
+La demostración requiere la herramienta del Teorema de Radon-Nikodym.
+
+\begin{fdefinition}
+    $(\Omega,\mathcal{M})$ y medidas $\mu,\nu:\mathcal{M}\to[0,\infty]$. Decimos que $\nu$ es \textbf{absolutamente continua} respecto a $\mu$ si
+
+    \[\mu(E)=0\implies \nu(E)=0\]
+
+    y escribimos $\nu\ll\mu$.
+\end{fdefinition}
+
+\begin{fexample}
+    Si $h\geq 0,h\in L^1(\mu)$ podemos definir $\nu:\mathcal{M}\to[0,\infty]$
+
+    \[\nu(E)\coloneqq \int h\chi_E\,d\mu\eqqcolon \int_E h\,d\mu\]
+
+    $\nu$ es una medida.
+
+    \[``d\nu=h\,d\mu''\quad\text{$h$ es densidad}\]
+
+    $\nu \ll \mu$ pues $\mu(E)=0$
+    \[\implies \nu(E)=\int h\chi_E\,d\mu=0\]
+\end{fexample}
+
+\begin{ftheorem}[Radon-Nikodym]
+    Sean $\mu$ y $\nu$ medidas en $(\Omega,\mathcal{M})$ $\sigma$-finitas. Si $\nu\ll\mu$, entonces $\exists!h\geq 0$ medible tal que $\nu(E)=\displaystyle\int_E h\,d\mu$. 
+
+    ($h$ es única $\mu$-c.t.p.)
+\end{ftheorem}
+
+$(d\nu=h\,d\nu)$, $h=[\frac{d\nu}{d\mu}]$ derivada de Radon-Nimkodym.
+
+\begin{proof}[Demostración de la unicidad]
+    \[\int h_1\chi_E\,d\mu=\int h_2\chi_E\,d\mu=\nu(E)\quad\forall E\in\mathcal{M}\]
+
+    \[\int (h_1-h_2)\chi_E\,d\mu=0\quad\forall E\in\mathcal{M}\]
+
+    \[E=\{h_1>h_2\}\]
+
+    \[0=\int_{\{h_1-h_2>0\}} (h_1-h_2)\,d\mu\implies \mu(\{h_1>h_2\})=0\implies \mu(\{h_1\neq h_2\})=0\implies h_1=h_2\quad\mu-\text{c.t.p.}\]
 \end{proof}
