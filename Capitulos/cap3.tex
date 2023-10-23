@@ -1659,7 +1659,7 @@ es lineal y acotado con
 De esta manera tenemos una aplicación
 
 \begin{align*}
-    \phi:L^p(\mu)&\to [L^p(\mu)]^*\\
+    \phi:L^q(\mu)&\to [L^p(\mu)]^*\\
     g&\to\ell_g
 \end{align*}
 
@@ -1672,7 +1672,7 @@ $\phi$ es lineal, acotada e inyectiva $(\ell_g=0\implies g=0)$.
 
 Entonces $\phi$ es un \textbf{isomorfismo isométrico}:
 
-\[\forall \ell\in (L^p(\mu))^*,\exists !g\in L^p(\mu)\text{ tal que } \ell(f)=\inn{f,g}\quad\forall f\in L^p\]
+\[\forall \ell\in (L^p(\mu))^*,\exists !g\in L^q(\mu)\text{ tal que } \ell(f)=\inn{f,g}\quad\forall f\in L^p\]
 
 con $||\ell||_{(L^p)^*}=||g||_q$.
 
@@ -1687,7 +1687,7 @@ con $||\ell||_{(L^p)^*}=||g||_q$.
 
         \item El teorema dice que
         
-        \[(\ell^p)^*\simeq l^q\quad p\in [1,\infty)\]
+        \[(\ell^p)^*\simeq \ell^q\quad p\in [1,\infty)\]
 
         \item $p=\infty$: $(L^\infty)^*\not\simeq L^1$
         
@@ -1726,7 +1726,9 @@ La demostración requiere la herramienta del Teorema de Radon-Nikodym.
 
 $(d\nu=h\,d\nu)$, $h=[\frac{d\nu}{d\mu}]$ derivada de Radon-Nimkodym.
 
-\begin{proof}[Demostración de la unicidad]
+\begin{proof}
+    \textbf{Unicidad:}
+
     \[\int h_1\chi_E\,d\mu=\int h_2\chi_E\,d\mu=\nu(E)\quad\forall E\in\mathcal{M}\]
 
     \[\int (h_1-h_2)\chi_E\,d\mu=0\quad\forall E\in\mathcal{M}\]
@@ -1734,4 +1736,356 @@ $(d\nu=h\,d\nu)$, $h=[\frac{d\nu}{d\mu}]$ derivada de Radon-Nimkodym.
     \[E=\{h_1>h_2\}\]
 
     \[0=\int_{\{h_1-h_2>0\}} (h_1-h_2)\,d\mu\implies \mu(\{h_1>h_2\})=0\implies \mu(\{h_1\neq h_2\})=0\implies h_1=h_2\quad\mu-\text{c.t.p.}\]
+
+    \textbf{Existencia:} (argumento de Von Neumann) que utiliza el Teorema de Representación de Riesz en $L^2$. 
+
+    idea: $\lambda=\mu+\nu$. Suponga que $\mu(\Omega),\nu(\Omega)<\infty$
+
+    \[\mu(E)=0\iff \lambda(E)=0\]
+
+    Vamos a definir un funcional lineal acotado 
+
+    \begin{align*}
+        \ell:L^2_\R(\lambda)&\to\R\\
+        f&\to \int f\,d\mu
+    \end{align*}
+
+    $\ell$ es obviamente lineal y acotado:
+
+    \begin{align*}
+        \left|\int f\,d\mu\right|\leq \int |f|\,d\mu\\
+        &=\int |f|\cdot 1\,d\mu\\
+        &\leq \int |f|\cdot 1\,d\lambda\\
+        &\leq ||f||_{L^2(\lambda)}\underbrace{||1||_{L^2(\lambda)}}_{[\lambda(\Omega)]^{1/2}}
+    \end{align*}
+
+    Es decir, $|\ell(f)|\leq (\lambda(\Omega))^{1/2}||f||_{L^2(\lambda)}$
+
+    Por Teorema de Representación de Riesz:
+
+    \[\ell(f)=\int fg\,d\lambda,\quad g\in L^2(\lambda)\]
+
+    \begin{align}
+        \int_{\Omega} f\,d\mu&=\int fg\,d\lambda\nonumber\\
+        &=\int fg\,d\mu+\int fg\,d\nu\nonumber\\
+        \int f(1-g)\,d\mu&=\int fg\,d\nu\quad\forall f\in L^2(\lambda)
+    \end{align}
+
+    Formalmente ``$(1-g)\,d\mu=g\,d\nu$'' $\implies$ ``$h=\frac{1-g}{g}$''.
+
+    Primero vamos a demostrar que 
+
+    \[0<g\leq 1\quad \mu-\text{c.t.p.}\]
+
+    \begin{enumerate}[label=(\alph*)]
+        \item $F\coloneqq \{g\leq 0\}$
+        
+        \[\mu(F)=\int \chi_F\,d\mu\leq \int \chi_F (1-g)\,d\mu\]
+
+        por (3.1), 
+
+        \[=\int\chi_F g\,d\nu\leq 0\]
+        \[\implies \mu(F)=0\]
+
+        \item $G\coloneqq \{g>1\}$. Suponga que $\mu(G)>0$
+        
+        \begin{align*}
+            0>\int_G (1-g)\,d\mu&=\int (1-g)\chi_G\,d\mu\\
+            &=\int (1-g)\chi_G\,d\nu\\
+            &=\int_G g\,d\nu\geq 0
+        \end{align*}
+
+        lo que es una contradicción.
+
+    \end{enumerate}
+
+    $g\in L^2(\lambda)$. Podemos elegir representante $g$, tal que $0<g\leq 1$ en $\Omega$. Definimos 
+
+    \[h\coloneqq \frac{1-g}{g}\geq 0\quad \text{en }\Omega\]
+
+    Tome $A\in\mathcal{M}$, $f_n=\chi_{\{A\cap g\geq \frac{1}{n}\}}/g\in L^2(\lambda)$. Ponemos $f_n$ en $(3.1)$:
+
+    \[\int f_n(1-g)\,d\mu=\int f_ng\,d\nu\]
+
+    $x\in \{g<\frac{1}{n}\},f_n=0$. $x\in \{g\geq \frac{1}{n}\}$, $f_n\leq \frac{1}{\frac{1}{n}}=n$. $\implies f_n$ es acotada. $\implies f\in L^2(\lambda)$.
+
+    \[\int \frac{1-g}{g}\chi_{A\cap\{g\geq \frac{1}{n}\}}\,d\mu=\ nt \chi_{A\cap \{g\geq \frac{1}{n}\}}\,d\nu\]
+
+    \[A\cap\{g\geq\frac{1}{n}\}\nearrow A\]
+
+    Tomando $\lim_{n\to\infty}$, por Teorema de Convergencia Monótona obtenemos 
+
+    \[\int h\chi_A\,d\mu=\int\chi_A\,d\nu\]
+
+    Ahora suponga que $\mu,\nu$ son $\sigma-$finitas: existe $\Omega_n\nearrow \Omega$, tales que 
+
+    \[\mu(\Omega_n),\nu(\Omega_n)<\infty\]
+
+    Aplicaremos el resultado a $(\Omega_n,\mathcal{M},\mu\text{ y }\nu|_{\Omega_n})$. $\mathcal{M}_n=\{E\cap \Omega_n:E\in\mathcal{M}\}$.
+
+    \[\nu(A)=\int h_n\chi_A\,d\mu\quad\forall a\in \mathcal{M}_n\]
+
+    para alguna $h_n\geq 0$ y $\mathcal{M}_n-$medible.
+
+    \[=\int h_{n+1}\chi_A\,d\mu\]
+
+    por unicidad 
+
+    \[h_{n+1}|_{\Omega_n}=h_n\quad\mu-\text{c.t.p.}\]
+
+    Extienda cada $h_n$ por $0$ fuera de $\Omega_n$. De esta manera $h_n$ es $\mathcal{M}-$medible. Defina $h\coloneqq \displaystyle\lim_{n\to\infty}h_n$
+
+    \[h_n\nearrow h\]
+
+    Para todo $E\in\mathcal{M}$
+
+    \begin{align*}
+        \nu(E)&=\lim_{n\to\infty} \nu(\Omega_n\cap E)\\
+        &=\lim_{n\to\infty} \int_{E\cap\Omega_n} h_n\,d\mu\\
+        &=\lim_{n\to\infty} \int_{E\cap \Omega_n} h\,d\mu\\
+        &=\int_E h\,d\mu
+    \end{align*}
+\end{proof}
+
+Necesitaremos también el siguiente resultado:
+
+\begin{fdefinition}
+    $\ell\in(L^p_\R)^*$ es \textbf{positivo} si $\ell(f)\geq 0\quad\forall f\in L^p_\R,f\geq 0$ 
+\end{fdefinition}
+
+\begin{ftheorem}
+    Sea $\ell\in (L_\R^p)^*$, $1\leq p<\infty$. Entonces 
+
+    \[\ell=\ell_+-\ell_-\]
+
+    $\ell_{\pm}\in (L_\R^p)^*$ son positivos.
+\end{ftheorem}
+
+\begin{proof}
+    Sea $\ell\in(L^p)^*$.
+
+    \begin{enumerate}
+        \item Definiremos $\ell_+$ para $f\geq 0$.
+        
+        \[\ell_+(f)\coloneqq \sup_{0\leq g\leq f}\ell(g)\]
+
+        Obviamente, $\ell_{+}(cf)=c\ell_+(f)$, $c\geq 0$. Probemos la aditividad:
+
+        \[\ell_+(f_1+f_2)=\ell_+(f_1)+\ell_+(f_2)\quad\forall f_1,f_2\geq 0\text{ en }L^p\]
+
+        \[\ell\underbrace{(g_1+g_2)}_{g}=\ell(g_1)+\ell(g_2)\]
+
+        Si $0\leq g_1\leq f_1$, $0\leq g_2\leq f_2$
+
+        \[\implies g=g_1+g_2\leq f_1+f_2\]
+
+        \[\sup_{0\leq g\leq f_1+f_2}\ell(g)\geq \ell(g_1)+\ell(g_2)\]
+
+        Tomando $\sup$ sobre $0\leq g_1\leq f_1$, $0\leq g_2\leq f_2$
+
+        \[\ell_+(f_1+f_2)\geq \ell(f_1)+\ell_(f_2)\]
+
+        Para demostrar la otra, notamos que cada $0\leq g\leq f_1+f_2$ se puede escribir
+
+        \[g=g_1+g_2\]
+
+        donde $g_1\coloneqq \min(g,f_1)\leq f_1$, $g_2\coloneqq g-g_1\leq f_2$.
+
+        \[\ell(g)\leq \ell_+(f_1)+\ell_+(f_2)\]
+        \[\implies \ell_+(f)\leq \ell_+(f_1)+\ell_*(f_2)\]
+
+        \item Extendemos $\ell_+$ a toda $f\in L^p$.
+        
+        \[f=f_+-f_-\]
+
+        Definimos $\ell_+(f)=\ell_+(f_+)-\ell_+(f_-)$.
+
+        Esta definicón no depende de como descomponemos $f$ como diferencia de 2 funciones no negativas.
+
+        \[f=f_+-f_-=f_1-f_2\implies f_+f_2=f_1+f_-\]
+        \[\implies \ell_+(f_1+f_2)=\ell_+(f_1+f_-)\]
+        \[\implies \ell_+(f_+)+\ell_+(f_2)=\ell_+(f_1)+\ell_+(f_-)\]
+        \[\implies \ell_+(f_+)-\ell_+(f_-)=\ell_+(f_1)-\ell_+(f_2)\]
+
+        \item Por lo tanto, $\ell_+$ es \textbf{lineal}
+        
+        \[\ell_+(cf)=c\ell_+(f)\quad\forall c\geq 0\]
+        \[\ell_+(-cf)=\ell_+(c(-f))=c\ell_+(-f)=-c\ell_+(f)\]
+        \[\implies \ell_+(-f)=\ell_+(f_-)-\ell_+(f_+)=-\ell_+(f)\]
+
+        $\ell_+$ es acotado.
+
+        \begin{align*}
+            |\ell_+(f)|&=|\ell_+(f_+)-\ell_+(f_-)|\\
+            &\leq |\ell_+(f_+)|+|\ell_+(f_-)|\\
+            &\leq ||\ell||\cdot||f_+||_{L^p}+||\ell||\cdot||f_-||_{L^p}\\
+            &\leq 2||\ell||\cdot||f||_{L^p}
+        \end{align*}
+
+        ya que
+
+        \begin{align*}
+            \ell_+(f)&\leq \sup_{0\leq g\leq f}||\ell||\cdot||g||_{L^p}\\
+            &\leq ||\ell||\cdot ||f||_{L^p}
+        \end{align*}
+
+        Definimos 
+
+        \[\ell_-\coloneqq \ell_+-\ell\]
+        \[\implies \ell \in (L^p_\R)^*\]
+
+        $\ell_-$ es positiva pues $\forall f\geq 0,f\in L^p$.
+
+        \begin{align*}
+            \ell_-(f)&=\ell_+(f)-\ell(f)\geq 0\\
+            &=\sup\{\ell(g):0\leq g\leq f\}-\ell(f)\geq 0
+        \end{align*}
+    \end{enumerate}
+\end{proof}
+
+\begin{proof}[Demostración del Teorema de Riesz (\ref{theo:3.7.5})]
+
+    % \begin{fexercise}
+    %     Demostrar la unicidad
+    % \end{fexercise}
+
+    $\K=\R, \ell\in (L^p_\R)^*$ y positivo. Supondremos que $\mu(\Omega)<\infty$. Definimos 
+
+    \begin{align*}
+        \nu:\mathcal{M}&\to [0,\infty)\\
+        A&\to \ell(\chi_A)
+    \end{align*}
+
+    Afirmamos que $\nu$ es una medida finita.
+
+    \begin{enumerate}[label=(\alph*)]
+        \item $\nu\geq0$ 
+        \[\nu(\Omega)\leq ||\ell||\cdot ||\chi_\Omega||_{L^p}=||\ell||\left(\int_\Omega 1^p\,d\mu\right)^{1/p}=||\ell||(\mu(\Omega)^{1/p})<\infty\]
+
+        \item $\nu(\varnothing)=0$
+        \item Si $E=\biguplus E_k$, $\chi_{\bigcup_{k=1}^N E_k}\nearrow \chi_E$
+        
+        \[0\leq |\chi_E-\chi_{\bigcup_{k=1}^N E_k}|^p\leq \chi_E^p\in L^1\]
+
+        Por Teorema de Convergencia Dominada 
+
+        \[\implies \chi_{\bigcup_{k=1}^N E_k}\xrightarrow{L^p}\chi_E\]
+        \[\implies \ell(\chi_{\bigcup_{k=1}^n E_k})\to \ell(\chi_E)\iff \sum_{k=1}^N \ell(\chi_{E_k})\xrightarrow{N\to\infty} \ell(\chi_E)\]
+
+        \begin{align*}
+            \nu(E)&=\ell(\chi_E)\\
+            &=\lim_{N\to\infty} \sum_{k=1}^N \ell(\chi_{E_k})\\
+            &=\lim_{N\to\infty} \sum_{k=1}^N \nu(E_k)\\
+            &=\sum_{k=1}^\infty \nu(E_k)
+        \end{align*}
+
+        Además, $\nu\ll \mu$
+
+        \begin{align*}
+            \nu(A)&\leq ||\ell||\mu(A)^{1/p}
+        \end{align*}
+
+        Si $\mu(A)=0\implies \nu(A)=0$ Por el teorema de Radon-Nikodym, 
+
+        \[\ell(\chi_A)=\nu(A)=\int \chi_A h\,d\mu\]
+
+        para una $h\geq 0$. Tomando combinaciones lineales finitas de $\chi_A$'s:
+
+        \[\ell(s)=\int sh\,d\mu\]
+
+        para toda función simple $s:\Omega\to\R$. Ahora, cada función $f\geq 0$ no negativa 
+
+        \[0\leq s_n\leq f,\quad s_n\nearrow f\]
+
+        Por Teorema de Convergencia Dominada,
+
+        \[\implies s_n\xrightarrow{L^p}f\]
+
+        Entonces, 
+
+        \[\ell(f)=\lim_{n\to\infty}\ell(s_n)=\lim_{n\to\infty} \int s_nh\,d\mu\]
+        \[\int fh\,d\mu\]
+
+    \end{enumerate}
+
+        Cuando $\mu$ es $\sigma$-finita,
+        
+        \[\Omega=\biguplus_n \Omega_n,\quad \mu(\Omega_n)<\infty\]
+
+        En cada $\Omega_n$, tenemos $h_n\geq 0$, tal que 
+
+        \[\ell(f\chi_{\Omega_n})=\int f\chi_{\Omega_n} h_n\,d\mu\quad \forall f\geq 0,f\in L^p\]
+
+        Extienda $h_n$ por 0 fuera de $\Omega_n$. Tenemos que
+
+        \[\sum_{n=1}^N f\chi_{\Omega_n}\xrightarrow{L^p}f\]
+
+        por lo que 
+
+        \[\ell(f)=\lim_{N\to\infty}\ell(\sum_{n=1}^N f\chi_{\Omega_n})=\lim_{N\to\infty} \sum_{n=1}^N \int f\chi_{\Omega_n}h_n\,d\mu\]
+        \[=\lim_{N\to\infty} \sum_{n=1}^N \int \Omega fh_n\,d\mu=\lim_{N\to\infty}\int f\sum_{n=1}^N h_n\,d\mu\]
+        \[=\int_{\Omega} fh\,d\mu\]
+        
+        donde $h\coloneqq \displaystyle\sum_{n=1}^\infty h_n$. En particular, 
+
+        \[fh\in L^1(\mu)\]
+
+        Tomaremos ahora un $f\in L^p_\R(\mu)$ con signo arbitrario. $\ell\in (L_\R^p)^*$ y positivo
+
+        \begin{align*}
+            \ell(f)&=\ell(f_+-f_-)\\
+            &=\ell(f_+)-\ell(f_-)\\
+            &=\int f_+h-\int f_-h\int fh\,d\mu
+        \end{align*}
+
+        $f\in L^p\implies |f|\in L^p,|f|\geq 0$
+
+        \[\implies \ell(|f|)=\int |f|h\,d\mu\implies |f|h\in L^1\]
+
+        Por lo tanto, $f_{\pm}h\in L^1$
+
+        \[\int (f_+-f_-)g=\int f_+h-f_-h=\int f_+h-\int f_-h\]
+
+        Si $\ell\in (L^p)^*$, lo expresamos como diferencia de 2 funcionales positivos:
+
+        \[\ell=\ell_+-\ell_-\]
+
+        cada una con su $h_\pm$ correspondiente, $h\coloneqq h_+-h_-$
+
+        \[\forall f\in L^p_\R(\mu), fh_\pm \in L^1\]
+        \[\implies fh=fh_+-fh_-\in L^1\]
+        \[\implies \ell(f)=\ell_+(f)-\ell_-(f)=\int fh_+-\int fh_-=\int fh\]
+
+        En esta etapa hemos demostrado que $\forall \ell\in (L_\R^p)^*$ se puede escribir como 
+
+        \[\ell(f)=\int fh\,d\mu\]
+
+        para alguna $h$ medible donde $fh\in L^1$.
+
+        Para extender al caso complejo, noten que si $\ell\in (L_\C^p)^*$ y $f\in L^p_\R$.
+
+        \[\implies \ell(f)=\Re\ell(f)+i\Im\ell(f)\]
+
+        donde $\Re \ell\in (L_\R^p)^*$ y $\Im \ell\in (L^p_\R)^*$.
+
+        \[|\Re \ell(f)|\leq |\ell(f)|\leq ||\ell||_{L_\C^p}^*||f||_{L_\C^p}=||\ell||_{(L_\C^p)^*}||f||_{L^p_\R}\]
+
+        \[\Re \ell=\inn{\cdot,h_1}\]
+        \[\Im \ell=\inn{\cdot,h_2}\]
+
+        donde $fh_i\in L^1$. Por lo tanto, si 
+
+        \[h\coloneqq h_1+ih_2\]
+
+        \[|fh|\leq |fh_1|+|fh_2|\quad \forall f\in L_\R^p\]
+
+        y 
+
+        \[\ell(f)=\inn{f,h_1}+i\inn{f,h_2}=\inn{f,h_1+ih_2}\quad \forall f\in L^p_\R\]
+
+        Por linealidad 
+
+        \[\ell(f)=\inn{f,h}\quad\forall f\in L_\C^p\]
+
+        donde $|fh|\in L^1$.
 \end{proof}

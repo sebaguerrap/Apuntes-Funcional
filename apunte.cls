@@ -211,6 +211,8 @@
 \newcommand{\F}{\mathcal{F}}
 \newcommand{\T}{\mathbb{T}}
 \DeclareMathOperator{\sgn}{sgn}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
 
 % COMENTARIOS ---------------
 \newcommand{\com}[3]{{\colorbox{#2}{\bfseries\sffamily\scriptsize\textcolor{white}{#1}}}
