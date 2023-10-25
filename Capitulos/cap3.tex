@@ -2088,4 +2088,185 @@ Necesitaremos también el siguiente resultado:
         \[\ell(f)=\inn{f,h}\quad\forall f\in L_\C^p\]
 
         donde $|fh|\in L^1$.
+
+        $\ell\in (L^p)^*$. Hemos demostrado que existe $h$  medible tal que 
+
+        \[fh\in L^1\quad\forall f\in L^p\]
+
+        y 
+
+        \[\ell(f)=\int fh\,d\mu\]
+
+        Afirmamos que $h\in L^q$ y $||\ell||=||h||_q$. Por Hölder,
+
+        \[|\ell(f)|\leq \int |fh|\,d\mu\leq ||f||_p||h||_q\]
+        \[\implies ||\ell||\leq ||h||_q\]
+
+        Mostraremos ahora la otra desigualdad
+
+        \begin{enumerate}[label=(\alph*)]
+            \item $p\in (1,\infty)$. Defina 
+            
+            \[B_n\coloneqq\Omega_n\cap \{|h|\leq n\},\quad\Omega_n\nearrow \Omega\]
+            \[f_n\coloneqq |h|^{q-1}\sgn h\chi_{B_n}\]
+
+            $f_n\in L^p$
+
+            \begin{align*}
+                ||f_n||_p^p&=\int_{B_n}(|h|^{q-1})^p=\int_{B_n}|h|^q\\
+                \implies ||f_n||_p&=\left(\int |h|^q\right)^{1/p}
+            \end{align*}
+            \begin{align*}
+                \ell(f_n)&=\int f_nh\,d\mu=\int |h|^{q-1}\sgn h h\,d\mu\\
+                &=\int_{B_n}|h|^q\,d\mu
+            \end{align*}
+
+            \[\int_{B_n}|h|^q \,d\mu=\ell(f_n)\leq ||\ell||\cdot ||f_n||_p=||\ell||\left(\int |h|^q\,d\mu\right)^{1/p}\]
+            \[\left(\int_{B_n}|h|^q \,d\mu\right)^{1-1/p}\leq ||\ell||\]
+            \[\left(\int_{B_n}|h|^q\right)^{1/q}\leq ||\ell||\]
+
+            Por Teorema de Convergencia Monótona,
+
+            \[\left(\int_{B_n}|h|^q\right)^{1/q}\xrightarrow{n\to\infty} ||h||_q\]
+
+            \item $p=1, q=\infty$. Suponga que $||\ell||+2\varepsilon\leq ||h||_\infty$, para algún $\varepsilon>0$.
+            
+            \[||h||_\infty=\inf\{M>0:|h|\leq M\quad \text{c.t.p.}\}\]
+
+            $\exists A\in\mathcal{M},\mu(A)>0$, tal que 
+
+            \[|h|\geq ||h||_\infty-\varepsilon\quad\forall x\in A\]
+
+            Ya que $\mu$ es $\sigma$-finita, $\Omega_n\nearrow \Omega$
+
+            \[A_n\coloneqq A\cap \Omega_n\nearrow A\]
+
+            Tenemos $|h|\geq ||h||_\infty-\varepsilon$ en $A_n$ donde $0<\mu(A_n)<\infty$. Tome $f_n\coloneqq \sgn h\chi_{A_n}\in L^1$
+
+            \begin{align*}
+                \ell(f)\int fh\,d\mu&=\int_{A_n} |h|\\
+                &\geq (||h||_\infty-\varepsilon)\mu(A_n)\\
+                &\geq (||\ell||_\infty+\frac2\varepsilon-\varepsilon)||f||_1\\
+                &=(||\ell||_\infty +\varepsilon)||f||_1
+            \end{align*}
+
+            $\implies f$ viola la norma de $||\ell||$. Contradicción
+        \end{enumerate}
+\end{proof}
+
+\section{Teorema de Hahn-Banach}
+
+Sea $X$ un espacio normado, y sea $X^*$ su dual = espacio de funcionales lineales acotados. No hemos visto si \textbf{existen} aún funcionales lineales acotados en $X$ \textbf{no triviales}. Resulta ser el caso que hay una \textbf{abundancia} de funcionales lineales acotados en $X$.
+
+$X\rightarrow$ espacio vectorial. $X'\rightarrow$ espacio de funcionales lineales ($X\neq X'$). Diremos que $f\in X'$ ($f:X\to\K$) extiende, $g\in Y'$ ($Y\subseteq X$ subespacio, $g:Y\to\K$). Si 
+
+\[f(y)=g(y)\quad\forall y\in Y\]
+
+$(X,f)\succ (Y,g)$.
+
+\begin{fdefinition}
+    Sea $X$ un espacio vectorial \textbf{real}. Decimos que 
+
+    \[p:X\to \R\]
+
+    es un \textbf{funcional} convexo si satisface 
+
+    \begin{enumerate}
+        \item (Homogeneidad positiva) $p(\lambda x)=\lambda p(x)$, $\forall \lambda\geq 0$
+        \item (subaditividad) $p(x+y)\leq p(x)+p(y)$
+    \end{enumerate}
+
+    Se dice convexo porque
+
+    \begin{align*}
+        p(\lambda x+(1-\lambda)y)&\leq p(\lambda x)+p((1-\lambda)y)\\
+        &=\lambda p(x)+(1-\lambda)p(y)
+    \end{align*}
+\end{fdefinition}
+
+\begin{fexample}
+    Una seminorma/norma es un funcional convexo.
+\end{fexample}
+
+\begin{fexample}
+    Un funcional lineal (sobre $\R$) es un funcional convexo.
+\end{fexample}
+
+\begin{fdefinition}
+    Decimos que el funcional convexo $p$ domina el funcional lineal $f$ si 
+
+\[f(x)\leq p(x)\quad\forall x\in X\]
+\end{fdefinition}
+
+\begin{fproposition}
+    Sea $X$ normado. $f\in X'$ es \textbf{acotado} si y solo si $f$ es dominado por $p(x)\coloneqq M||x||$ para alguna $M>0$.
+\end{fproposition}
+
+\begin{proof}
+    $(\implies)$: $f\in X*$ 
+
+    \begin{align*}
+        |f(x)|&\leq M||x||\\
+        \implies f(x)\leq M||x||
+    \end{align*}
+
+    $(\impliedby)$: 
+
+    \begin{align*}
+        f(x)&\leq M||x||\quad\forall x\in X\\
+        -f(x)=f(-x)&\leq M||-x||=M||x||\\
+        \implies -M||x||\leq f(x)&\leq M||x||\\
+    \end{align*}
+\end{proof}
+
+\begin{ftheorem}[Hahn-Banach]
+    Sean $X,Y$ espacios vectoriales \textbf{reales}, $Y\subseteq X$ y sea $p:X\to\R$ un funcional lineal \textbf{convexo}. Si $f\in Y'$ es dominado por $p$,
+
+    \[f(y)\leq p(y)\quad\forall y\in Y\]
+
+    entonces existe una \textbf{extensión} $F\in X'$ dominado por $p$:
+
+    \[F(x)\leq p(x)\quad\forall x\in X\]
+\end{ftheorem}
+
+\begin{fcorollary}
+    $X$ normado. $Y\subseteq X$ subespacio $Y\neq \{0\}$. $f\in Y^*$. Entonces existe una extensión $F\in X^*$ con 
+
+    \[||F||_{X^*}=||f||_{Y^*}\]
+\end{fcorollary}
+
+$(Y=\gen(v))$, $f(\lambda v)=\lambda$, $||f||_{Y^*}=\frac{1}{||v||}$. Por Hahn-Banach, $F:X\to\R$, $||F||_{X^*}=||f||_{Y^*}$.
+
+\begin{proof}
+    Defina $p(x)\coloneqq ||f||_{Y^*}||x||$. $f$ es dominado por $p$., por lo que por el Teorema de Hahn-Banach nos da una extensión 
+
+    \[F:X\to\R\]
+    \[F(x)\leq p(x)=||f||_{Y^*}||x||\]
+
+    $\implies F\in X^*$ y $||F||_{X^*}\leq ||f||_{Y^*}$.
+
+    \[||F||_{X^*}=||f||_{Y^*}\]
+
+    pues es una extensión.
+\end{proof}
+
+\begin{proof}[Demostración del Teorema de Hahn-Banach (\ref{theo:3.8.2})]
+    Asumimos que $Y\subsetneq X\implies $ existe $z\in X\setminus Y$. Vamos a extender $f$ a $F:Y+\gen(z)\to R$ de la manera que $F$ sea \textbf{dominado} por $p$.
+
+    \[F(y+tz)\coloneqq f(y)+t s,\quad F(z)=s\]
+
+    define un funcional lineal en $Y+\gen(z)$. La meta es es elegir $s$ de tal manera que $F(y+tz)=f(y)+ts\leq p(y+tz)$. Noten que se satisface cuando $t=0$. Afirmamos que para demostrar su validez $\forall t\neq 0$ basta ver que se satisface oara $t=\pm 1$.
+
+    \begin{align*}
+        F(y+tz)&=|t|F(\frac{y}{|t|}+\frac{t}{|t|}z)\\
+        &=|t|f(\frac{y}{|t|}+\sgn ts)\\
+        &\leq |t| p(\frac{y}{|t|}+\sgn ts)=p(y+tz)
+    \end{align*}
+
+    Meta: elija $s$ de modo que 
+
+    \[f(y)+s\leq p(y+z)\quad t=1\]
+    \[f(y')-s\leq p(y'-z)\quad t=-1\]
+
+    $\forall y,y'\in Y$.
 \end{proof}
