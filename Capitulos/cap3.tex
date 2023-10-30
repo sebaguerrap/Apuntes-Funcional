@@ -2230,7 +2230,7 @@ $(X,f)\succ (Y,g)$.
 \end{ftheorem}
 
 \begin{fcorollary}
-    $X$ normado. $Y\subseteq X$ subespacio $Y\neq \{0\}$. $f\in Y^*$. Entonces existe una extensión $F\in X^*$ con 
+    $X$ es un espacio normado \textbf{real}. $Y\subseteq X$ subespacio $Y\neq \{0\}$. $f\in Y^*$. Entonces existe una extensión $F\in X^*$ con 
 
     \[||F||_{X^*}=||f||_{Y^*}\]
 \end{fcorollary}
@@ -2251,16 +2251,16 @@ $(Y=\gen(v))$, $f(\lambda v)=\lambda$, $||f||_{Y^*}=\frac{1}{||v||}$. Por Hahn-B
 \end{proof}
 
 \begin{proof}[Demostración del Teorema de Hahn-Banach (\ref{theo:3.8.2})]
-    Asumimos que $Y\subsetneq X\implies $ existe $z\in X\setminus Y$. Vamos a extender $f$ a $F:Y+\gen(z)\to R$ de la manera que $F$ sea \textbf{dominado} por $p$.
+    Asumimos que $Y\subsetneq X\implies $ existe $z\in X\setminus Y$. Vamos a extender $f$ a $F:Y+\gen(z)\to \R$ de la manera que $F$ sea \textbf{dominado} por $p$.
 
     \[F(y+tz)\coloneqq f(y)+t s,\quad F(z)=s\]
 
     define un funcional lineal en $Y+\gen(z)$. La meta es es elegir $s$ de tal manera que $F(y+tz)=f(y)+ts\leq p(y+tz)$. Noten que se satisface cuando $t=0$. Afirmamos que para demostrar su validez $\forall t\neq 0$ basta ver que se satisface oara $t=\pm 1$.
 
     \begin{align*}
-        F(y+tz)&=|t|F(\frac{y}{|t|}+\frac{t}{|t|}z)\\
-        &=|t|f(\frac{y}{|t|}+\sgn ts)\\
-        &\leq |t| p(\frac{y}{|t|}+\sgn ts)=p(y+tz)
+        F(y+tz)&=|t|F\left(\frac{y}{|t|}+\frac{t}{|t|}z\right)\\
+        &=|t|f\left(\frac{y}{|t|}+\sgn ts\right)\\
+        &\leq |t| p\left(\frac{y}{|t|}+\sgn ts\right)=p(y+tz)
     \end{align*}
 
     Meta: elija $s$ de modo que 
@@ -2268,5 +2268,198 @@ $(Y=\gen(v))$, $f(\lambda v)=\lambda$, $||f||_{Y^*}=\frac{1}{||v||}$. Por Hahn-B
     \[f(y)+s\leq p(y+z)\quad t=1\]
     \[f(y')-s\leq p(y'-z)\quad t=-1\]
 
-    $\forall y,y'\in Y$.
+    $\forall y,y'\in Y$. Tal $s$ existe si 
+
+    \[\sup_{y'\in Y} f(y')-p(y'-z)\leq \inf_{y\in Y} p(y+z)-f(y)\]
+
+    Esto es válido cuando 
+
+    \[f(y')-p(y'-z)\leq p(y+z)-f(y)\quad\forall y,y'\in Y\]
+    \begin{align*}
+        \iff f(y')+f(y)&\leq p(y+z)+p(y'-z)\\
+        \iff f(y'+y)\leq p(y+z)+p(y'-z)\quad\forall y,y'\in Y
+    \end{align*}
+
+    Lo que es verdadero por la convexidad de $p$ y porque $f$ está dominado por $p$.
+
+    \begin{align*}
+        f(y'+y)\leq p(y+y')&=p(y+z+y'-z)\\
+        &\leq p(y+z)+p(y'-z)\quad\forall y,y'\in Y
+    \end{align*}
+
+    De esta manera obtuvimos 
+
+    \[(\tilde Y,F)\succ (Y,f)\]
+
+    Para extender a todo $X$ utilizaremos un argumento estándar por el Lema de Zorn. 
+
+    \begin{fdefinition}
+        Orden parcial $\prec$ en un conjunto $E$ es una relación entre algunos de los elementos de $E$ que satisface
+
+        \begin{enumerate}
+            \item $e\prec e$
+            \item $e\prec f$ y $f\prec e\implies e=f$
+            \item $e\prec f$ y $f\prec g\implies e\prec g$
+        \end{enumerate}
+    \end{fdefinition}
+
+    \begin{fdefinition}
+        Un subconjunto $C\subseteq E$ se llama \textbf{cadena} si es totalmente ordenado. Es decir, todo par de elementos de $C$ son relacionados.
+    \end{fdefinition}
+
+    \begin{fdefinition}
+        Una cota superior de $D\subseteq E$ es un elemento $e\in E$ tal que 
+
+        \[d\prec e\quad\forall d\in D\]
+    \end{fdefinition}
+
+    \begin{fdefinition}
+        Un elemento \textbf{maximal} $m\in E$ es un elemento de $E$ que no puede ser dominado: si 
+
+        \[m\prec g\implies m=e\]
+    \end{fdefinition}
+
+    \begin{flemma}[Lema de Zorn]
+        Si toda cadena de un conjunto $E$ parcialmente ordenado tiene una cota superior, entonces $E$ tiene un elemento maximal.
+    \end{flemma}
+
+    Lema de Zorn $\iff$ Axioma de Elección
+
+    En nuestro contexto, 
+
+    \[E=\{(L, \ell):(L,\ell)\succ (y,f),\ell:L\to\R \text{ es dominado por }p\}\]
+
+    Orden es: $(L_1,\ell_1)\succ (L_2,\ell_2)$. Sea $C\subseteq E$ una cadena.
+
+    \[C=\{(L_\alpha,\ell_\alpha)\}_\alpha\]
+
+    \[L\coloneqq\bigcup_{\alpha}L_\alpha\text{ es un subespacio vectorial de }X\]
+
+    \begin{align*}
+        x,y\in L\implies x\in L_{\alpha_1}, y\in L_{\alpha_2}\supseteq L_{\alpha_1}\\
+        \implies x+y\in L_{\alpha_2}\implies \lambda x+\mu y\in L_{\alpha_2}\subseteq L
+    \end{align*}
+
+    Defina 
+
+    \begin{align*}
+        \ell:L&\to\R\\
+        x&\to \ell_\alpha(x)\quad \text{si } x\in L_\alpha
+    \end{align*}
+
+    Por la rezón anterior, no hay ambiguedad en esta definición: si $x\in L_\beta$, podemos asumir que $(L_\beta,\ell_\beta)\succ (L_\alpha,\ell_\alpha)$
+    \[\implies \ell_\beta(x)=\ell_\alpha(x)\quad \forall x\in L_\alpha\]
+
+    Concluimos que $(L,\ell)$ es una cota superior de $C$. Por el Lema de Zorn, existe un elemento maximal $(\tilde L, \tilde F)$. $\tilde L=X$. Si $\tilde L\subsetneq X$, podemos extender $\tilde F$ a $\tilde L+\gen(z)$, $z\in X\setminus \tilde L$ siendo dominado por $p$. Esto contradice la maximalidad de $(\tilde L,\tilde F)$.
 \end{proof}
+
+En el caso de espacios normados \textbf{complejos}, utilizaremos la siguiente observación: Todo $X_\C$ se puede ver como un espacio vectorial \textbf{real} $X_\R$.
+
+Tenemos la siguiente correspondencia \textbf{biyectiva}:
+
+\begin{align*}
+    X_\R'&\stackrel{\sim}{\smash{\longrightarrow}\rule{0pt}{0.4ex}} X_\C'\\
+    u&\longrightarrow x\to u(x)+\frac{1}{i}u(ix)\eqqcolon F(x)\\
+    \Re F&\longleftarrow F
+\end{align*}
+
+$F(x)=\underbrace{\Re F(x)}_{u(x)}+i\Im F(x)$
+
+\begin{align*}
+    \Im F(x)&=\Re\left[\frac{1}{i} F(x)\right]\\
+    &=-\Re[i F(x)]\\
+    &=-\Re[F(ix)]\\
+    &=-u(ix)
+\end{align*}
+
+Además, tenemos $\alpha\in \C,|\alpha|=1$
+
+\begin{align*}
+    |F(x)|&=\underbrace{\sgn F(z)}_\alpha F(x)=\alpha F(x)=F(\alpha x)\\
+    &=\Re F(\alpha x)=u(\alpha x)=|u(\alpha x)|
+\end{align*}
+
+Cuando $X_\C$ es normado, $X_\R$ hereda la norma de $X_\C$. Si 
+
+\[F\in X_\C^*\implies u=\Re F\in X_\R^*\]
+
+y 
+
+\[||F||_{X_\C^*}=||u||_{X_\R^*}\]
+
+\begin{ftheorem}
+    Suponga que $Y_\C\subseteq X_\C$, $X_\C$ un espacio normado complejo, y $f\in Y_\C^*$. Entonces $f$ se puede extender a $F\in X_\C^*$ preservando la norma: $||F||_{X^*}=||f||_{Y^*}$
+\end{ftheorem}
+
+\begin{proof}
+    $f=\underbrace{\Re f}_{u\in Y_\R^*}+\underbrace{I\Im f}_{\frac{1}{i}u(i\cdot)}$
+
+    Extendemos $U\in X_\R^*$ donde $||U||_{X_\R^*}=||u||_{Y_\R^*}$. Definimos 
+
+    \[F(x)\coloneqq U(x)+\frac{1}{i}U(ix)\]
+
+    Tenemos $||F||_{X_\C^*}=||U||_{X_\R^*}=||u||_{Y_\R^*}=||f||_{Y_\C^*}$
+\end{proof}
+
+\begin{fcorollary}\label{theo:3.8.4.1}
+    Para todo $x_0\in X$, $X$ normado, existe $f_0\in X^*$ tal que $||f_0||=1$ y tal que $f_0(x_0)=||x_0||$.
+\end{fcorollary}
+
+\begin{proof}
+    Aplicamos el teorema anterior a $Y=\gen(x_0)$ y
+
+    \begin{align*}
+        \bar f_0:Y&\to \K\\
+        tx_0&\to t||x_0||
+    \end{align*}
+
+    \[\bar f_0(x_0)=||x_0||,||\bar f_0||_{Y^*}=1\]
+
+    Lo extendemos $f_0\in X^*$.
+\end{proof}
+
+\begin{fcorollary}
+    \[||x||=\sup\{|f(x)|:||f||=1\}\]
+\end{fcorollary}
+
+\begin{proof}
+    \[|f(x)|\leq ||f||\cdot ||x||=||x||\]
+
+    Por \ref{theo:3.8.4.1}, $||x||=|f(x)|$ para algún $f\in X^*$ con $||f||=1$.
+
+    \[\implies ||x||\leq \sup\{|f(x)|:||f||=1\}\]
+\end{proof}
+
+\begin{ftheorem}
+    $\forall x\in X, X$ espacio normado, define un funcional lineal acotado en $X^*$
+
+    \begin{align*}
+        \hat x:X^*&\to\K\\
+        f&\to f(x)
+    \end{align*}
+
+    \[||\hat x||=\sup_{\substack{f\in X^*\\ ||f||=1}}||f(x)||=||x||\]
+
+    Entonces, el mapeo 
+
+    \begin{align*}
+        \mathcal{J}:X&\to (X^*)^*\\
+        x&\to \hat x
+    \end{align*}
+
+    es una isometría lineal.
+\end{ftheorem}
+
+ \begin{fnote}\hfill
+    \begin{itemize}
+        \item $\mathcal{J}$ es inyectivo.
+
+        \item \[\overline{\mathcal{J}(X)}\subseteq (X^*)^*\implies \overline{\mathcal{J}(X)}\simeq \text{completación de }X\]
+
+        \item Cuando $\mathcal{J}$ es sobreyectivo, $X\simeq X^{**}$ es un espacio de Banach. que se llama \textbf{reflexivo}.
+    \end{itemize}
+ \end{fnote}
+
+ \begin{fexample}
+    (Espacio de dimensión finita) $L^p(\mu)$, $p\in (1,\infty]$.
+ \end{fexample}
