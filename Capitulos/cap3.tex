@@ -2463,3 +2463,164 @@ y
  \begin{fexample}
     (Espacio de dimensión finita) $L^p(\mu)$, $p\in (1,\infty]$.
  \end{fexample}
+
+ \section{Relaciones de Ortogonalidad}
+
+ \paragraph*{Notación:} $x\in X,f\in X^*$, $X$ normado. $f(x)\coloneqq \inn{f,x}$. $Y\subseteq X$, definimos el \textbf{aniquilador} de $Y$
+ 
+ \[Y^\perp\coloneqq \{f\in X^*:\inn{f,y}=0\quad\forall y\in Y\}\subseteq X^*\]
+
+ Similarmente, $Z\subseteq X^*$,
+
+ \[Z^\perp\coloneqq \{x\in X:\inn{f,x}=0\quad\forall f\in Z\}\subseteq X\]
+
+ Obviamente $Y^\perp$ es un subespacio cerrado de $X^*$ y $Z^\perp$ es un subespacio cerrado de $X$.
+
+ \begin{fexample}
+    Cuando $X$ es un espacio de Hilbert, $X^*\simeq X$ por Riesz. $Y\subseteq X$, el complemento ortogonal 
+
+    \[Y^\perp=\{x\in X:\inn{x,y}=0\quad\forall y\in Y\}\]
+
+    $\simeq$ aniquilador de $Y$.
+ \end{fexample}
+
+ \begin{fproposition}
+    Sea $Y\subseteq X$ subespacio del espacio normado $X$. Entonces, $(Y^\perp)^\perp=\overline{Y}$
+ \end{fproposition}
+
+ \begin{proof}
+    Es fácil ver que $Y\subseteq (Y^\perp)^\perp$.\\
+    Para demostrar la otra inclusión, suponga que $\overline{Y}\subsetneq (Y^\perp)^\perp$. Entonces existe $x\neq 0$, $x\in (Y^\perp)^\perp\setminus \overline{Y}$. Defina
+
+    \begin{align*}
+        f:\overline{Y}+\gen(x)&\to\K\\
+        y+\lambda x&\to \lambda
+    \end{align*}
+
+    Obviamente $f$ es un funcional lineal en $\overline{Y}+\gen(x)$ que satisface:
+
+    \[f(x)=1\]
+    \[f(y)=0\]
+
+    Además $f$ es acotado en $Z\coloneqq \overline{Y}+\gen(x)$:
+
+    \[f(y)=0\quad\forall y\in Y\]
+
+    Sea $z=y+\lambda x,\lambda\neq 0$. $\implies z\neq 0$.
+
+    \begin{align*}
+        |f(z)|&=|\lambda|=\frac{|\lambda|}{||z||}||z||\\
+        &=\frac{|\lambda|}{||y+\lambda x||}||z||=\frac{1}{||\frac{y}{\lambda}+x||}||z||\leq \frac{1}{dist(x,\overline{Y})}||z||
+    \end{align*}
+
+    Por Teorema de Hahn-Banach, podemos extender $f$ a todo $X$, y asumir que $f\in X^*$. Además,
+
+    \[\inn{f,y}=0\quad\forall y\in \overline{Y}\implies f\in \overline{Y}^\perp\supseteq Y^\perp\]
+
+    pero $f(x)\neq 0$. Por otro lado, 
+
+    \[x\in (Y^\perp)^\perp\implies \inn{g,x}=0\quad\forall g\in Y^\perp\]
+
+    En particular, $\inn{f,x}=0$, lo que es una contradicción.
+ \end{proof}
+
+ Suponga que $T\in \mathcal{B}(X,Y)$, $X,Y$ normados. Definimos el \textbf{operador adjunto/transpuesto}
+
+ \begin{align*}
+    T^*:Y^*&\to X^*\\
+    f&\to f\circ T\eqqcolon T^*(f)\\
+    \inn{T^*f,x}&=\inn{f,T(x)}\quad\forall x\in X
+ \end{align*}
+
+ Obviamente $T^*$ es lineal y es acotado:
+
+ \begin{align*}
+    |T^*f(x)|=|f(Tx)|\leq ||f||_{Y^*}||Tx||_{Y}&\leq ||f||_{Y^*}||T||_{\mathcal{B}(X,Y)}||x||_X\\
+    \implies ||T^*f||_{X^*}&\leq ||f||_{Y^*}||T||_{\mathcal{B}(X,Y)}\\
+    \implies ||T^*||_{\mathcal{B}(Y^*,X^*)}&\leq ||T||_{\mathcal{B}(X,Y)}\\
+    \implies ||T^*||&\in\mathcal{B}(Y^*,X^*)
+ \end{align*}
+
+ \begin{ftheorem}
+    La asignación 
+
+    \begin{align*}
+        \mathcal{B}(X,Y)&\to \mathcal{B}(Y^*,X^*)\\
+        T&\to T^*
+    \end{align*}
+
+    es una isometría lineal. Además,
+
+    \begin{enumerate}[label=(\alph*)]
+        \item $(\operatorname{Im} T)^\perp=\ker T^* (\subseteq Y^*)$
+        \item $(\ker T^*)^\perp=\overline{\operatorname{Im}T} (\subseteq Y)$
+        \item $(\operatorname{Im}T^*)^\perp=\ker T (\subseteq X)$
+    \end{enumerate}
+ \end{ftheorem}
+
+ \begin{proof}
+    Obviamente, $(\lambda T_1+T_2)^*=\lambda T_1^*+T_2^*$
+
+    \begin{align*}
+        ||T||&=\sup_{||x||_X=1}||Tx||_Y\\
+        &=\sup_{||x||_X=1}\left(\sup_{||f||_{Y^*}=1}|\inn{f,Tx}|\right)\\
+        &=\sup_{\substack{||x||_X=1\\||f||_{Y^*}=1}}|\inn{f,Tx}|=\sup|\inn{T^*f,x}|\\
+        &=\sup_{||f||_{Y^*}=1}\sup_{||x||_X=L}|T^*f(x)|\\
+        &=\sup_{||f||_{Y^*}=1}||T^*f||=||T^*||
+    \end{align*}
+
+    \begin{enumerate}[label=(\alph*)]
+        \item \begin{align*}
+            f\in (\operatorname{Im}T)^\perp&\iff \inn{T^*f,x}=\inn{f,Tx}=0\quad\forall x\in X\\
+            &\iff T^*f=0\iff f\in \ker T^*
+        \end{align*}
+
+        \item \begin{align*}
+            (\ker T^*)^\perp=((\operatorname{Im}T)^\perp)^\perp=\overline{\operatorname{Im}T}
+        \end{align*}
+
+        \item \begin{align*}
+            x\in (\operatorname{Im}T^*)&\iff \inn{T^*f,x}=0\quad\forall f\in Y^*\\
+            &\iff \inn{f,Tx}=0\quad\forall f\in Y^*\\
+            &\iff Tx=0\iff x\in \ker T 
+        \end{align*}
+    \end{enumerate}
+ \end{proof}
+
+ \section{Operadores Compactos}
+
+ \begin{fdefinition}
+    Sean $X,Y$ espacios de Banach.
+
+    \[B^X\coloneqq \{x\in X:||x||_X\leq 1\}\]
+
+    Decimos que un operador lineal $T:X\to Y$ es \textbf{compacto} si $\overline{T(B^X)}$ es compacto en $Y$.\\
+    $\iff$ toda sucesión en ${T(B^X)}$ tiene una subsucesión convergente en $Y$.\\
+    $\iff$ toda sucesión en $T(B^X)$ tiene una subsucesión de Cauchy.
+
+    Denotamos la clase de opradores \textbf{compactos} con $\mathcal{B}_c(X,Y)$
+ \end{fdefinition}
+
+ \begin{ftheorem}
+    $\mathcal{B}_c(X,Y)\subseteq \mathcal{B}(X,Y)$ es un subespacio cerrado. 
+
+    \[\{T_n\}\subseteq \mathcal{B}_c(X,Y)\text{ y }||T_n-T||\xrightarrow{n\to\infty} 0\implies T\in \mathcal{B}_c(X,Y)\]
+ \end{ftheorem}
+
+ \begin{proof}
+    $T$ compacto $\implies T$ es acotado. $\overline{T(B^X)}$ es compacto en $Y$.
+
+    \begin{align*}
+        \overline{T(B^X)}&\subseteq \bigcup_{n=1}^\infty B_n^Y\\
+        &\subseteq B_N^Y\quad\text{para algún $N\in \N$}\\
+        \implies ||Tx||\leq N\quad&\forall ||x||=1\implies ||T||\leq N
+    \end{align*}
+
+    $\mathcal{B}_c(X,Y)$ es un subespacio de $\mathcal{B}(X,Y)$:
+
+    \[T\text{ compacto}\implies \lambda T\text{ compacto}\]
+
+    $T_1,T_2$ compactos. Tome $\{x_n\}\in B^X$, entonces existe una subsucesión $\{x_{n_k}\}_k$: $T_1 x_{n_k}\to y_1$, $T_2x_{n_k}\to y_2$
+
+    \[\implies (T_1+T_2)x_{n_k}\to y_1+y_2\implies T_1+T_2\text{ es compacto}\]
+ \end{proof}
