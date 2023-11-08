@@ -213,6 +213,7 @@
 \DeclareMathOperator{\sgn}{sgn}
 \renewcommand{\Re}{\operatorname{Re}}
 \renewcommand{\Im}{\operatorname{Im}}
+\DeclareMathOperator{\im}{Im}
 
 % COMENTARIOS ---------------
 \newcommand{\com}[3]{{\colorbox{#2}{\bfseries\sffamily\scriptsize\textcolor{white}{#1}}}

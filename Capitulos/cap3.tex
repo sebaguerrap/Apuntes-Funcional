@@ -2608,19 +2608,173 @@ y
  \end{ftheorem}
 
  \begin{proof}
-    $T$ compacto $\implies T$ es acotado. $\overline{T(B^X)}$ es compacto en $Y$.
+    % $T$ compacto $\implies T$ es acotado. $\overline{T(B^X)}$ es compacto en $Y$.
+
+    % \begin{align*}
+    %     \overline{T(B^X)}&\subseteq \bigcup_{n=1}^\infty B_n^Y\\
+    %     &\subseteq B_N^Y\quad\text{para algún $N\in \N$}\\
+    %     \implies ||Tx||\leq N\quad&\forall ||x||=1\implies ||T||\leq N
+    % \end{align*}
+
+    % $\mathcal{B}_c(X,Y)$ es un subespacio de $\mathcal{B}(X,Y)$:
+
+    % \[T\text{ compacto}\implies \lambda T\text{ compacto}\]
+
+    % $T_1,T_2$ compactos. Tome $\{x_n\}\in B^X$, entonces existe una subsucesión $\{x_{n_k}\}_k$: $T_1 x_{n_k}\to y_1$, $T_2x_{n_k}\to y_2$
+
+    % \[\implies (T_1+T_2)x_{n_k}\to y_1+y_2\implies T_1+T_2\text{ es compacto}\]
+
+    Fije $\varepsilon>0$. Elige $N$ grande tal que 
+
+    \[||T-T_n||\leq \frac{\varepsilon}{2}\]
+
+    \[\overline{T_N(B^X)}\subseteq \bigcup_{k=1}^M B_{\varepsilon/2}(y_k)\]
+
+    \[T(B^X)\subseteq \bigcup_{k=1}^M B_{\varepsilon}(y_k)\]
+
+    Tomaremos $\varepsilon_n=\frac{1}{m}\to 0$. Sea $\{x_n\}\subseteq B^X$.
+
+    \begin{enumerate}
+        \item Extraemos una subsucesión $\{x_{n,1}\}$ tal que $Tx_{n,1}\subseteq B_{\varepsilon_1}(\bar y_1)$
+        
+        \item $\{x_{n,1}\}\to\{x_{n,2}\}$ tal que 
+        
+        \[Tx_{n,2}\subseteq B_{\varepsilon_2}(\bar y_2)\]
+
+        así hasta $\{x_{n,m}\}$ tal que
+
+        \[Tx_{n,m}\subseteq B_{\varepsilon_m}(\bar y_m)\]
+    \end{enumerate}
+
+    Definimos $\tilde x_m\coloneqq x_{m,m}$. $\{T\tilde x_m\}$ es una sucesión de Cauchy.
+ \end{proof}
+
+ \begin{fdefinition}
+    Un operador $T:X\to Y$ es de \textbf{rango finito} si $\im T$ tiene $\dimn$ finita.
+ \end{fdefinition}
+
+ \begin{fproposition}
+    Un operador $T:X\to Y$ de rango finito es compacto. Como consecuencia si $T=\lim_{n\to\infty}T_n$, $T_n$ de rango finito, entonces $T\in\mathcal{B}_c(X,Y)$
+ \end{fproposition}
+
+ \begin{proof}
+    $X\xrightarrow{T}\im T\simeq \K^m$, $m=\dimn \im T$.
 
     \begin{align*}
-        \overline{T(B^X)}&\subseteq \bigcup_{n=1}^\infty B_n^Y\\
-        &\subseteq B_N^Y\quad\text{para algún $N\in \N$}\\
-        \implies ||Tx||\leq N\quad&\forall ||x||=1\implies ||T||\leq N
+        \varphi:\K^m&\to\im T\\
+        (c_1,\ldots,c_m)&\to \sum_{i=1}^m c_ie_i
     \end{align*}
 
-    $\mathcal{B}_c(X,Y)$ es un subespacio de $\mathcal{B}(X,Y)$:
-
-    \[T\text{ compacto}\implies \lambda T\text{ compacto}\]
-
-    $T_1,T_2$ compactos. Tome $\{x_n\}\in B^X$, entonces existe una subsucesión $\{x_{n_k}\}_k$: $T_1 x_{n_k}\to y_1$, $T_2x_{n_k}\to y_2$
-
-    \[\implies (T_1+T_2)x_{n_k}\to y_1+y_2\implies T_1+T_2\text{ es compacto}\]
+    donde $\{e_i\}$ es una base de $\im T$. $\varphi$ es un isomorfismo continuo (con inversa continua). Por lo tanto, $\varphi^{-1}(\overline{T(B_x)})\subseteq K^m$ cerrado y acotado $\implies \varphi^{-1}(\overline{T(B_X)})$ es compacto en $K^m$. Por lo tanto, $\overline{T(B_X)}$ es compacto en $\im T\subseteq Y$.
  \end{proof}
+
+Q. Es un operador $T:\mathcal{B}_c(X,Y)$, límite de operadores de rango finito?.
+
+A. En general, no. Sí, en el caso cuandso $Y$ es un espacio de Hilbert.
+
+\begin{ftheorem}
+    $T\in \mathcal{B}_c(X,Y)$, $Y$ espacio de Hilbert. Entonces existen $T_n$ de rango finito tal que 
+
+    \[||T_n-T||\xrightarrow{n\to\infty}0\]
+\end{ftheorem}
+
+\begin{proof}
+    Fije $\varepsilon>0$. $\overline{T(B^X)}\subseteq \bigcup_{k=1}^M B_\varepsilon(y_k)$
+
+    \[F\coloneqq \gen(\{y_k\}_{k=1}^M)\overset{\text{cerr}}{\subseteq} Y\]
+
+    Tenemos $P_F:Y\to Y$.
+
+    \[T_\varepsilon\coloneqq P_F\circ T\quad\text{es de rango finito}\]
+
+    Ahora, cada $x\in B^x$ tiene imagen $Tx\in B_\varepsilon(y_k)\implies ||Tx-y_k||<\varepsilon$
+
+    \[||P_F(Tx)-P_F(y_k)||\leq ||Tx-y_k||\leq\varepsilon\]
+    \[||T_\varepsilon x-y_k||<\varepsilon\]
+
+    Concluimos que $\forall x\in B^X$,
+
+    \[||Tx-T_\varepsilon x||\leq ||Tx-y_k||+||T_\varepsilon x-y_k||\leq 2\varepsilon\]
+    \[\implies ||T-T_\varepsilon||\leq 2\varepsilon\]
+\end{proof}
+
+\begin{fexample}[Operadores de Hilbert-Schmidt]
+    $X_i\coloneqq(\Omega_i,\mu_i)$, $i=1,2$.
+
+    \[K(x_1,x_2)\in L^2_\R(X_1\times X_2)\]
+
+    Sea $f\in L^2(X_2)$. Defina
+
+    \[(T_k f)(x_1)\int_{\Omega_2}K(x_1,x_2)f(x_2)\,d\mu_2\]
+
+    $T_k$ es un operador $\mathcal{B}(L^2(X_2),L^2(X_1))$.
+
+    \begin{align*}
+        |T_k f(x_1)|^2&\leq \left(\int_{\Omega_2}|K(x_1,x_2)||f(x_2)|\,d\mu_2\right)^2\\
+        &\leq \underbrace{\int_{\Omega_2} |K(x_1,x_2)|^2\,d\mu_2}_{\text{finita } \mu_1-\text{c.t.p.}} ||f||_{L^2(X_2)}^2
+    \end{align*}
+
+    \[\int\left(\int K(x_1,x_2)^2\,d\mu_2\right)d\mu_1<\infty\]
+
+    \begin{align*}
+        \int_{\Omega_1}|T_k f(x_1)|^2\,d\mu_1(x_1)&\leq ||K||_{L^1(X_1\times X_2)}^2||f||_{L^2(X_2)}^2\\
+        \implies T_k f&\in L^2(X_1)
+    \end{align*}
+
+    y 
+
+    \[||T_k f||_{L^2(X_1)}\leq ||K||_{L^2(X_1\times X_2)}||f||_{L^2(X_2)}\]
+
+    Además, $\forall g\in L^2(X_1)$, 
+
+    \begin{align*}
+        \inn{T_k f,g}_1&=\int_{X_1\times X_2} K(x_1,x_2)f(x_2)g(x_1)\,d(\mu_1\times \mu_2)\\
+        &=\int_{X_2}\left(\underbrace{\int_{X_1}K(x_1,x_2)g(x_1)\,d\mu_1}_{T_{K^*}g, K^*(x_2,x_1)=K(x_1,x_2)}\right) f\,d\mu_2=\inn{f,T_{K^*}g}_2
+    \end{align*}
+
+    \[T_K^*=T_{K^*}\]
+
+    Asumimos que $L^2(X_1), L^2(X_2)$ son separables. Sean $\{e_m\}_m$ una base o.n. de $L^2(X_1)$, $\{f_n\}_n$ una base o.n. de $L^2(X_2)$. 
+
+    \[\{h_{mn}(x_1,x_2)\coloneqq e_m(x_1)f_n(x_2)\}_{mn}\text{ es una base o.n. de }L^2(X_1\times X_2)\]
+
+    (Por Fubini $h_{mn}$ es maximal)
+
+    \[K(x_1,x_2)=\sum_{m,n}a_{mn}e_m(x_1)f_n(x_2)\]
+    \[K_N(x_1,x_2)=\sum_{\substack{n\leq N\\m\leq n}}a_{mn}h_{mn}(x_1,x_2)\]
+    \[||K-K_N||_{L^2(X_1\times X_2)}^2=\sum_{m\text{ ó }n>N} |a_{mn}|^2\xrightarrow{n\to\infty} 0\]
+    \[||T_K-T_{K_N}=||T_{K-K_n}||\leq ||K-K_N||_{L^2(X_1\times X_2)}\]
+
+    $T_{K_N}$ es un operador de rango finito!
+
+    \begin{align*}
+        T_{K_N} f(x_1)&=\inn{K_N(x_1,\cdot),f}_{L^2(X_2)}\\
+        &=\inn{\sum_{\substack{m\leq N\\n\leq N}}a_{mn}e_m(x_1)f_n(x_2),f(x_2)}\\
+        &=\sum_{\substack{m\leq N\\n\leq N}}a_{mn}\inn{f_n,f}_{L^2(X_1)}e_m(x_1)
+    \end{align*}
+
+    \[\implies \im T_{K_N}\subseteq \gen(\{e_m\}_{m=1}^N)\]
+\end{fexample}
+
+\begin{fproposition}
+    Composición de un operador compacto y un operador continuo es compacto.
+
+    \[X\xrightarrow[\text{compacto}]{T}Y\xrightarrow[\text{continuo}]{S} Z\]
+
+    $S\circ T$ es compacto.
+
+    \[Z\xrightarrow[\text{continuo}]{S}X\xrightarrow[\text{compacto}]{T} Y\]
+\end{fproposition}
+
+\begin{proof}
+    $\{x_n\}\subseteq B^X$. Por composición,
+
+    \[Tx_{n_k}\to y\implies (S\circ T)(x_{n_k})\to Sy\text{ converge}\implies S\circ T\in\mathcal{B}_c(X,Z)\]
+
+    Por otro lado,
+    
+    \[\{z_n\}\subseteq B^Z\implies x_n\coloneqq S z_n\in B_{||S||}^X\implies \frac{x_n}{||S||}\in B^X\implies T(\frac{x_{n_k}}{||s||})\to \frac{y}{||s||}\]
+
+    \[\implies T\circ S(z_{n_k})\to y\]
+    \[\implies T\circ S\in \mathcal{B}_c(Z,Y)\]
+\end{proof}
