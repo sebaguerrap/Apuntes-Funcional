@@ -314,3 +314,203 @@ A. En general, no. Sí, en el caso cuandso $Y$ es un espacio de Hilbert.
    \[\implies T\circ S(z_{n_k})\to y\]
    \[\implies T\circ S\in \mathcal{B}_c(Z,Y)\]
 \end{proof}
+
+\begin{ftheorem}[Schauder]
+   $T\in \mathcal{B}_c(X,Y)\iff T^*\in\mathcal{B}_c(Y^*,X^*)$
+\end{ftheorem}
+
+Recuerden,
+
+\begin{ftheorem}[Arzelà-Ascoli]
+   $K\rightarrow$ espacio métrico \textbf{compacto}. $\mathcal{C}\subseteq C(K)$ una coleccion de funciones continuas que satisface:
+
+   \begin{enumerate}
+      \item (Acotamiento) $||f||_{C(K)}\leq M$, $\forall f\in \mathcal{C}$ para una constante $M>0$.
+      \item (Equicontinuidad) $\forall \varepsilon>0,\exists \delta>0$ tal que $\forall f\in\mathcal{C}$ 
+
+      \[|f(x)-f(y)\leq \varepsilon\]
+
+      cuando $|x-y|<\delta$.
+   \end{enumerate}
+
+   Entonces $\mathcal{C}$ existe $\{f_n\}\subseteq \mathcal{C}$, $f\in\mathcal{C}$ tal que $f_n\to f$ en $C(K)$.
+\end{ftheorem}
+
+\begin{proof}[Demostración del Teorema de Schauder (\ref{theo:4.2.5})]
+   $\impliedby:$ En ayudantía
+
+   $\implies$: Sea $\{f_n\}\subseteq B^{Y^*}$. Queremos demostrar que existe una subsucesión $\{f_{n_k}\}$ tal que $T^* f_{n_k}$ es Cauchy.
+
+   Sea $K\coloneqq \overline{T(B^X)}$ es compacto en $Y$.
+
+   \[\mathcal{C}=\{f_n\big\rvert_{K}:K\to\K\}\]
+
+   es una colección de funciones continuas.
+
+   \begin{enumerate}
+      \item (Acotamiento) 
+      
+      \begin{align*}
+         |f_n(x)|\leq \underbrace{||f_n||}_{\leq 1}\cdot||x||\leq ||x||\leq M
+      \end{align*}
+
+      porque el compacto $K$ es acotado.
+
+      \item (Equicontinuidad)
+      
+      \begin{align*}
+         |f_n(x)-f_n(y)|\leq ||f_n||\cdot ||x-y||\leq ||x-y||
+      \end{align*}
+
+      (Equi-Lipschitz)
+   \end{enumerate}
+
+   Por Teorema de Arzelà-Ascoli, existe una subsucesión $\{f_{n_k}\}\in B^{Y^*}$ y una función $f\in C(K)$ tal que 
+
+   \[f_{n_k}\to f\in C(K)\]
+   \[f_{n_k}(y)\to f(y)\quad \text{uniformemente en }y\in K\]
+   \[\iff f_{n_k}(Tx)\to f(Tx)\quad\text{uniformemente en }x\in B^X\]
+   \[\implies f_{n_k}(Tx)-f_{n_l}(Tx)\xrightarrow{k,l\to\infty} 0\quad\text{uniformemente en }x\in B^X\]
+
+   \begin{align*}
+      \inn{f_{n_k},Tx}-\inn{f_{n_l},Tx}\to 0\quad\text{uniformemente en }x\in B^X\\
+      \inn{T^* f_{n_k},x}-\inn{T^*f_{n_l},x}\to 0\quad\text{uniformemente en }x\in B^X\\
+      \inn{T^*(f_{n_k}-f_{n_l}),x}\to 0
+   \end{align*}
+
+   \[||T^*f_{n_k}-T^* f_{n_l}||_{X^*}=\sup_{x\in B^X}||\inn{T^*(f_{n_k}-f_{n_l}),x}||\xrightarrow{r,l\to\infty}0\]
+\end{proof}
+
+\section{La Teoría de Riesz-Fredholm}
+
+\begin{ftheorem}[Alternativa de Fredholm]
+   Sea $X$ un espacio de Banach, $T\in \mathcal{B}_c(X,X)$. Entonces,
+
+   \begin{enumerate}[label=\alph*)]
+      \item $\ker (I-T)$ tiene $\dimn<\infty$.
+      \item $\im (I-T)$ es cerrado en $X$ e $\im(I-T)=\ker (I-T^*)^\perp$
+      \item $\ker(I-T)=\{0\}\iff \im(I-T)=X$
+      \item $\dimn\ker(I-T)=\dimn\ker(I-T^*)$
+   \end{enumerate}
+\end{ftheorem}
+
+\begin{fnote}
+   La alternativa de Fredholm concierne la solubilidad de la ecuación
+
+   \begin{align*}
+      (I-T)u&=f\\
+      u-Tu&=f
+   \end{align*}
+
+   Dice:
+
+   \begin{itemize}
+      \item o $\forall f\in X$, tiene una única solución $u$.
+      \item o la ecuación \textbf{homogénea}
+      
+      \[u-Tu=0\]
+
+      tiene $k$ soluciones linealmente independientes, $k<\infty$. $k=\dimn\ker (I-T)$. En este caso, la ecuación \textbf{no homogénea} 
+
+      \[u-Tu=f\]
+
+      se puede resolver solo cuando $f\in \im (I-T)=\ker(I-T^*)^\perp$.\\
+      $\iff \ell(f)=0\quad \forall \ell\in \underbrace{\ker(I-T^*)}_{\dimn=k}$
+
+      Es decir, se satisfacen las condiciones de ortogonalidad.
+   \end{itemize}
+\end{fnote}
+
+\begin{fnote}
+   $\emph{c)} \implies$ inyectividad implica sobreyectividad de $I-T$.
+
+   Hay operadores acotados en $\ell^2$:
+
+   \begin{align*}
+      S:(x_1,x_2,\ldots)\to(x_2,x_2,\ldots)
+   \end{align*}
+
+   operador shift es sobreyectivo pero no inyectivo.
+
+   \[\tilde S:(x_1,x_2,\ldots)\to (0,x_1,\ldots)\]
+
+   es inyectivo pero no es sobreyectivo.
+\end{fnote} 
+
+Necesitaremos los siguientes resultados auxiliares
+
+\begin{flemma}[Riesz]
+   Sea $X$ un espacio normado y sea $F\overset{\text{cerr}}{\subsetneq} X$. Entonces $\forall \varepsilon>0$, $\exists u\in X$, $||u||=1$ tal que 
+
+   \[d(u,F)\geq 1-\varepsilon\]
+   \[||u-f||\geq 1-\varepsilon\quad \forall \varepsilon\in F\]
+\end{flemma}
+
+\begin{proof}
+   Sea $v\in X\setminus F$
+   \[\implies d\coloneqq d(v,F)>0\quad (\text{F es cerrado})\]
+
+   Elija $v_0\in F$ tal que 
+
+   \[d\leq ||v-v_0|\leq \frac{d}{1-\varepsilon}\]
+
+   Ahora, $u\coloneqq \frac{v-v_0}{||v-v_0||}$ satisface el Lema pues 
+
+   \begin{align*}
+      ||u-f||&=||\frac{v-v_0-f||v-v_0||}{||v-v_0||}\\
+      &=\frac{1}{||v-v_0||}\underbrace{||v-(v_0+f||v-v_0||)||}_{\geq d}\\
+      &\geq \frac{d}{||v-v_0||}\geq 1-\varepsilon
+   \end{align*}
+\end{proof}
+
+\begin{fcorollary}
+   Sea $X$ un espacio normado, y suponga que $B^X$ es \textbf{compacta}. Entonces $\dimn X<\infty$.
+\end{fcorollary}
+
+\begin{proof}
+   Suponga que $\dimn X=\infty$. Sucesivamente construimos vectores $u_n\in X$
+
+   \[||u_n||=1,F_{n-1}\coloneqq \gen(\{u_k\}_{k=1}^{n-1})\]
+
+   tal que 
+
+   \[d(u_n,F_{n-1})\geq \frac{1}{2}\]
+
+   Entonces $F_{n-1}\subseteq F_n$ y cuando $m>n$
+
+   \[||u_m-u_n||\geq d(u_m,F_n)\geq \frac{1}{2}\]
+
+   En particular, $\{u_m\}$ no tiene una subsucesión que converge. Lo que es una contradicción porque la bola unitaria es compacta por suposición.
+\end{proof}
+
+\begin{fnote}
+   $T:X\to Y$ compacto. $X_1\overset{\text{cerr}}{\subseteq} X$, $X,Y$ Banach.
+   \[\implies T\big\rvert_{X_1}:X_1\to Y\quad\text{es compacto}\]
+\end{fnote}
+
+\begin{proof}[Demostración del Teorema de Alternativa de Fredholm]
+   \begin{enumerate}[label=\alph*)]
+      \item $X_1=\ker(I-T)\overset{\text{cerr}}{\subseteq} X$
+      \[\implies T\big\rvert_{X_1}:X_1\to X\]
+
+      es compacto. Por otra parte, $T\big\rvert_{X_1}=\operatorname(id)\big|_{X_1}$ ya que 
+
+      \[\forall x\in \ker(I-T), (I-T)x=0\iff Tx=x\]
+
+      Luego, $B^X$ es compacta $\implies \dimn X_1<\infty$ 
+
+      \item Si demostramos que $\im(I-T)$ es cerrada, $\implies \im(I-T)=\overline{\im(I-T)}=\ker(I-T^*)^\perp$. Sea 
+      
+      \[f_n\coloneqq (I-T)u_n\to f\in X\]
+
+      y queremos demostrar que $f\in \im(I-T)$
+
+      \[d_n\coloneqq d(u_n,\ker(I-T))\]
+
+      ya que $\dimn\ker(I-T)<\infty$, entonces 
+
+      \[d_n\coloneqq d(u_n,\ker(I-T))=||u_n-v_n||\]
+
+      $v_n\in \ker (I-T)$. Afirmamos que $\sup_n d_n<\infty$
+   \end{enumerate}
+\end{proof}
