@@ -511,6 +511,132 @@ Necesitaremos los siguientes resultados auxiliares
 
       \[d_n\coloneqq d(u_n,\ker(I-T))=||u_n-v_n||\]
 
-      $v_n\in \ker (I-T)$. Afirmamos que $\sup_n d_n<\infty$
+      $v_n\in \ker (I-T)$. Afirmamos que $\sup_n d_n\leq M$. Suponga que (reindexando) $d_n\nearrow \infty$, $w_n\coloneqq \frac{u_n-v_n}{d_n}$, $||w_n||=1$
+
+      \begin{align*}
+         (I-T)w_n =\frac{1}{d_n}(\underbrace{(I-T)u_n}_{f_n}-\cancelto{0}{(I-T)v_n})\to 0\quad (f_n\to f\text{ es acotado})
+      \end{align*}
+
+      \[T w_n\to 0\quad \text{por compacidad, reindexando}\]
+
+      \[\implies w_n\to z\quad\text{con }||z||=1\]
+      \[\implies (I-T)z=\lim_{n\to\infty} (I-T)w_n=0\implies z\in \ker (I-T)\]
+
+      Esto no es posible ya que 
+
+      \[w_n-z=\frac{u_n-v_n}{d_n}-z=\frac{u_n-(v_n+zd_n)}{d_n}\]
+      \[||\frac{u_n-(v_n+zd_n)}{d_n}=\frac{1}{d_n}||\overbrace{u_n-(\underbrace{v_n+zd_n}_{\ker (I-T)})}^{\geq d_n}||\geq 1\]
+
+      Entonces 
+
+      \[||u_n-v_n||=d_n\leq M\]
+
+      Reindexados, por compacidad 
+
+      \[T(u_n-v_n)\to y\]
+      \[(I-T)(u_n-v_n)=(I-T)u_n=f_n\to f\]
+      \[u_n-v_n\to f+y\]
+      \[(I-T)(u_n-v_n)\to (I-T)(f+y)\]
+
+      Como $(I-T)(u_n-v_n)\to f$ se tiene que 
+
+      \[(I-T)(f+y)=f\]
+      \[\implies f\in \im(I-T)\]
+
+      \item $\implies$: Por contradicción, asuma que $X_1\coloneqq (I-T)X\subsetneq X$. $X_1$ es cerrado en $X\implies X_1$ es Banach. Además, $T\big\rvert_{X_1}:X_1\to X_1$ es compacto. Por inyectividad de $T$, $X_2\coloneqq (I-T)(X_1)\subsetneq X_1$. De esta manera, producimos una sucesión anidada 
+      \[X\supsetneq X_1\supsetneq X_2\supsetneq \cdots\supsetneq X_k=(I-T)^k X\]
+
+      de cerrados.
+
+      Si $X_2=X_1\implies\forall x_1\in X_1$  existe $x\in X_1$ tal que 
+
+      \[(I-T)x=x_1=(I-T)x_0\quad \text{algún }x_0\in X\]
+
+      Si $x_0\in X\setminus X_1$, no existe $x_0\in X_1$ tal que 
+
+      \[(I-T)x=(I-T)x_0\]
+
+      Aplicando el Lema de Riesz, obtenemos $u_n\in X_n$, $||u_n||=1$ tal que 
+
+      \[d(u_n,x_{n+1})\geq \frac{1}{2}\]
+
+      \[T u_n-T u_m=\underbrace{-(I-T)u_n}_{\in X_{n+1}\subseteq X_{m+1}}+\underbrace{(I-T)u_m}_{\in X_{m+1}}+\underbrace{u_n}_{\in X_n\subseteq X_{m+1}}-u_m,n>m\]
+      \[=-u_m+v\underbrace{\in X_{m+1}}\]
+      \[\implies ||T u_n-Tu_m||\geq \frac{1}{2}\]
+
+      $\implies\{T u_n\}$ no contiene una subsucesión de Cauchy $\implies$ contradicción a la compacidad de $T$.
+
+      $\impliedby$: 
+
+      \[\im (I-T)=X\implies \ker(I-T^*)=\im (I-T)^\perp=\{0\}\]
+      \[T^*\text{ es compacto}\implies (I-T^*)(X^*)=X^*\]
+      \[\implies \ker (I-T)=\im (I-T^*)^\perp=(X^*)^\perp=\{0\}\]
+
+      \item $k\coloneqq \dimn \ker (I-T)<\infty$, $k^*\coloneqq \dimn\ker (I-T^*)<\infty$. Vamos a demostrar que $k^*\leq k$. $X=\ker (I-T)\oplus W$. Podemos definir una proyección continua usando $\{e_i\}_{i=1}^k$ base de $\ker (I-T)$ y $\{\bar f_i\}_{i=1}^k \inn{\bar f_i,e_j}=\delta_{ij}$ 
+      
+      \begin{align*}
+         P:X&\to \ker (I-T)\\
+         x&\to \sum \inn{\bar f_i,x}e_i
+      \end{align*}
+
+      Se puede complementar $\ker (I-T^*)$ en $X^*$. Sea $\{\ell_i\}_{i=1}^{k^*}$ una base de $\ker (I-T^*)$. $0=\inn{(I-T^*)(\ell_i),x}=\inn{\ell_i,(I-T)x}=0$
+
+      $\implies$ los $\ell_i$ aniquilan $\im I-T$. Existen vectores $\{x_i\}_{i=1}^{k^*}\subseteq X$ tal que 
+
+      \[\ell_i(x_j)=\delta_{ij}\]
+      \[\iff (\ell_1,\ldots,\ell_{k^*}):X\to \K^{k^*}\]
+
+      es sobreyectivo. $x_1\to (1,0,\ldots), x_2\to (0,1,0,\ldots)$. Si no existe $ \alpha\neq 0\in \K^{k^*}$ tal que 
+
+      \[\alpha\cdot (\ell_1,\ldots,\ell_{k^*})=0\]
+
+      $\alpha_i f_i=0$. $\sum_{i=1}^{k^*} \alpha_i\ell_i=0$ no es posible pues $\ell_i$ son Linealmente Independientes.
+
+      Sea $F\coloneqq \gen(\{x_i\}_{i=1}^{k^*})$ Resulta ser el caso que 
+
+      \[X=\im (I-T)\oplus F\]
+
+      ningún $x_i\in \im (I-T)$. Si $x_i\in \im (I-T)\implies \ell_j(x_i)=0$ $\forall j=1,\ldots,k$.
+
+      Queremos demostrar que $k^*\leq k$. Suponga que $k< k^*$. Tenemos una aplicación lineal 
+
+      \[\Lambda:\ker (I-T)\to \underbrace{F}_{\dimn=k^*<k}\]
+
+      que es inyectiva pero no sobreyectiva.
+
+      Defina
+
+      \[S\coloneqq \underbrace{T}_{\text{compacto}}+\underbrace{\Lambda\circ P}_{\text{rango finito}}\]
+
+      es compacto. Afirmamos que 
+
+      \[\ker (I-S)=\{0\}\]
+
+      Si $u\in \ker(I-S)$ 
+
+      \[0=(I-T)u-\Lambda\circ Pu\] 
+      \[\ell_i(0)=\ell_i(I-T)u-\ell_i(\Lambda\circ Pu)\]
+      \[\implies \ell_i(\Lambda\circ Pu)=0\quad \forall i=1,\ldots,k^*\]
+      \[\implies \Lambda\circ Pu=0\implies (I-T)u=0\]
+      \[u\in \ker (I-T)\implies Pu=u\]
+      \[\implies 0=\Lambda Pu=\Lambda u\implies u=0\]
+
+      por la inyectividad de $\Lambda$. Por parte $\emph{c)}$ $(I-S)X=X$. En particular, podemos resolver 
+
+      \[(I-T)-\Lambda Pu=v\]
+
+      para $v\in F$ tal que $v\notin \im \Lambda$.
+
+      $\exists \ell \in \gen(\ell_i)$ tal que $\ell(v)\neq 0$ y $\ell(\im \Lambda)=0$.
+
+      \[\implies 0=\Lambda v\]
+
+      contradicción. Entonces $k^*\leq k$. 
+
+      \[\dimn \ker (I-T^*)\leq \dimn(I-T)\]
+
+      Aplicando esto a $T^*$, 
+      \[\dimn\ker (I-T^{**})\leq \dim\ker (I-T^*)\leq \dimn\ker (I-T)\]
+      Por otro lado, $\ker (I-T^{**})\supseteq \ker (I-T) \implies k=k^*$.
    \end{enumerate}
 \end{proof}
