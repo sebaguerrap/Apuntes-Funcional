@@ -640,3 +640,162 @@ Necesitaremos los siguientes resultados auxiliares
       Por otro lado, $\ker (I-T^{**})\supseteq \ker (I-T) \implies k=k^*$.
    \end{enumerate}
 \end{proof}
+
+\section{Nociones básicas de la teoría espectral}
+
+\begin{fdefinition}
+   $\lambda\in\K$ es \textbf{autovalor} de 
+
+   \[T:X\to X\]
+
+   con $X$ Banach, si $\exists x\neq 0$ tal que 
+
+   \[T\lambda=\lambda x\]
+\end{fdefinition}
+
+\begin{fnote}
+   Cuando $\dimn X<\infty$, $\lambda$ es autovalor $\iff \ker (T-\lambda I)\neq \{0\}\iff T-\lambda I$ no es uno a uno.
+   \[\iff T-\lambda I\quad\text{no es sobre}\]
+
+   Esto último no es verdad en dimensión infinita.
+\end{fnote}
+
+\begin{fexample}
+   \begin{align*}
+      T:\ell^2&\to \ell^2\\
+      (x_1,\ldots)&\to (0,x_1,\ldots)
+   \end{align*}
+
+   ¿Es $\lambda=0$ autovalor de $T$?
+
+   \[Tx=0\implies x=0\]
+
+   $\implies$ no hay $x\neq 0$ tal que $Tx=0x$.
+
+   \[T-\lambda I=T-0I=T\]
+
+   tampoco es sobre.
+\end{fexample}
+
+\begin{fdefinition}
+   El \textbf{espectro}
+
+   \[\sigma(T)\coloneqq \{\lambda\in \K:T-\lambda I\text{ no es invertible}\}\supseteq \text{conjunto de autovalores}(\sigma_p(T))\]
+
+   \[\lambda\in \sigma(T)\iff \begin{cases}
+      \text{o }\lambda&\text{ es autovalor}\\
+      \text{o }T-\lambda I&\text{ no es sobre}
+   \end{cases}\]
+
+   \[\rho(T)=\K\setminus\sigma(T)=\{\lambda\in\K:T-\lambda I\text{ es invertible}\}\]
+
+   es el conjunto \textbf{resolvente}
+\end{fdefinition}
+
+$\lambda\in\rho(T),T-\lambda I$ es invertible y $(T-\lambda I)^{-1}$ es continuo por el teorema de la aplicación abierta.
+
+\begin{fexample}
+   Para el operador del ejemplo anterior.
+
+   \[o\notin \sigma_p(T)\]
+   \[o\in \sigma(T)\]
+\end{fexample}
+
+\begin{ftheorem}
+   $T\in \mathcal{B}(X,X)$ entonces $\sigma(T)$ es un subconjunto \textbf{compacto} de $\K$. Además,
+
+   \[\sigma(T)\subseteq \{\lambda\in\K:|\lambda|\leq ||T||\}\]
+\end{ftheorem}
+
+\begin{proof}
+   Sea $\lambda\in\K$, $|\lambda|>||T||$. Demostraremos que $\lambda\in\rho(T)$.
+
+   \[(\lambda I-T)u=f\]
+
+   (Serie de Neumann)
+
+   \[(\lambda I-T)u=f\]
+   \[\left(I-\underbrace{\frac{T}{\lambda}}_{\tilde T}\right)u=\frac{f}{\lambda}\]
+
+   \[u=(I-\tilde T)^{-1}\frac{f}{\lambda}=\left(\sum_{k=0}^\infty \tilde T^k\right)\left(\frac{f}{\lambda}\right)\]
+
+   converge $||\tilde T||=\frac{1}{|\lambda|}||T||<1$.
+
+   $\sigma(T)$ es cerrado $\iff\rho(T)$ es abierto. $\lambda_0\in \rho(T)$ y queremos demostrar que cuando $|\lambda-\lambda_0|$ es suficientemente pequeño $\lambda I-T$ es ivertible.
+
+   \begin{align*}
+      \lambda I-T=\underbrace{(\lambda_0I-T)}_{S \text{ es isom con inversa cont}}+(\lambda+\lambda_0)I=S(I+S^{-1}(\lambda-\lambda_0))=SU
+   \end{align*}
+
+   Cuando $|\lambda-\lambda_0|$ es suficientemente pequeño, $\bar S=S^{-1}(\lambda-\lambda_0)$ tiene norma $||\bar S||<1$. Por la serie de Neumann, $U=I+\bar S$ es un isomorfismo con inversa continua.
+\end{proof}
+
+\begin{ftheorem}
+   Sea $T\in\mathcal{B}_c(X,X)$ en espacio de Banach $X$, $\dimn X=\infty$. Entonces 
+
+   \begin{enumerate}[label=(\alph*)]
+      \item $0\in \sigma(T)$
+      \item $\sigma(T)\setminus\{0\}=\sigma_p(T)\setminus\{0\}$ y cada $\lambda\neq 0$,
+      
+      \[\mathcal{N}_T(\lambda)\coloneqq\ker (T-\lambda I)\]
+
+      tiene dimensión finita
+
+      \item $\forall \delta>0$ existen solo un número finito de valores distintos $\lambda\in \sigma(T)$ tal que $|\lambda|\geq \delta$.
+   \end{enumerate}
+\end{ftheorem}
+
+\begin{fcorollary}
+   $T\in\mathcal{B}_c(X,X)\implies \sigma(T)$ es \textbf{discreto}. i.e. o $\sigma(T)$ es finito o contablemente $\infty$. Esto último ocurre cuando $\sigma(T)\setminus\{0\}=\{\lambda_n\}_{n\in\N}$ y $\lambda_n\to 0$
+\end{fcorollary}
+
+\begin{proof}[Demostración del teorema \ref{theo:4.4.2}]\hfill
+   \begin{enumerate}[label=\alph*)]
+      \item Suponga que $0\notin\sigma(T)$. $\implies T=T-0I$ es invertible con $T^{-1}$ continua.
+      \[\implies I=T\circ T^{-1}\text{ es compacto}\]
+
+      $\implies \dimn X<\infty$. Contradicción.
+
+      \item Sea $\lambda\in\sigma(T)\setminus\{0\}$. $\implies T-\lambda I$ no es invertible. $\implies \frac{T}{\lambda}-I$ no es invertible.
+      
+      \[\overset{?}{\implies} \ker \left(\frac{T}{\lambda}-I\right)\neq\{0\}\quad(\implies \lambda\in\sigma_p(T))\]
+
+      Por la alternativa de Fredholm, si $\ker\left(\frac{T}{\lambda}-I\right)=\{0\}\iff \frac{T}{\lambda}-I$ es sobre $\iff \frac{T}{\lambda}I$ es invertible.
+
+      \[\mathcal{N}_\lambda(T)=\ker(T-\lambda I)=\ker\left(\frac{T}{\lambda}-I\right)\]
+
+      es de dimensión finita ya que $\frac{T}{\lambda}$ es compacto.
+
+      \item Suponga que hay un número infinito de autovalores $\lambda_n$ distintos con $|\lambda_n|\geq\delta\iff \frac{1}{|\lambda_n|}\leq \frac{1}{\delta}$.
+      
+      \[Tx_n=\lambda_n x_n,||x_n||=1\]
+
+      Los $\{x_n\}_{n\in\N}$ son linealmente independientes (álgebra lineal). Sea
+
+      \[F_n\coloneqq \gen(x_1,\ldots,x_n)\]
+
+      Por el lema de Riesz existen $u_n\in F_n$, $||u_n||=1$ tal que 
+
+      \[d(u_n,F_{n-1})\geq \frac{1}{2}\]
+
+      Notamos que $\frac{u_n}{\lambda_n}$ es una sucesión \textbf{acotada}.
+
+      \[\implies \{\frac{T u_n}{\lambda_n}\}\]
+
+      debería contener una subsucesión de Cauchy. Además, $u_n-\frac{Tu_n}{\lambda_n}\in F_{n-1}$ 
+
+      \[u_n=\sum_{k=1}^n c_k x_k\]
+      \[\implies T u_n=\sum_{k=1}^n c_k T x_k=\sum_{k=1}^n c_k\lambda_kx_k=\sum_{k=1}^{n-1}c_k\lambda_k+c_n\lambda_nx_n\]
+
+      \[\lambda_n u_n=\left(\sum_{k=1}^{n-1} c_k\lambda_k x_k\right)+c_n\lambda_n x_n\]
+
+      $=$ combinación lineal de $x_1,\ldots,x_{n-1}$. $m\geq n$
+
+      \begin{align*}
+         \frac{T u_m}{\lambda_m}-\frac{T u_n}{\lambda_n}&=\underbrace{\frac{T u_m}{\lambda_m}-u_m}_{\in F_{m-1}}-\underbrace{\frac{T u_n}{\lambda_n}}_{F_n\subseteq F_{m-1}}+u_m\\
+         &=u_m-x,\quad x\in F_{m-1}
+      \end{align*}
+
+      \[\implies \left|\left| \frac{T u_m}{\lambda_m}-\frac{T u_n}{\lambda_n}\right|\right|\geq d(u_m, F_{m})\geq \frac{1}{2}\]
+   \end{enumerate}
+\end{proof}
