@@ -799,3 +799,211 @@ $\lambda\in\rho(T),T-\lambda I$ es invertible y $(T-\lambda I)^{-1}$ es continuo
       \[\implies \left|\left| \frac{T u_m}{\lambda_m}-\frac{T u_n}{\lambda_n}\right|\right|\geq d(u_m, F_{m})\geq \frac{1}{2}\]
    \end{enumerate}
 \end{proof}
+
+\section{Teoría espectral de operadores autoadjuntos}
+
+$X=H$ espacio de Hilbert.
+
+Sea $T:H_1\to H_2$, $H_i$ espacio de Hilbert, $T\in\mathcal{B}(H_1,H_2)$.
+
+\begin{align*}
+   T^*:H_2^*&\to H_1^*\\
+   \ell&\to\ell\circ T
+\end{align*}
+
+\underline{Riesz}: $\ell=\inn{\cdot,y}_{2}$
+\[T^*\ell=\inn{\cdot,T^*y}_1\]
+
+$T^*$ induce un operador lineal
+
+\begin{align*}
+   T^*:H_2&\to H_1
+\end{align*}
+
+$T^*\ell(x)=\inn{x,T^*y}_1=\ell\circ T(x)=\inn{Tx,y}_2$.
+
+\[\inn{Tx,y}_2=\inn{x,T^*y}_1\]
+
+\underline{Propiedades}
+
+\begin{enumerate}
+   \item $(T^*)^*=T$
+   \item $||T^*||=||T||$
+   \item $(ST)^*=T^*S^*$
+   \item Relaciones de ortogonalidad:
+   \begin{enumerate}
+      \item $(\im T)^\perp=\ker T^*$
+      \item $(\ker T^*)^\perp=\overline{\im T}$
+      \item $(\im T^*)^\perp=\ker T$
+      \item $(\ker T)^\perp=\overline{\im T^*}$
+   \end{enumerate}
+\end{enumerate}
+
+\begin{fdefinition}
+   Un operador $A:H\to H$ es autoadjunto si $A^*:H\to H$ satisface $A^*=A$:
+
+   \[\inn{Ax,y}=\inn{x,Ay}\quad\forall x,y\in H\]
+\end{fdefinition}
+
+\begin{fproposition}
+   Sea $A\in \mathcal{B}(H,H)$ autoadjunto. Entonces
+
+   \[\inn{Ax,x}\in\R\]
+
+   En particular, $\sigma_p(A)\subseteq \R$.
+
+   Además $\mathcal{N}_{\lambda_1}(A)\perp\mathcal{N}_{\lambda_2}(A)$ cuando $\lambda_1\neq \lambda_2$.
+\end{fproposition}
+
+\begin{proof}
+   \begin{align*}
+      \overline{\inn{Ax,x}}=\inn{x,Ax}=\inn{Ax,x}
+   \end{align*}
+   \[\implies \inn{Ax,x}\in\R\]
+
+   \[x\in \mathcal{N}_{\lambda}(A)\implies Ax=\lambda x\]
+
+   \[\lambda ||x||^2=\inn{Ax,x}\in\R\implies \lambda\in\R\]
+
+   $x_i\in\mathcal{N}_{\lambda_i}(A),\lambda_1\neq\lambda_2\in\R$
+
+   \begin{align*}
+      (\lambda_1\lambda_2)\inn{x_1,x_2}&=\lambda_1\inn{x_1,x_2}-\lambda_2\inn{x_1,x_2}\\
+      &=\inn{\lambda_1x_1,x_2}-\inn{x_1,\lambda_2x_2}\\
+      &=\inn{Ax_1,x_2}-\inn{x_1,Ax_2}=0
+   \end{align*}
+
+   $\inn{x_1,x_2}=0$ pues $\lambda_1\neq \lambda_2$
+\end{proof}
+
+\begin{ftheorem}
+   Sea $A\in\mathcal{B}(H,H)$ autoadjunto. Entonces 
+
+   \[\sigma(A)\subseteq \R\]
+\end{ftheorem}
+
+\begin{flemma}
+   Sea $A\in\mathcal{B}(H,H)$ autoadjunto. \[\lambda\in\rho(A)\iff\exists C>0:||(A-\lambda I)x||\geq C||x||\quad\forall x\in H\]
+\end{flemma}
+
+\begin{proof}
+   $\implies:$ $\lambda\in\rho(A)\implies A-\lambda I$ es biyectivo. $\implies (A-\lambda I)^{-1}$ es continuo (Teorema de aplicación abierta)
+
+   \[\implies ||(A-\lambda I)x||\geq C||x||\]
+
+   donde
+
+   \[C=\frac{1}{||(A-\lambda I)^{-1}||}\]
+
+   $\impliedby$: \begin{enumerate}[label=\alph*)]
+      \item $A-\lambda I$ es inyectivo.
+      
+      \[(A-\lambda I)x=0\implies ||x||=0\implies x=0\]
+
+      \item $A-\lambda I$ es sobreyectivo.
+      \begin{enumerate}
+         \item $(A-\lambda I)H$ es denso 
+         \item $(A-\lambda I)H$ es cerrado
+      \end{enumerate}
+      \begin{enumerate}
+         \item Si $\overline{(A-\lambda I)H}\subsetneq H$
+         
+         \[\implies \exists x_0\neq 0,x_0\perp \im(A-\lambda I)\]
+         \[\forall x\in H 0=\inn{x_0,(A-\lambda I)x}=\inn{x_0,Ax}-\overline{\lambda}\inn{x_0,x}\]
+         \[=\inn{(A-\overline{\lambda}I)x_0,x}\implies (A-\overline{\lambda}I)x_0=0\]
+         
+         $\implies \overline{\lambda}$ es autovalor de $A\implies \overline{\lambda}=\lambda\in \R$.
+
+         \[\implies (A-\lambda I)x_0=0\]
+
+         contradicción por la inyectividad de $A-\lambda I$.
+
+         \item $yn=(A-\lambda I)x_n\to y$
+         
+         \[\implies \{(A-\lambda I)x_n\}\text{ es Cauchy}\]
+         \[\implies \{x_n\}\text{ es Cauchy}\]
+         \[x_n\to x\]
+
+         Por continuidad 
+
+         \[(A-\lambda I)x_n\to (A-\lambda I)x\]
+         \[\implies y=(A-\lambda I)x\implies y\in\im (A-\lambda I)\]
+      \end{enumerate}
+   \end{enumerate}
+\end{proof}
+
+\begin{proof}[Demostración del teorema \ref{theo:4.5.2}]
+   Sea $\lambda=a+ib,b\neq 0$. Queremos demostrar que $\lambda\in\rho(A)$.
+
+   \begin{align*}
+      \inn{(A-\lambda I)x,x}&=\inn{Ax,x}-\lambda ||x||^2\\
+      \overline{\inn{(A-\lambda Ix),x}}&=\inn{Ax,x}-\overline{\lambda}||x||^2\\
+      2i \im (\inn{(A-\lambda I)x,x})&=(\overline{\lambda}-\lambda)||x||^2=-2ib||x||^2
+   \end{align*}
+
+   \begin{align*}
+      |b|||x||^2&=|\im (\inn{(A-\lambda I)x,x})|\\
+      &\leq |\inn{(A-\lambda I)x,x}|\\
+      &\leq ||(A-\lambda I)x||\cdot||x||\\
+      \implies ||(A-\lambda I)x||&\geq |b|||x||
+   \end{align*}
+\end{proof}
+
+Cuando $A:H\to H$ autoadjunto y \textbf{compacto}, $\sigma(A)$ es discreto: o $\sigma(A)$ es finito o $\sigma(A)=(\lambda_n)_{n=1}^\infty$ con $\lambda_n\to 0$.
+
+Cuando $\lambda_n\neq 0$, $\mathcal{N}_{\lambda_n}(A)$ es de $\dimn<\infty$. ($\lambda_n\in \sigma_p(A))$.
+
+Por lo tanto, podemos ordenar $\lambda\in\sigma_p(A)\setminus\{0\}$
+
+\[|\lambda_1|\geq |\lambda_2|\geq \cdots>0\]
+
+contando con multiplicidad, $u_1,u_2,\ldots$. $||u_n||=1$. Por la proposición, $\{u_n\}_n$ es un conjunto \textbf{ortonormal}. (En cada autoespacio $\mathcal{N}_\lambda(A)$ podemos elegir los autovectores correspondientes mutuamente ortogonales).
+
+$\mathcal{N}_0(A)=\ker A\overset{\text{cerr}}{\subseteq} H$. Cuando $H$ es separable, $\mathcal{N}_0(A)$ es separable y generados por número contable de vectores. En general, elija una base ortonormal $\{v_\alpha\}_\alpha$ de $\mathcal{N}_0(A)$. Defina 
+
+\[B\coloneqq \{u_n\}_n\cup\{v_\alpha\}_\alpha\]
+
+$B$ es un conjunto ortonormal. De hecho $B$ es una base de $H$.
+
+\begin{ftheorem}(Descomposición espectral de operadores compactors autoadjuntos)
+   Sea $A\in\mathcal{B}_c(H,H)$ autoadjunto. Entonces $H$ posee una base ortonormal de autovectores. Además,
+
+   \[Ax=\sum_{n}\lambda_n\inn{x,u_n}u_n\]
+\end{ftheorem}
+
+\begin{proof}
+   Sea $S\coloneqq \gen(B)$. $B$ es una base $\iff S$ es denso en $H\iff S^\perp=\{0\}$. Asuma $A\neq 0$. Suponga que $S^\perp\neq \{0\}$. Si demostramos que $\exists x_0\in S^\perp$ tal que $x_0$ es autovector $\implies x_0\in S\implies x_0\in S\cap S^\perp=\{0\}$. Contradicción.
+\end{proof}
+
+\begin{flemma}
+   $A\in \mathcal{B}(H,H)$ acotado autoadjunto. Entonces,
+
+   \[||A||=\sup_{||x||=1}|\inn{Ax,x}|\eqqcolon M\]
+\end{flemma}
+
+\begin{proof}
+   \[M\leq ||Ax||\cdot||x||\leq ||A||\cdot||x||^2=||A||\]
+
+   Para la otra dirección vamos a necesitar la identidad de polarización $(\K=\C)$
+
+   \[\inn{Ax,y}=\frac{1}{4}(\inn{A(x+y),x+y}-\inn{A(x-y),x-y})+i\inn{A(x+iy),x+iy}-i\inn{A(x-iy),x-iy}\]
+   \[\implies \Re \inn{Ax,y}=\frac{1}{4}(\inn{A(x+y),x+y}+\inn{A(x-y),x-y})\]
+
+   \begin{align*}
+      ||Ax||=\frac{1}{||Ax||}\inn{Ax,Ax}
+   \end{align*}
+
+   $y=\frac{Ax}{||Ax||}$
+
+   \begin{align*}
+      |Ax||&=\inn{Ax,y}\\
+      &=\frac{1}{4}(\underbrace{\inn{A(x+y),x+y}}_{\leq M||x+y||^2}+\underbrace{\inn{A(x-y),x-y}}_{\leq M||x-y||^2})\\
+      &\leq \frac{1}{4}M(||x+y||^2+||x-y||^2)\\
+      &=\frac{1}{4}M2(||x||^2+||y||^2)\\
+      &=M\implies ||A||\leq M
+   \end{align*}
+\end{proof}
+
+\begin{flemma}
+   $A\in\mathcal{B}_c(H,H)$ autoadjunto. $A\neq 0$. Entonces o $\|A\|,-\|A\|$ es autovalor de $A$.
+\end{flemma}
