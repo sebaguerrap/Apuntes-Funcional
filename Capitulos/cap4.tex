@@ -1007,3 +1007,55 @@ $B$ es un conjunto ortonormal. De hecho $B$ es una base de $H$.
 \begin{flemma}
    $A\in\mathcal{B}_c(H,H)$ autoadjunto. $A\neq 0$. Entonces o $\|A\|,-\|A\|$ es autovalor de $A$.
 \end{flemma}
+
+\begin{proof}
+   Según el lema 4.5.5, o
+
+   \[\|A\|=\sup_{\|x\|=1}\inn{Ax,x}\]
+
+   o 
+
+   \[-\|A\|=\inf_{\|x\|=1}\inn{Ax, x}\]
+
+   Vamos a asumir que estamos en el caso de $\lambda=\|A\|=\sup_{\|x\|=1}\inn{Ax,x}$ (si es el otro caso, considerar $\tilde A=-A$).
+
+   $\exists x_n\in H,\|x_n\|=1$, $\inn{Ax_n,x_n}\to\lambda$. Ya que $A$ es compacto, podemos asumir tomando una subsucesión si es necesario que 
+
+   \[Ax_n\to y\]
+
+   Afirmamos que $y\neq 0$ y $Ay=\lambda y$. Si $Ax_n\to 0\implies \|A\|=\lambda=0$. Contradicción. Entonces $y\neq 0$. Ahora,
+
+   \begin{align*}
+      \|Ax_n-\lambda x_n\|^2&=\inn{Ax_n,Ax_n}-2\Re \inn{Ax_n,\lambda x_n}+\lambda^2\|x_n\|^2\\
+      &=\|Ax_n\|^2-2\lambda\inn{Ax_n,x_n}+\lambda^2\cdot 1\\
+      &\leq (\|A\|\|x_n\|)^2-2\lambda \inn{Ax_n,x_n}+\lambda^2\\
+      &\leq 2\lambda^2-2\lambda\inn{Ax_n,x_n}\xrightarrow{n\to\infty} 0
+   \end{align*}
+\end{proof}
+
+Entonces $\lambda x_n\to y$, $A(\lambda x_n)\to Ay$ y $\lambda Ax_n\to\lambda y$.
+
+\begin{proof}[Demostración del teorema \ref{theo:4.5.4}]
+   $S\coloneqq \gen(B)$. Queremos demostrar que $S\overset{\text{denso}}{\subseteq} H\iff S^\perp =\{0\}$. Suponemos que no: $S^\perp \neq \{0\}$. Afirmamos que $A(S^\perp)\subseteq S^\perp$.
+
+   \[\iff \inn{Av,u}=0\quad\forall u\in S,\forall v\in S^\perp\]
+
+   \[\inn{Av, u}=\inn{v, Au}=0\]
+
+   Por lo tanto, la restricción 
+
+   \[A_1\coloneqq A\big\rvert_{S^\perp}:S^\perp\to S^\perp\]
+
+   es un operador compacto, autoadjunto. Por el lema 4.5.6, $A_1$ tiene un autovalor $\lambda:A_1 v=\lambda v$, $v\in H\implies Av=\lambda v$, $v\in S^\perp$. Por otro lado, $v\in S$ (como autovector) $\implies v\in S^\perp\cap S=\{0\}$. Contradicción.
+
+   Todo $x\in H$ se puede escribir como 
+
+   \[x=\underbrace{x_0}_{\in \ker A}+\sum_{n} \inn{x,u_n}u_n\]
+   \begin{align*}
+      Ax&= \cancelto{0}{Ax_0}+A\left(\sum_{n}\inn{x,u_n}u_n\right)\\
+      &=\sum_{n}A(\inn{x,u_n}u_n)\\
+      &=\sum_{n}\inn{x,u_n}\lambda_n u_n
+   \end{align*}
+
+   (donde la suma converge en $H$).
+\end{proof}

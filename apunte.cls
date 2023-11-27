@@ -243,3 +243,9 @@
 \definecolor{brightturquoise}{rgb}{0.00, 0.90, 0.90}
 
 \newcommand{\seba}[1]{\com{Seba}{piscola}{#1}} % Comando pa poner comentarios.
+
+\newenvironment{straightcases}{%
+  \left|\begin{array}{@{}l@{\quad}@{\quad}l@{}}%
+}{%
+  \end{array}\right.%
+}

@@ -1,0 +1,108 @@
+\chapter{skere}
+
+We are interested in solving the Dirichlet boundary value problem.
+
+\[\begin{cases}
+    -u''(x)+V(x)u(x)=f(x) &x\in [0,1]\\
+    u(0)=u(1)=0
+\end{cases}\]
+
+\[\begin{cases}
+    -\Delta u+V(x)u=f(x) &\text{in }\Omega\subseteq \R^n\\
+    u|_{\partial\Omega}=0
+\end{cases}\]
+
+\underline{Assumptions}:\begin{enumerate}
+    \item $V(x)$ is a real-values continuous function
+    \item $f(x)$ is a given continuous function on $[0,1]$.
+\end{enumerate}
+
+\begin{ftheorem}
+    Under the assumptions and $V\geq 0$, the ODE (primera ecuación) has a \textbf{unique} solution $u\in C^2([0,1])$.
+\end{ftheorem}
+
+\begin{fproposition}
+    Under the assumptions of Theorem, if $u_1,u_2\in C^2([0,1])$ solve the ODE $\implies u_1=u_2$.
+\end{fproposition}
+
+\begin{proof}
+    $u=u_1u_2\implies u$ satisfies the ODE with $f\equiv 0$
+    
+    \begin{align*}
+        0=\int (-u''(x)+Vu)\overline{u}(x)\,dx&=\int -u''\overline{u}\,dx+\int V|u|^2\,dx\geq 0\\
+        &=\cancelto{0}{-\overline{u}u'\big\rvert_{x=0}^{x=1}}+\int u'\overline{u}'\,dx+\int V|u|^2\,dx\\
+        =\int |u'|^2\,dx+\int V|u|^2\,dx
+    \end{align*}
+
+    \[\implies u'\equiv 0\implies u=const\overset{BC}{\implies} u\equiv 0\]
+\end{proof}
+
+Let us first treat $V\equiv 0$.
+
+\[\begin{cases}
+    -u''=f(x)\\
+    u(0)=u(1)=0
+\end{cases}\]
+
+The solution is given by 
+
+\begin{align*}
+    u(x)&=A f(x)\coloneqq (1-x)\int_0^x y f(y)\,dy+x\int_x^1 (1-y) f(y)\,dy\\
+    &=\int_0^1 K(x,y)f(y)
+\end{align*}
+
+where 
+
+\[K(x,y)=\begin{cases}
+    (1-x)y, &0\leq y\leq x\leq 1\\
+    (1-y)x, &0\leq x\leq y\leq 1
+\end{cases}\]
+
+is the Green's function for the ODE.
+
+Since $K(x,y)\in C([0,1]^2)\subseteq L^2([0,1]^2)$ we can think of $A=T_k$ as a Hilbert-Schmidt operator.
+
+\[T_k=A:L^2([0,1])\to L^2([0,1])\]
+
+is \textbf{compact}. Furthermore $A$ is self-adjoint:
+
+\begin{align*}\inn{Af,g}&=\int\left(\int K(x,y)f(y)\,dy\right)\overline{g}(x)\,dx=\int f(y)\int K(x,y)\overline{g}(x)\,dxdy\\
+&=\int f(y)\overline{\int K(x,y)g(x)\,dx}dy\\
+&=\int f(y)\overline{A g(y)}\,dy\\
+&=\inn{f,Ag}\end{align*}
+
+\begin{fproposition}
+    $A(L^2([0,1]))\subseteq C([0,1])$
+\end{fproposition}
+
+\begin{proof}
+    \begin{align*}
+        |A f(x)|&\leq \int_0^1 |K(x,y)||f(y)|\,dy\\
+        &\leq M\int_0^1 |f(y)|\,dy\\
+        &\overset{CS}{\leq} M\left(\int_0^1 |f(y)|^2\right)^{1/2}\\
+        &=M||f||_2
+    \end{align*}
+
+    \begin{align*}
+        |Af(x)-Af(z)|&=\left|\int K(x,y)f\,dy-\int K(z,y)f(y)\,dy\right|\\
+        &\leq \int |K(x,y)-K(z,y)||f(y)|\,dy\\
+        &\leq \sup_{y\in[0,1]} |K(x,y)-K(z,y)|||f||_{2}
+    \end{align*}
+\end{proof}
+
+How do we now solve 
+
+\[\begin{straightcases}
+    -u''+V(x)u=f(x)\\
+    u(0)=u(1)=0
+\end{straightcases}\]
+
+\[-u''=f(x)-V(x)u\]
+\[\implies u(x)=A(f-Vu)\]
+\[\implies u(x)+A(Vu)=A(f)\]
+
+$m_V u= Vu$. When $V$ is continuous
+
+\[m_V:L^2\to L^2\]
+
+\[(I+\underbrace{Am_V}_{\tilde T \text{compact}})u=f\]
