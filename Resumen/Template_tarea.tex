@@ -1,0 +1,288 @@
+\documentclass[9pt]{extarticle}
+
+\usepackage{geometry}
+\usepackage{enumitem}
+\setlist[enumerate]{topsep=-5pt,itemsep=-1ex,partopsep=0ex,parsep=1ex}
+\usepackage{multicol, multirow}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+% Código con colores
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+% Margen de 1 pulgada por lado
+\usepackage{fullpage}
+% Incluye gráficas
+\usepackage{graphicx}
+\usepackage{mathtools}
+% Packages para matemáticas, por la American Mathematical Society
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+% Desactivar hyphenation
+\usepackage[none]{hyphenat}
+% Saltar entre párrafos - sin sangrías
+\usepackage{parskip}
+% Español y UTF-8
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+% Links en el documento
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+    linkcolor=blue,
+    pdftitle=Respuestas}
+\usepackage{fancyhdr}
+% \setlength{\headheight}{1pt}
+% \setlength{\headsep}{1pt}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\Exp}[1]{\mathcal{E}_{#1}}
+\newcommand{\List}[1]{\mathcal{L}_{#1}}
+\newcommand{\EN}{\Exp{\N}}
+\newcommand{\LN}{\List{\N}}
+\newcommand{\inn}[1]{\left\langle #1\right\rangle}
+
+\newcommand{\comment}[1]{}
+\newcommand{\lb}{\\~\\}
+\newcommand{\eop}{_{\square}}
+\newcommand{\hsig}{\hat{\sigma}}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lra}{\leftrightarrow}
+
+\newcommand{\alumno}{Sebastián Guerra}
+
+\geometry{margin=0.7cm}
+
+\begin{document}
+
+\begin{multicols*}{2}
+
+\large\textbf{Espacios de Banach}\\\normalsize
+\textbf{Def (Métrica)}: $(X,d), d:X\times X\to [0,\infty)$:
+\begin{enumerate}
+	\item $d(x,y)=0 \Leftrightarrow x=y$
+	\item $d(x,y)=d(y,x)$
+	\item $d(x,y)\leq d(x,z)+d(z,y)$
+\end{enumerate}
+\textbf{Def (Norma)}: $V$ sobre $\K$. $\|\cdot\|:V\to [0,\infty)$:
+\begin{enumerate}
+	\item $\|v\|=0 \Leftrightarrow v=0$
+	\item $\|\lambda v\|=|\lambda|\|v\|$
+	\item $\|v+w\|\leq \|v\|+\|w\|$
+\end{enumerate}
+Si solo satisface 2 y 3 es una semi-norma.\\
+\textbf{Prop}: $d(v,w)=\|v-w\|$ define una métrica.\\
+\textbf{Prop}: En $\R^n$ y $\C^n$ todas normas son equivalentes: $\exists c:\frac{1}{c}\|v\|_2\leq \|v\|_1\leq c\|v\|_2,\forall v\in V$\\
+\textbf{Def}: $X$ e.m., $C_\infty\coloneqq\{f:X\to\C\text{ continuas y acotadas}\}$\\
+\textbf{Prop}: $\|f\|_\infty\coloneqq \sup_{x\in X}|f(x)|$ define norma en $C_\infty(X)$\\
+\textbf{Def (Espacio de Banach)}: $(V,\|\cdot\|)$ es Banach si es completo c.r. a la métrica inducida\\
+\textbf{Prop}: $C_\infty(X)$ es Banach\\
+\textbf{Def}: $(V,\|\cdot\|)$ normado. $v_n\in V,n\in\N$. $\sum_{n=1}^\infty v_n$ es sumable si $S_m=\sum_{n=1}^m$ converge. $\sum_{n=1}^\infty v_n$ es absolutamente sumable si $\sum_{n=1}^\infty \|v_n\|$ converge\\
+\textbf{Prop}: Si $\sum_{n=1}^\infty v_n$ es absolutamente sumable, entonces $\{S_m\}$ es Cauchy.\\
+\textbf{Teo:} $(V,\|\cdot\|)$ es Banach si y solo si toda serie absolutamente sumable es sumable.\\
+\textbf{Def}: $V,W$ e.v. $T:V\to W$ es lineal si $T(\lambda_1v_1+\lambda_2v_2)=\lambda_1T(v_1)+\lambda_2T(v_2)\forall v_1,v_2\in V,\lambda_1,\lambda_2\in\K$\\
+\textbf{Def}: $T:V\to W$, $V,W$ e.m. $T$ continuo si $T^{-1}(O)\overset{\text{ab}}{\subseteq} V,\forall O\overset{\text{ab}}{\subseteq} V\iff T^{-1}(C)\overset{\text{cerr}}{\subseteq} V,\forall C\overset{\text{cerr}}{\subseteq} V\iff (v_n\to v\in V\implies Tv_n\to Tv\in W)$\\
+\textbf{Teo}: $V,W$ normados. $T:V\to W$ lineal es continuo si y solo si $\exists c:\|Tv\|_W\leq c\|v\|_V,\forall v\in V$. Decimos que es acotado\\
+\textbf{Def}: $V,W$ normados. $\mathcal{B}(V,W)$ es el conjunto de operadores lineales acotados de $V$ en $W$. Es un e.v.\\
+\textbf{Def (Norma Operador)}: $\|T\|\coloneqq \sup_{\|v\|=1}\|Tv\|=\sup_{v\neq 0}\frac{\|Tv\|}{\|v\|}$. $\|Tv\|\leq \|T\|\|v\|$\\
+\textbf{Teo}: $\mathcal{B}(V,W)$ es un espacio normado bajo la norma operador\\
+\textbf{Teo}: $\mathcal{B}(V,W)$ es Banach cuando $W$ es Banach.\\
+\textbf{Def (Espacio Dual)}: $V$ normado sobre $\K$. $V^*=\mathcal{B}(V,\K)$.\\
+\textbf{Teo}: Cuando $\K=\R\text{ o }\C$, $V^*$ es Banach\\
+\textbf{Resultados}: $(\ell^1)^*\simeq \ell^\infty,(\ell^2)^*\simeq \ell^2,(\ell^\infty)^*\not\simeq\ell^1$. Si $V=W$ Banach, $T,S\in \mathcal{B}(V,V)\implies TS\in \mathcal{B}(V,V)$\\
+\textbf{Def (Espacio Cociente)}: $W\subseteq V$ subespacio vectorial. $V/W\coloneqq \{[v],v\in V\}$. $v_1\sim v_2$ si $v_1-v_2\in W$. Se nota a veces $V\mod W$. Es útil denotar $[v]=v+W$\\
+\textbf{Teo}: $(V,\|\cdot\|)$ e.v. semi-normado. $Z\coloneqq \{v\in V:\|v\|=0\}$ es subespacio de $V$ y $\|v+Z\|_{V/Z}\coloneqq \|v\|$ define una norma en $V/Z$\\
+\textbf{Prop}: $W\overset{\text{cerr}}{\subseteq}V$, $V$ normado, entonces $V/W$ tiene una norma $\|[v]\|_{V/W}\coloneqq \inf_{w\in W}\|v-w\|$\\
+\textbf{Def}: $V$ normado. Completación de $V$ es Banach $(\tilde V,\|\cdot\|_{\tilde V})$ con aplicación lineal $\mathcal{J}_{\tilde V}:V\to \tilde V$ que satisface
+\begin{enumerate}
+	\item $\mathcal{J}_{\tilde V}$ es uno a uno
+	\item $\mathcal{J}_{\tilde V}(V)$ es denso en $\tilde V$
+	\item $\mathcal{J}_{\tilde V}(V)$ es una isometría $\|\mathcal{J}_{\tilde V}(u)\|_{\tilde V}=\|v\|_V,\forall v\in V$
+\end{enumerate}
+\textbf{Teo}: Todo e.n. tiene una completación.\\
+\textbf{Defs}: $O\subseteq X$ abierto si $\forall x\in O\exists B_r(x)\in O$. $\bigcup_\alpha O_\alpha$ es abierto.$F\subseteq X$ cerrado si $F^c$ abierto. $\bigcap_\alpha F_\alpha$ es cerrado. $\overline E=\bigcap_{F\supseteq E}F$. $\mathring{E}=\bigcup_{O\subseteq E} O$. $E\subseteq X$ denso si $\overline{E}=X$\\
+\textbf{Def}: $E\subseteq X$ es denso en ninguna parte si $\mathring{\overline{E}}=\varnothing$. $E$ no contiene bolas abiertas\\
+\textbf{Prop}: $F$ cerrado y denso en n.p. $\iff$ $F^c$ abierto y denso\\
+\textbf{Def}: $E\subseteq X$ cat I si $E=\bigcup_k E_k$ con $E_k$ denso en n.p. $\Q$ es cat I\\
+\textbf{Def}: $G$ genérico si $G^c$ es cat I\\
+\textbf{Def}: $E$ es de cat II si no es cat I\\
+\textbf{Teo (Baire)}: $(X,d)$ completo. Entonces $X$ de cat II en sí mismo\\
+\textbf{Coro}: $G\subseteq X$ genérico $\implies$ $G$ denso en $X$, $X$ completo\\
+\textbf{Coro}: $X$ completo, $X=\bigcup_k F_k\leftarrow$ cerrado. Entonces por lo menos un $F_k$ contiene una bola\\
+\textbf{Teo}: El conjunto de funciones continuas no derivables en ningún punto es denso en $C([0,1])$\\
+\textbf{Def}: $T:X\to Y$ es abierta si $T(U)\overset{\text{ab}}{\subseteq}Y,\forall U\overset{\text{ab}}{\subseteq} X$
+\textbf{Teo (Aplicación Abierta)}: $X,Y$ Banach, $T\in \mathcal{B}(X,Y)$ biyectiva, entonces $T^{-1}\in \mathcal{B}(Y,X)$ y $\exists c,C>0:c\|x\|_X\leq \|Tx\|_Y\leq C\|x\|_X,\forall x\in X$. $c\|T^{-1}y\|_X\leq \|y\|_Y$\\
+\textbf{Def}: $X,Y$ e.m. $T:X\to Y$ cerrada si $G_T=\{(x,Tx)\in X\times Y\}$ es cerrado en $X\times Y$\\
+\textbf{Teo}: $X,Y$ Banach, $T\in\mathcal{B}(X,Y)\iff T$ lineal y cerrada\\
+\textbf{Resultado}: Para demostrar continuidad, $x_n\to x\implies Tx_n\to Tx$. Podemos asumir que $Tx_n\to Ty$ y mostrar que $y=Tx$\\
+\large\textbf{Espacios de Hilbert}\\\normalsize
+\textbf{Def}: $H$ e.v. sobre $\K$. $\inn{\cdot,\cdot}:H\times H\to \K$:
+\begin{enumerate}
+	\item $\inn{\lambda_1x_1+\lambda_2x_2,y}=\lambda_1\inn{x_1,y}+\lambda_2\inn{x_2,y}$
+	\item $\inn{y,x}=\overline{x,y}$
+	\item $\inn{x,x}\geq 0$. $\inn{x,x}=0\implies x=0$
+\end{enumerate}
+De 1 y 2, $\inn{x+\lambda y+x}=\overline{\lambda}\inn{x,y}+\inn{x,z}$\\
+\textbf{Resultado}: $\inn{x+y,x+y}=\|x\|^2+2\operatorname{Re}\inn{x,y}+\|y\|^2$
+\textbf{Prop (Cauchy-Schwarz)}: $H$ pre-Hilbertiano $|\inn{x,y}|\leq \|x\|\|y\|,\forall x,y\in H$\\
+\textbf{Prop}: $\|x\|^2=\inn{x,x}$ define una norma en $H$\\
+\textbf{Prop}: $\inn{\cdot,\cdot}$ es continuo en $H\times H$\\
+\textbf{Def}: $x\perp y$ si $\inn{x,y}=0$. $E\subseteq H$, $E^\perp\coloneqq \{x\in H:x\perp y,\forall y\in E\}$\\
+\textbf{Teo (Pitagoras)}: $x_1,\ldots,x_n\in H$ mutuamente ortogonales, entonces $\|x_1+\cdot+x_2\|^2=\sum_{k=1}^n \|x_k\|^2$
+\textbf{Prop (Ley del paralelogramo)}: $||x+y\|^2+\|x-y\|^2=2\|x\|^2+2\|y\|^2$\\
+\textbf{Def}: $(H,\inn{\cdot,\cdot})$ es Hilbert si es completo c.r. a $\|\cdot\|$ inducida por $\inn{\cdot,\cdot}$\\
+\textbf{Def}: $C\subseteq V$ convexo en $V$ si $\forall x,y\in C,(1-t)x+ty\in C,\forall t\in [0,1]$\\
+\textbf{Teo}: $C\subseteq H$ cerrado y convexo. Entonces $\forall x\in H,\exists!y=P_Cx\in C$ que satisface $\|x-P_Cx\|=d(x,C)=\inf_{c\in C}\|x-c\|$. Además $y=P_C x\iff \operatorname{Re}\inn{c-y,x-y}\leq 0,\forall c\in C$
+\textbf{Teo}: $F\subseteq H$ subespacio cerrado. Entonces $H=F\oplus F^\perp$, es decir, $\forall x\in H, x=y+z,y\in F,z\in F^\perp$ e $y=P_Fx,z=P_{F^\perp}x$. $P_F:H\to H$ es lineal y acotado, satisface
+\begin{enumerate}
+	\item $\|P_F\|\leq 1$ ($=1$ cuando $F=\{0\}$)
+	\item $P_F^2=P_F$
+	\item $\operatorname{Im} P_F=F,\ker P_F=F^\perp$
+	\item $\inn{P_Fx_1,x_2}=\inn{x_1,P_F x_2}$
+\end{enumerate}
+\textbf{Def}: $P_F$ se llama proyección ortogonal\\
+\textbf{Teo (Representación de Riesz)}: $H$ Hilbert, $f\in H^*$. Entonces $\exists!u\in H:f(x)=\inn{x,u},\forall x\in H$\\
+\textbf{Def}: $H$ Hilbert, $\{e_\alpha\}_\alpha$ es o.n. si $\inn{e_\alpha,e_\beta}=\delta_{\alpha\beta}$\\
+\textbf{Prop (Bessel)} $\{e_\alpha\}_\alpha$ o.n. Entonces $\sum_\alpha |\inn{x,e_\alpha}|^2\leq \|x\|^2$\\
+\textbf{Def}: $\hat x(\alpha)=\inn{x,\alpha}$ coeficientes de Fourier respecto a $\{e_\alpha\}_\alpha$\\
+\textbf{Teo}: $B=\{e_\alpha\}_{\alpha\in A}$ un subconjunto o.n. de $H$. TFAE:
+\begin{enumerate}
+	\item $\sum_\alpha |\hat x(\alpha)|^2=\|x\|^2$
+	\item $B$ es maximal: $x\in H:x\perp e_\alpha\forall\alpha\in A\implies x=0$
+	\item $\forall x\in H,x=\sum_\alpha \inn{x,e_\alpha}e_\alpha$
+	\item $\operatorname{Gen}(B)$ es denso en $H$
+\end{enumerate}
+\textbf{Def}: Decimos que $\{e_\alpha\}_{\alpha\in A}$ o.n. es una base ortonormal si satisface cualquiera de 1-4\\
+\textbf{Teo}: Todo espacio de Hilbert tiene una base ortonormal\\
+\textbf{Def}: $X$ e.m. es separable si $\exists C\subseteq X$ contable y denso en $X$\\
+\textbf{Teo}: $H$ es separable si y solo si $\exists$ una base o.n. para $H$ contable. En este caso toda base o.n. es contable\\
+\textbf{Def}: $H_1,H_2$ Hilbert. $T:H_1\to H_2$ es unitario si $\inn{Tx_1,Tx_2}_{H_2}=\inn{x_1,x_2}_{H_1},\forall x_1,x_2\in H_1$\\
+\textbf{Resultado}: $T$ unitario $\implies T$ isométrico\\
+\textbf{Teo}: Todo espacio de Hilbert separable es unitariamente isomorfo a $\ell^2$\\
+\textbf{Indentidad de Parseval}: $\|\hat x\|_{\ell^2}^2=\sum_k |\inn{x,e_k}|^2=\|x\|^2$\\
+\textbf{Identidad de Polarización}: $\frac{1}{4}(\|x+y\|^2-\|x-y\|^2+i\|x+iy\|^2-i\|x-iy\|^2)$\\
+\large\textbf{Series de Fourier}\\\normalsize
+\textbf{Prop}: $\{e_n\}_\Z$, $e_n=\frac{1}{\sqrt{2\pi}}e^{inx}$ es o.n. en $L^2(\T)$\\
+\textbf{Def}: $f\in L^2(\T)$, $\hat f(n)=\inn{f,e_n}_{L^2}=\frac{1}{\sqrt{2\pi}} \int_{-\pi}^\pi f(x)e^{-inx}\,dx$ coef de Fourier. $f\to \sum_{n\in\Z}\hat f(n)e_n$ serie de Fourier. $S_N f(x)=\sum_{|n|\leq N}\hat f(n)e_n$ suma de Fourier parcial\\
+\textbf{Teo}: $f\in L^2(\T), S_Nf\xrightarrow[n\to\infty]{L^2}f$\\
+\textbf{Nota}: Teo anterior $\iff \{e_n(x)\}_{n\in\Z}$ es base o.n. para $L^2(\T)$\\
+\textbf{Teo}: $f\in L^2(\T)$. Entonces $S_N f(x)=\int_\pi^\pi D_N(x-t)f(t)\,dt$ donde $D_N(x)=\begin{cases}
+	\frac{2N+1}{2\pi}&x=0\\
+	\frac{\sin((N+\frac{1}{2})x)}{2\pi \sin(\frac{x}{2})}&x\neq 0
+\end{cases}$\\
+\textbf{Def (Media de Cesàro)}: $\sigma_N f=\frac{S_0f+\cdots+S_{N-1}f}{N}$\\
+\textbf{Teo (Fejér)}: $\sigma_Nf\xrightarrow{L^2}f$. Si $f\in C(\T)$, $\sigma_N\xrightarrow{\text{unif}}f\in \T$\\
+\textbf{Prop}: $f\in L^2(\T)$. Entonces $\sigma_N f(x)=\int_{-\pi}^\pi F_N(x-t)f(t)\,dt$ con $F_N(x)=\begin{cases}
+	\frac{1}{2\pi}N &x=0\\
+	\frac{1}{2\pi N}\frac{\sin^2(\frac{Nx}{2})}{\sin^2(\frac{x}{2})}&x\neq 0
+\end{cases}$\\
+\textbf{Def}: $\{K_n\}_{n\in\N}$ es familia de buenos kernels en $L^1(\T)$ si \begin{enumerate}
+	\item $\int_\T K_n(x)\,dx=1$
+	\item $\sup_n\int_T|k_n(x)|\,dx<\infty$
+	\item $\int_{\delta\leq |x|\leq \pi} |K_n(x)|\,dx\xrightarrow{n\to\infty}0,\forall\delta>0$
+\end{enumerate}
+\textbf{Def}: $f*g=\int f(x-t)g(t)\,dt$\\
+\textbf{Teo}: $\{K_N\}_{N\in\N}$ fam de buenos kernels en $L^1(\T)$ y $f\in C(\T)$, entonces $K_N*f=f*K_N\to f$\\
+\textbf{Coro}: $\sigma_N f\xrightarrow[N\to\infty]{\text{unif}} f$ para $f\in C(\T)$\\
+\textbf{Coro}: $f\in C(\T)$ y $\hat f(n)=0,\forall n\in\Z\implies f\equiv 0$\\
+\textbf{Coro}: $f\in C(\T)$ y su serie de Fourier converge absoluta y uniformemente: $\sum_n |\hat f(n)e_n(x)|<\infty$. Entonces $S_N f\xrightarrow{\text{unif}} f$\\
+\textbf{Prop}: $\|\sigma_N f\|_{L^2}\leq \|f\|_{L^2}$\\
+\textbf{Prop}: $f\in L^p(\T), 1\leq p<\infty$ entonces $\|\sigma_N f\|_{L^p}\leq \|f\|_{L^p}$\\
+\textbf{Teo}: $f\in L^p, 1\leq p<\infty$. Entonces $\sigma_N f\xrightarrow{L^p} f$\\
+\textbf{Coro}: $S_N\xrightarrow{L^2} f$\\
+\textbf{Lema}: $f\in L^1(\T),\hat f(n)\xrightarrow{n\to\infty}0$\\
+\textbf{Misc}: $f\in L^2(\T)\to \hat f\in \ell^2_\Z$ es un isomorfismo unitario. $L^1(\T)\xrightarrow{\F} \hat c_0=\{(\ldots,a_{-1},a_0,a_1,\ldots):\lim_{|n|\to\infty} a_n=0\}$
+\textbf{Teo}: $L^1(\T)\xrightarrow{\F}\hat c_0$ es lineal, acotado e inyectivo\\
+\textbf{Prop}: $\|D_N\|_{L^1}\geq C\log N$\\
+\textbf{Coro}: $f_N\coloneqq D_N$ contradice $\|f\|_{L^1}\leq c\|\hat f\|_{\infty}$\\
+\textbf{Teo}: $\forall x\in\T\exists A_x\subseteq C(\T)$ genérico t.q. $\sup_N|S_N f(x)|=\infty$\\
+\textbf{Teo (Banach-Steinhaus)} $X$ Banach, $Y$ normado. $T_k\in\mathcal{B}(X,Y),k\in I$ no necesariamente contable. Entonces o $\sup_{k}\|T_k\|<\infty$ o $\sup_k\|T_kx\|=\infty,\forall x\in A$ donde $A\subset X$ es genérico $G_\delta$\\
+\textbf{Coro}: $X$ Banach, $Y$ normado. $T_k\in\mathcal{B}(X,Y)$. Suponga que $\forall x\in X, \lim_{k\to\infty} T_k x\eqqcolon Tx$ existe. Entonces $T\in\mathcal{B}(X,Y)$ y $\|T\|\leq \liminf{k\to\infty} \|T_k\|<\infty$\\
+\textbf{Conv}: $0\leq f_n\nearrow f\text{ c.t.p.}\implies \int fd\mu=\lim_{n\to\infty}\int f_nd\mu$, $f_n\geq 0,\int\liminf_n f_nd\mu\leq\liminf_n\int f_n$, $f_n\to f\text{ c.t.p.}$ y $|f_n|\leq g\text{ c.t.p.},g\in \mathcal{L}^1_\R(\mu)\implies \int f_nd\mu\to\int fd\mu$\\
+\textbf{Teo}: $f\in\mathcal{L}^1_\C(\mu)$, se puede cambiar el orden de integración\\
+\textbf{Fact}: $L^p_\K(\mu)=\mathcal{L}_\K^p(\mu)/\mathcal{N}_\K(\mu)$ es espacio normado con $\|\cdot\|_p$\\
+\textbf{Teo}: $\int |fg|d\mu\leq \|f\|_p\|g\|_q$ donde $\frac{1}{p}+\frac{1}{q}=1$, $p,q\in [1,\infty]$\\
+\textbf{Teo}: $0\leq a,b\leq \infty, ab\leq \frac{a^p}{p}+\frac{b^q}{q},1<p,q<\infty$\\
+\textbf{Teo}: $L^p(\mu)$ es Banach\\
+\textbf{Teo}: $(\Omega,\mathcal{M},\mu) \sigma$-finito. $1\leq p<\infty$. $\phi$ es isomorfismo isométrico: $\forall\ell\in (L^p(\mu))^*,\exists!g\in L^q(\mu):\ell(f)=\inn{f,g}\forall f\in L^p$. $\|\ell\|_{(L^p)^*}=\|g\|_q$\\
+\textbf{Teo}: $\mu,\nu,\sigma$-finitas. $\nu\ll\mu\implies \exists!h\geq 0$ medible t.q. $\nu(E)=\int_Ehd\mu$. $h=\frac{d\nu}{d\mu}$\\
+\textbf{Def}: $\ell\in (L^p_\R)^*$ positivo si $\ell(f)\geq 0,\forall 0\leq f\in L^p_\R$\\
+\textbf{Teo}: $\ell\in (L^p_\R)^*,1\leq p<\infty$. $\ell=\ell_+-\ell_{-}$ positivos\\
+\textbf{Def}: $X$ e.v. real. $p:X\to\R$ es funcional convexo si\begin{enumerate}
+	\item $p(\lambda x)=\lambda p(x),\forall \lambda\geq 0$
+	\item $p(x+y)\leq p(x)+p(y)$
+\end{enumerate}
+\textbf{Prop}: $X$ normado. $f\in X'$ acotado si y solo si $f$ dominado por $p(x)\coloneqq M\|x\|$ para algún $M>0$\\
+\textbf{Teo (H-B)}: $X,Y$ e.v. reales, $Y\subseteq X$, $p:X\to\R$ funcional convexo. $f\in Y'$ dominado por $p$. Entonces $\exists! F\in X'$ extensión de $f$ dominado por $p$\\
+\textbf{Coro}: $X$ normado real. $Y\subseteq X$ subespacio $Y\neq \{0\},f\in Y^*$. Entonces, $\exists F\in X^*$ extensión con $\|F\|_{X^*}=\|f\|_{Y^*}$\\
+\textbf{Teo}: $Y_\C\subseteq X_\C$ normado complejo, $f\in Y_\C^*$. Entonces $f$ se extiende a $F\in X_\C^*, \|F\|_{X^*}=\|f\|_{Y^*}$\\
+\textbf{Coro}: $\forall x_0\in X$ normado, $\exists f_0\in X^*$ t.q. $\|f_0\|=1$ y $f_0(x_0)=\|x_0\|$\\
+\textbf{Coro}: $\|x\|=\sup\{|f(x)|:\|f\|=1\}$\\
+\textbf{Teo}: $\forall x\in X$ normado define funcional en $X^*$, $\hat x:X^*\to\K, f\to f(x)$. $\|\hat x\|=\sup_{\|f\|=1}\|f(x)\|=\|x\|$. $\mathcal{J}:X\to (X^*)^*, x\to\hat x$ es isometría lineal. Cuando $\mathcal{J}$ es sobre, $X\simeq X^{**}$ es Banach y se dice reflexivo\\
+\large\textbf{Teoría de Operadores}\\\normalsize
+\textbf{Def}: $f\in X^*$, $Y\subseteq X$, $Y^\perp\coloneqq \{f\in X^*:\inn{f,y}=0\forall y\in Y\}$. $Z\subseteq X^*, X^\perp\coloneqq \{x\in X:\inn{f,x}=0\forall f\in Z\}$\\
+\textbf{Prop}: $Y\subseteq X$ subespacio normado. $(Y^\perp)^\perp=\overline{Y}$\\
+\textbf{Def}: $T\in\mathcal{B}(X,Y)$ normados. $T^*:Y^*\to X^*$, $f\circ T\eqqcolon T^*(f)$. $\inn{T^* f,x}=\inn{f, Tx}\forall x\in X$\\
+\textbf{Teo}: $\mathcal{B}(X,Y)\to\mathcal{B}(X^*,Y^*), T\to T^*$ isometría lineal\begin{enumerate}
+	\item $(\operatorname{Im}T)^\perp=\operatorname{ker} T^*$
+	\item $(\operatorname{ker} T^*)^\perp= \overline{\operatorname{Im}T}$
+	\item $(\operatorname{Im}T^*)^\perp=\operatorname{ker}T$
+\end{enumerate}
+\textbf{Def}: $X,Y$ Banach. $T:X\to Y$ compacto si $\overline{T(B^X)}$ compacto en $Y\iff$ toda sucesión en $T(B^X)$ tiene subsucesión convergente en $Y\iff$ toda sucesión en $T(B^X)$ tiene subsucesión de Cauchy\\
+\textbf{Teo}: $\mathcal{B}_c(X,Y)\subseteq \mathcal{B}(X,Y)$ es subespacio cerrado. $\{T_n\}\subseteq \mathcal{B}(X,Y), \|T_N\|\to 0\implies T\in\mathcal{B}(X,Y)$\\
+\textbf{Def}: $T:X\to Y$ de rango finito si $\operatorname{dim}(\operatorname{Im} T)<\infty$\\
+\textbf{Prop}: $T:X\to Y$ de rango finito es compacto. $T=\lim T_n$ de rango finito $\implies T$ compacto\\
+\textbf{Teo}: $T\in\mathcal{B}_c(X,Y)$, $Y$ Hilbert. Entonces $\exists T_n$ rango finito t.q. $\|T_n-T\|\to 0$\\
+\textbf{Prop}: Composición de compacto con continuo es compacto\\
+\textbf{Teo (Schauder)}: $T\in\mathcal{B}_c(X,Y)\iff T^*\in\mathcal{B}_c(Y^*,X^*)$\\
+\textbf{Teo (A-A)}: $K$ métrico compacto, $\mathcal{C}\subseteq C(K)$ t.q.\begin{enumerate}
+	\item $\exists M>0:\|f\|_{C(K)}\leq M,\forall f\in \mathcal{C}$
+	\item $\forall\varepsilon>0,\exists\delta>0$ t.q. $\forall f\in\mathcal{C}:|f(x)-f(y)|\leq \varepsilon$ si $|x-y|<\delta$
+\end{enumerate} Entonces existe $\{f_n\}\subseteq \mathcal{C},f\in\mathcal{C}$ t.q. $f_n\to f$ en $C(\K)$\\
+\textbf{Teo (Alternativa Fredholm)}: $X$ Banach, $T\in\mathcal{B}_c(X,X)$. Entonces\begin{enumerate}
+	\item $\operatorname{dim}(\operatorname{ker}(I-T))<\infty$
+	\item $\operatorname{Im}(I-T)$ es cerrado en $X$ e $\operatorname{Im}(I-T)=(\operatorname{ker}(I-T^*))^\perp$
+	\item $\operatorname{ker}(I-T)=\{0\}\iff \operatorname{Im}(I-T)=X$
+	\item $\operatorname{dim}(\operatorname{ker}(I-T))=\operatorname{dim}(\operatorname{ker}(I-T^*))$
+\end{enumerate}
+\textbf{Lema} $X$ normado, $F\overset{\text{cerr}}{\subsetneq} X$. Entonces $\forall \varepsilon>0,\exists u\in X,\|u\|=1$ t.q. $d(u,F)\geq 1-\varepsilon, \|u-f\|\geq 1-\varepsilon,\forall f\in F$\\
+\textbf{Coro}: $X$ normado, $B^X$ compacta. Entonces $\operatorname{dim}X<\infty$\\
+\textbf{Resultado}: $T\in\mathcal{B}_c(X,Y), X_1\overset{\text{cerr}}{\subseteq}X$, $X,Y$ Banach $\implies T\big|_{X_1}:X_1\to Y$ es compacto\\
+\textbf{Def}: $\lambda\in\K$ es autovalor de $T:X\to X$, $X$ Banach, si $\exists x\neq 0$ t.q. $Tx=\lambda x$\\
+\textbf{Def}: $\sigma(T)\coloneqq \{\lambda\in\K:T-\lambda I\text{ no es invertible}\}\supseteq \sigma_p(T)$. $\lambda\in \sigma(T)\iff$ o $\lambda$ es autovalor o $T-\lambda I$ no es sobre. $\rho(T)=\K\setminus \sigma(T)$\\
+\textbf{Teo}: $T\in\mathcal{B}(X,X), \sigma(T)$ es compacto de $\K$. $\sigma(T)\subseteq \{\lambda\in\K:|\lambda|\leq \|T\|\}$\\
+\textbf{Teo}: $T\in\mathcal{B}_c(X,X), X$ Banach, $\operatorname{dim} X=\infty$. Entonces \begin{enumerate}
+	\item $0\in\sigma(T)$
+	\item $\sigma(T)\setminus\{0\}=\sigma_p(T)\setminus\{0\}$ y cada $\lambda\neq 0$, $\mathcal{N}_\lambda(T)\coloneqq \operatorname{ker}(T-\lambda I)$ tiene dim finita 
+	\item $\forall \delta>0$ existen nro finito de valores distintos $\lambda\in\sigma(T)$ t.q. $|\lambda|\geq \delta$
+\end{enumerate}
+\textbf{Coro}: $T\in\mathcal{B}_c(X,X)\implies \sigma(T)$ a lo más numerable. Esto último cuando $\sigma(T)\setminus\{0\}=\{\lambda_n\}_{n\in\N}$ y $\lambda_n\to 0$\\
+\textbf{Def}: $T\in\mathcal{B}(H_1,H_2)$. $T^*:H_2\to H_1:\inn{Tx,y}_2=\inn{x,Ty}_1$\\
+\textbf{Def}: $A:H\to H$ autoadjunto si $A^*=A: \inn{Ax,y}=\inn{x,Ay}$\\
+\textbf{Prop}: $A\in\mathcal{B}(H,H)$ autoadjunto. Entonces $\inn{Ax,x}\in\R, \sigma_p(A)\subseteq \R$ y $\mathcal{N}_{\lambda_1}(A)\perp\mathcal{N}_{\lambda_2}(A)$ si $\lambda_1\neq\lambda_2$\\
+\textbf{Teo}: $A\in\mathcal{B}(H,H)$ autoadjunto. Entonces $\sigma(A)\subseteq \R$\\
+\textbf{Lema}: $A\in\mathcal{B}(H,H)$ autoadjunto. $\lambda\in\rho(A)\iff \exists C>0:\|(A-\lambda I)x\|\geq C\|x\|\forall x\in H$\\
+\textbf{Teo (Espectral)}: $A\in\mathcal{B}_c(H,H)$ autoadjunto. Entonces $H$ posee base o.n. de autovectores. $Ax=\sum_n \lambda_n\inn{x,u_n}u_n$\\
+\textbf{Lema}: $A\in\mathcal{B}(H,H)$ acotado autoadjunto. Entonces $\|A\|=\sup_{\|x\|=1}|\inn{Ax,x}|\eqqcolon M$\\
+\textbf{Lema}: $A\in\mathcal{B}_c(H,H)$ autoadjunto, $A\neq 0$ entonces o $\|A\|$ o $-\|A\|$ es autovalor de $A$
+
+\end{multicols*}
+
+
+
+\end{document}
