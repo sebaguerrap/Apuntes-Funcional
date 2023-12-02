@@ -105,4 +105,123 @@ $m_V u= Vu$. When $V$ is continuous
 
 \[m_V:L^2\to L^2\]
 
-\[(I+\underbrace{Am_V}_{\tilde T \text{compact}})u=f\]
+\[(I+\underbrace{Am_V}_{\tilde T \text{compact}})u=Af\]
+
+\seba{Última clase skere}
+
+$V,f\in C([0,1]),V\geq 0$
+\begin{equation}\begin{straightcases}
+    -u''+Vu=f\\
+    u(0)=u(1)=0
+\end{straightcases}\end{equation}
+
+\[\begin{straightcases}
+    -u''=f\\
+    u(0)=u(1)=0
+\end{straightcases}\]
+
+con solución $u=Af$. $A$ is compact and self-adjoint. When $f\in L^2\implies Af\in C$. $f\in C\implies Af\in C^2$
+
+Podemos escribir (5.1) como 
+
+$$-u''=A(f-Vu)$$
+\begin{equation}(I+Am_V)u=Af\end{equation}
+
+\begin{fproposition}
+    If $u\in L^2$ solves (5.2) then $u\in C^2([0,1])$ is a solution of (5.1)
+\end{fproposition}
+
+\begin{proof}
+    \[u=Af-Am_V u\]
+
+    $Af\in C, Am_V u\in C$
+
+    \[\implies u\in C([0,1])\]
+    \[\implies m_V u\in C([0,1])\]
+    \[\implies A(m_V u)\in C^2\text{ and }Af\in C^2\]
+    \[\implies u\in C^2\]
+
+    (Bootstrap argument)
+\end{proof}
+
+Q. Can we invert $I+\tilde T$?\\
+A. $I+\tilde T$ is invertible $\iff \ker (I+\tilde T)=\{0\}$ (Fredholm Alternative)
+
+\[(I+\tilde T)v=0\]
+\[AVv=v\]
+
+\underline{One idea}: $\inn{AVv,v}=-\inn{v,v}=-\|v\|^2$
+
+\underline{Issue} $Am_V$ is not self-adjoint!
+
+\[(Am_V)^*=m_V^*A^*=m_VA\neq Am_V\]
+
+\underline{Idea} $(I+Am_V)u=Af$. Perhaps, $A=A^{1/2}A^{1/2}$ and if $u=A^{1/2}V$, then 
+
+\[(I-Am_V)A^{1/2}v=Af\]
+\[A^{1/2}v+Am_VA^{1/2}v=Af\]
+\[A^{1/2}(I+A^{1/2}m_VA^{1/2})v=Af\]
+
+So if we manage to solve 
+
+\begin{equation}
+    (I+\underbrace{A^{1/2}m_VA^{1/2}}_{T})v=A^{1/2}f
+\end{equation}
+
+we would be done!
+
+$u=A^{1/2}v$ would then solve (5.3) and yay!
+
+$T$ formally is self-adjoint:
+
+\[(A^{1/2}m_V A^{1/2})^*=(A^{1/2})^*(m_V)^*(A^{1/2})^*=a^{1/2}m_V A^{1/2}\]
+
+Why can we take the $\sqrt{\cdot}$ of $A$?
+
+\begin{fproposition}
+    $\ker(A)=\{0\}$ and the orthonormal eigenvectors of $A$ are $B=\{v_n=\sqrt{2}\sin(n\pi x)\}_{n=1}^\infty$ associated with $\lambda_n=\frac{1}{n^2\pi^2}$
+\end{fproposition}
+
+\begin{fremark}
+    $B$ is an orthonormal basis (by the spectral theorem) for $L^2([0,1])$. ($\to$ reproduces result Fourier basis on $[-\pi,\pi]$)
+\end{fremark}
+
+\begin{proof}
+    $\ker A=(\im A^*)^\perp=(\im A)^\perp$
+
+    $\ker A=\{0\}\iff \im A$ dense in $L^2$. $f\in C\implies u=Af$ is the unique solution of (5.1). $u\in C^\infty_c([0,1])\implies u=Af''=A(-u'')$
+
+    \seba{fue cabros me dio lata anotar esta demostración}
+\end{proof}
+
+\begin{fproposition}
+    $A^{1/2}$ is a self-adjoint compact operator.
+\end{fproposition}
+
+\begin{proof}
+    \[S_Nx\coloneqq\sum_{n=1}^N \lambda_n^{1/2}\inn{x,v_n}v_n\]
+
+    finite-rank$\implies$ compact
+
+    \seba{nuevamente me dio lata terminar la demostración}
+\end{proof}
+
+\begin{fproposition}
+    \[A^{1/2}A^{1/2}=A\]
+    \[(I+T)v=A^{1/2}f\]
+    \[T\coloneqq A^{1/2}m_V A^{1/2}\]
+\end{fproposition}
+
+\begin{fproposition}
+    $I+T$ has a continuous inverse
+\end{fproposition}
+
+\begin{proof}
+    By Fredholm Alternative, it suffices to show 
+
+    \[(I+T)v=0\]
+
+    only has $v=0$ as a solution.
+
+    \seba{El resto se deja como ejercicio para el lector}
+\end{proof}
