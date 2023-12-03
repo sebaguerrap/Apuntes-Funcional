@@ -125,7 +125,7 @@ Si solo satisface 2 y 3 es una semi-norma.\\
 \textbf{Coro}: $G\subseteq X$ genérico $\implies$ $G$ denso en $X$, $X$ completo\\
 \textbf{Coro}: $X$ completo, $X=\bigcup_k F_k\leftarrow$ cerrado. Entonces por lo menos un $F_k$ contiene una bola\\
 \textbf{Teo}: El conjunto de funciones continuas no derivables en ningún punto es denso en $C([0,1])$\\
-\textbf{Def}: $T:X\to Y$ es abierta si $T(U)\overset{\text{ab}}{\subseteq}Y,\forall U\overset{\text{ab}}{\subseteq} X$
+\textbf{Def}: $T:X\to Y$ es abierta si $T(U)\overset{\text{ab}}{\subseteq}Y,\forall U\overset{\text{ab}}{\subseteq} X$\\
 \textbf{Teo (Aplicación Abierta)}: $X,Y$ Banach, $T\in \mathcal{B}(X,Y)$ biyectiva, entonces $T^{-1}\in \mathcal{B}(Y,X)$ y $\exists c,C>0:c\|x\|_X\leq \|Tx\|_Y\leq C\|x\|_X,\forall x\in X$. $c\|T^{-1}y\|_X\leq \|y\|_Y$\\
 \textbf{Def}: $X,Y$ e.m. $T:X\to Y$ cerrada si $G_T=\{(x,Tx)\in X\times Y\}$ es cerrado en $X\times Y$\\
 \textbf{Teo}: $X,Y$ Banach, $T\in\mathcal{B}(X,Y)\iff T$ lineal y cerrada\\
@@ -138,12 +138,12 @@ Si solo satisface 2 y 3 es una semi-norma.\\
 	\item $\inn{x,x}\geq 0$. $\inn{x,x}=0\implies x=0$
 \end{enumerate}
 De 1 y 2, $\inn{x+\lambda y+x}=\overline{\lambda}\inn{x,y}+\inn{x,z}$\\
-\textbf{Resultado}: $\inn{x+y,x+y}=\|x\|^2+2\operatorname{Re}\inn{x,y}+\|y\|^2$
+\textbf{Resultado}: $\inn{x+y,x+y}=\|x\|^2+2\operatorname{Re}\inn{x,y}+\|y\|^2$\\
 \textbf{Prop (Cauchy-Schwarz)}: $H$ pre-Hilbertiano $|\inn{x,y}|\leq \|x\|\|y\|,\forall x,y\in H$\\
 \textbf{Prop}: $\|x\|^2=\inn{x,x}$ define una norma en $H$\\
 \textbf{Prop}: $\inn{\cdot,\cdot}$ es continuo en $H\times H$\\
 \textbf{Def}: $x\perp y$ si $\inn{x,y}=0$. $E\subseteq H$, $E^\perp\coloneqq \{x\in H:x\perp y,\forall y\in E\}$\\
-\textbf{Teo (Pitagoras)}: $x_1,\ldots,x_n\in H$ mutuamente ortogonales, entonces $\|x_1+\cdot+x_2\|^2=\sum_{k=1}^n \|x_k\|^2$
+\textbf{Teo (Pitagoras)}: $x_1,\ldots,x_n\in H$ mutuamente ortogonales, entonces $\|x_1+\cdot+x_2\|^2=\sum_{k=1}^n \|x_k\|^2$\\
 \textbf{Prop (Ley del paralelogramo)}: $||x+y\|^2+\|x-y\|^2=2\|x\|^2+2\|y\|^2$\\
 \textbf{Def}: $(H,\inn{\cdot,\cdot})$ es Hilbert si es completo c.r. a $\|\cdot\|$ inducida por $\inn{\cdot,\cdot}$\\
 \textbf{Def}: $C\subseteq V$ convexo en $V$ si $\forall x,y\in C,(1-t)x+ty\in C,\forall t\in [0,1]$\\
@@ -206,7 +206,7 @@ De 1 y 2, $\inn{x+\lambda y+x}=\overline{\lambda}\inn{x,y}+\inn{x,z}$\\
 \textbf{Teo}: $f\in L^p, 1\leq p<\infty$. Entonces $\sigma_N f\xrightarrow{L^p} f$\\
 \textbf{Coro}: $S_N\xrightarrow{L^2} f$\\
 \textbf{Lema}: $f\in L^1(\T),\hat f(n)\xrightarrow{n\to\infty}0$\\
-\textbf{Misc}: $f\in L^2(\T)\to \hat f\in \ell^2_\Z$ es un isomorfismo unitario. $L^1(\T)\xrightarrow{\F} \hat c_0=\{(\ldots,a_{-1},a_0,a_1,\ldots):\lim_{|n|\to\infty} a_n=0\}$
+\textbf{Misc}: $f\in L^2(\T)\to \hat f\in \ell^2_\Z$ es un isomorfismo unitario. $L^1(\T)\xrightarrow{\F} \hat c_0=\{(\ldots,a_{-1},a_0,a_1,\ldots):\lim_{|n|\to\infty} a_n=0\}$\\
 \textbf{Teo}: $L^1(\T)\xrightarrow{\F}\hat c_0$ es lineal, acotado e inyectivo\\
 \textbf{Prop}: $\|D_N\|_{L^1}\geq C\log N$\\
 \textbf{Coro}: $f_N\coloneqq D_N$ contradice $\|f\|_{L^1}\leq c\|\hat f\|_{\infty}$\\
@@ -260,7 +260,7 @@ De 1 y 2, $\inn{x+\lambda y+x}=\overline{\lambda}\inn{x,y}+\inn{x,z}$\\
 	\item $\operatorname{ker}(I-T)=\{0\}\iff \operatorname{Im}(I-T)=X$
 	\item $\operatorname{dim}(\operatorname{ker}(I-T))=\operatorname{dim}(\operatorname{ker}(I-T^*))$
 \end{enumerate}
-\textbf{Lema} $X$ normado, $F\overset{\text{cerr}}{\subsetneq} X$. Entonces $\forall \varepsilon>0,\exists u\in X,\|u\|=1$ t.q. $d(u,F)\geq 1-\varepsilon, \|u-f\|\geq 1-\varepsilon,\forall f\in F$\\
+\textbf{Lema} $X$ normado, $F\overset{\text{cerr}}{\subsetneq} X$ subespacio. Entonces $\forall \varepsilon>0,\exists u\in X,\|u\|=1$ t.q. $d(u,F)\geq 1-\varepsilon, \|u-f\|\geq 1-\varepsilon,\forall f\in F$\\
 \textbf{Coro}: $X$ normado, $B^X$ compacta. Entonces $\operatorname{dim}X<\infty$\\
 \textbf{Resultado}: $T\in\mathcal{B}_c(X,Y), X_1\overset{\text{cerr}}{\subseteq}X$, $X,Y$ Banach $\implies T\big|_{X_1}:X_1\to Y$ es compacto\\
 \textbf{Def}: $\lambda\in\K$ es autovalor de $T:X\to X$, $X$ Banach, si $\exists x\neq 0$ t.q. $Tx=\lambda x$\\
