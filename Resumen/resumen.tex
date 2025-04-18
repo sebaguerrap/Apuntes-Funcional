@@ -243,7 +243,7 @@ De 1 y 2, $\inn{x,\lambda y+z}=\overline{\lambda}\inn{x,y}+\inn{x,z}$\\
 	\item $(\operatorname{Im}T^*)^\perp=\operatorname{ker}T$
 \end{enumerate}
 \textbf{Def (Comp)}: $X,Y$ Banach. $T:X\to Y$ compacto si $\overline{T(B^X)}$ compacto en $Y\iff$ toda sucesión en $T(B^X)$ tiene subsucesión convergente en $Y\iff$ toda sucesión en $T(B^X)$ tiene subsucesión de Cauchy\\
-\textbf{Teo}: $\mathcal{B}_c(X,Y)\subseteq \mathcal{B}(X,Y)$ es subespacio cerrado. $\{T_n\}\subseteq \mathcal{B}(X,Y), \|T_N\|\to 0\implies T\in\mathcal{B}(X,Y)$\\
+\textbf{Teo}: $\mathcal{B}_c(X,Y)\subseteq \mathcal{B}(X,Y)$ es subespacio cerrado. $\{T_n\}\subseteq \mathcal{B}_c(X,Y), \|T_N-T\|\to 0\implies T\in\mathcal{B}_c(X,Y)$\\
 \textbf{Def (Rango Finito)}: $T:X\to Y$ de rango finito si $\operatorname{dim}(\operatorname{Im} T)<\infty$\\
 \textbf{Prop}: $T:X\to Y$ de rango finito es compacto. $T=\lim T_n$ de rango finito $\implies T$ compacto\\
 \textbf{Teo}: $T\in\mathcal{B}_c(X,Y)$, $Y$ Hilbert. Entonces $\exists T_n$ rango finito t.q. $\|T_n-T\|\to 0$\\
@@ -280,7 +280,7 @@ De 1 y 2, $\inn{x,\lambda y+z}=\overline{\lambda}\inn{x,y}+\inn{x,z}$\\
 \textbf{\color{red}Teo (Espectral)}: $A\in\mathcal{B}_c(H,H)$ autoadjunto. Entonces $H$ posee base o.n. de autovectores. $Ax=\sum_n \lambda_n\inn{x,u_n}u_n$\\
 \textbf{Lema}: $A\in\mathcal{B}(H,H)$ acotado autoadjunto. Entonces $\|A\|=\sup_{\|x\|=1}|\inn{Ax,x}|\eqqcolon M$\\
 \textbf{Lema}: $A\in\mathcal{B}_c(H,H)$ autoadjunto, $A\neq 0$ entonces o $\|A\|$ o $-\|A\|$ es autovalor de $A$\\
-\textbf{Serie de Neumann}: $(I-\lambda T)^{-1}=\sum_{k=1}^\infty (\lambda T)^k, \|\lambda T\|<1$
+\textbf{Serie de Neumann}: $(I-\lambda T)^{-1}=\sum_{k=0}^\infty (\lambda T)^k, \|\lambda T\|<1$
 
 \end{multicols*}
 
